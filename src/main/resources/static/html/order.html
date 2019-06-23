@@ -13,6 +13,7 @@
     <script src="../bootstrap-4.3.1-dist/js/bootstrap.js"></script>
 <script src="http://cdn.bootcss.com/bootstrap-daterangepicker/2.1.25/moment.min.js"></script>
 <script src="http://cdn.bootcss.com/bootstrap-daterangepicker/2.1.25/daterangepicker.js"></script>
+<script src="../js/room1.js"></script>
 <style>
 
     .dropdown:hover .dropdown-menu {
@@ -64,19 +65,19 @@
 <div class="d-flex flex-column border m-4 p-3 bg-white rounded"  style="font-size:12px; color:#999;">
 <div class="d-flex flex-row border-bottom">
 <div class="pb-2"><h4 style="color:#000;">待评价</h4></div>
-<div class="ml-auto mr-4"><button class="btn btn-default rounded pl-2 pr-2 pt-1 pb-1"  style="background-color:#FFF; color:#0CF; border:#0CF 1px solid; font-size:12px; font-weight:bold;">删除订单</button></div>
+    <div class="ml-auto mr-4"><a href="/order/deleteOrderById" ><button class="btn btn-default rounded pl-2 pr-2 pt-1 pb-1"  style="background-color:#FFF; color:#0CF; border:#0CF 1px solid; font-size:12px; font-weight:bold;">删除订单</button></a></div>
 </div>
 <div class="d-flex flex-column pt-3 pb-3 border-bottom">
 <div><h6 style="color:#000;">订单信息</h6></div>
-<div class="mt-3">订单总价<span style="color:#F60;font-size:18px; margin-left:16px;"> ￥200</span></div>
-<div class="mt-2">订单号<span style="color:#333;font-size:12px; margin-left:16px;"> 123456789</span></div>
-<div class="mt-2">下单时间<span style="color:#333;font-size:12px;  margin-left:16px;"> 2016-08-15</span></div>
+<div  class="mt-3">订单总价<span id="price" style="color:#F60;font-size:18px; margin-left:16px;"> ￥200</span></div>
+<div class="mt-2">订单号<span id="o_id"  style="color:#333;font-size:12px; margin-left:16px;"> 123456789</span></div>
+<div  class="mt-2">下单时间<span id="o_time" style="color:#333;font-size:12px;  margin-left:16px;"> 2016-08-15</span></div>
 </div>
 <div class="d-flex flex-column pt-3 pb-3 border-bottom">
 <div><h6 style="color:#000;">民宿信息</h6></div>
-<div class="mt-3"><span style="color:#0CF;font-size:16px;"> 熊先生摄影民宿2-石路中式</span></div>
-<div class="mt-2">双流区学府西路常乐小区北三街38号</div>
-<div class="mt-2">民宿电话：<span style="color:#333;font-size:12px;  margin-left:8px;"> 123456798</span></div>
+<div id="h_name" class="mt-3"><span  style="color:#0CF;font-size:16px;"> 熊先生摄影民宿2-石路中式</span></div>
+<div id="add" class="mt-2">双流区学府西路常乐小区北三街38号</div>
+<div  class="mt-2">民宿电话：<span  style="color:#333;font-size:12px;  margin-left:8px;"> 123456798</span></div>
 </div>
 <div class="d-flex flex-column pt-3 pb-3 border-bottom">
 <div><h6 style="color:#000;">整套出租</h6></div>
@@ -86,9 +87,9 @@
 </div>
 <div class="d-flex flex-column pt-3 pb-3">
 <div><h6 style="color:#000;">预定信息</h6></div>
-<div class="mt-3">入住人<span style="color:#333;font-size:12px; margin-left:16px;"> 姓名</span></div>
-<div class="mt-2">联系手机<span style="color:#333;font-size:12px; margin-left:16px;"> 123456789</span></div>
-<div class="mt-2">预计到店<span style="color:#333;font-size:12px;  margin-left:16px;"> 4月19号14:00之前</span></div>
+<div class="mt-3">入住人<span  id="people"style="color:#333;font-size:12px; margin-left:16px;"> 姓名</span></div>
+<div  class="mt-2">联系手机<span id="tel1"style="color:#333;font-size:12px; margin-left:16px;"> 123456789</span></div>
+<div  class="mt-2">预计到店<span id="stime"style="color:#333;font-size:12px;  margin-left:16px;"> 4月19号14:00之前</span></div>
 </div>
 
 </div>  
@@ -104,4 +105,5 @@
 </div>
 </div>
 </body>
+
 </html>

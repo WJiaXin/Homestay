@@ -24,18 +24,17 @@
 	text-align:center;
     cursor: pointer;
 }
-#fangyuan .d-flex .rounded:focus{
+.fangyuanClick{
     text-align:center;
     background-color: #F90;
     color: #FFF;
     border: none;
     outline:none;
-
 }
 #fangyuan .d-flex .font-weight-bold{
 	text-align:left;
 }
-#zc .d-flex .border-orange:focus{
+.zcClick{
     outline:none;
     background-color: #FF9F00;
 }
@@ -43,7 +42,7 @@
    visibility: visible !important;
     outline:none;
 }
-#cz .bg-body:focus{
+.czClick{
 	color:#FFF;
     background-color:#FF9F00 !important;
     outline:none;
@@ -56,10 +55,15 @@
 a{
         text-decoration: none;
 }
+
+.threeClick{
+      color: #F90;
+  }
 .disabl{
     pointer-events: none;
     cursor:no-drop !important;
 }
+
 </style>
 <body class="bg-body">
 <div>
@@ -71,9 +75,15 @@ a{
                     <span class="navbar-toggler-icon"></span>
                 </button> <a class="navbar-brand" href="home.html" style="margin-left:7.333333%; font-family:'Comic Sans MS', cursive; font-size:24px; "><i class="iconfont icon-jiudianminsu" style="font-size:3em; color:#F90;"></i> Homestay</a>
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                
-               
+
                     <ul class="navbar-nav ml-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#myModalZC">注册</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="# "class="nav-link" data-toggle="modal" data-target="#myModal">登陆</a>
+                        </li>
+
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown"><img src="../img/test.jpg" height="35px"  width="35px" style="border-radius:20px;"/>  用户昵称</a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
@@ -157,13 +167,13 @@ a{
 
       <div class="p-3 d-flex flex-column text-dark" >
           <div class="p-2">民宿位于：</div>
-          <div class="border rounded ml-2 pr-2 " style="font-size:14px; font-weight:normal;"><input type="text" class="form-control" readonly placeholder="城市或目的地" data-toggle="city-picker"></div>
+          <div class="border rounded ml-2 pr-2 " style="font-size:14px; font-weight:normal;"><input type="text" class="form-control" readonly placeholder="城市或目的地" data-toggle="city-picker" id="address" onchange="search()"></div>
   <div class=" p-2 mt-3">街道地址：</div>
-          <div class="border rounded ml-2 pr-2"> <input type="text" class="form-control border-0" placeholder="例如：学府路一段24号" style="-webkit-box-shadow:none; box-shadow:none"></div>
+          <div class="border rounded ml-2 pr-2"> <input type="text" class="form-control border-0" placeholder="例如：学府路一段24号" style="-webkit-box-shadow:none; box-shadow:none" id="road" onchange="search()"></div>
   <div class=" p-2 mt-3">小区名称：</div>
-          <div class="border rounded ml-2 pr-2"> <input type="text" class="form-control border-0" placeholder="例如：常乐小区" style="-webkit-box-shadow:none; box-shadow:none"></div>
+          <div class="border rounded ml-2 pr-2"> <input type="text" class="form-control border-0" placeholder="例如：常乐小区" style="-webkit-box-shadow:none; box-shadow:none" id="village" onchange="search()"></div>
   <div class=" p-2 mt-3">楼、单元：</div>
-          <div class="border rounded ml-2 pr-2"> <input type="text" class="form-control border-0" placeholder="例如：4栋3024" style="-webkit-box-shadow:none; box-shadow:none"></div>
+          <div class="border rounded ml-2 pr-2"> <input type="text" class="form-control border-0" placeholder="例如：4栋3024" style="-webkit-box-shadow:none; box-shadow:none" id="floor" onchange="search()"></div>
   </div>
       <div class="p-3 d-flex flex-column flex-fill mr-4" >
           <div class="p-2">位置：</div>
@@ -203,10 +213,10 @@ a{
 
                   <div class="text-dark font-weight-bold mt-4">民宿名称：</div>
                   <div class="border rounded border-orange mt-3 w-25">
-                      <input type="text" class="form-control border-0" placeholder="例如：4栋3024" style="-webkit-box-shadow:none; box-shadow:none">
+                      <input type="text" class="form-control border-0" placeholder="例如：4栋3024" style="-webkit-box-shadow:none; box-shadow:none" id="homestayName">
                   </div>
                   <div class="text-dark font-weight-bold mt-4 ">民宿简介：</div>
-                  <div class=" mt-3 p-2 border mb-1 bg-white rounded border-orange w-50"  contenteditable="true" style="min-height:200px; font-size:14px;">
+                  <div class=" mt-3 p-2 border mb-1 bg-white rounded border-orange w-50"  contenteditable="true" style="min-height:200px; font-size:14px;" id="homestayBrief">
                   </div>
                   <div class="text-dark font-weight-bold mt-4 ">民宿照片（内部、周边）：</div>
                   <div class="ml-2 mt-4">封面(只能上传一张）：</div>
@@ -242,40 +252,47 @@ a{
               <div class="d-flex align-items-center m-2"><div style="width: 20px;height: 20px;" class="border-orange rounded-circle border" tabindex="1"></div><div>【严格】入住的前7天12:00前退订，可获50%退款。之后退订不退款</div></div>
               <div class="text-dark p-2 font-weight-bold" style="font-size:20px;">入住政策：</div>
               <div class="d-flex align-items-center flex-row m-2">
-                  <div class="p-2">当日</div><div class="p-2"><select class="form-control">
-                  <option value ="volvo">12:00</option>
-                  <option value ="saab">13:00</option>
-                  <option value="opel">14:00</option>
-                  <option value="audi">15:00</option></select></div><div class="p-2">后入住</div>
+                  <div class="p-2">当日</div><div class="p-2"><select class="form-control" id="today">
+                  <option value ="12:00">12:00</option>
+                  <option value ="13:00">13:00</option>
+                  <option value="14:00">14:00</option>
+                  <option value="15:00">15:00</option>
+                  <option value="16:00">16:00</option>
+              </select></div><div class="p-2">后入住</div>
                   <div class="p-2 ml-5">次日</div>
-                  <div class="p-2"><select class="form-control">
-                  <option value ="volvo">12:00</option>
-                  <option value ="saab">13:00</option>
-                  <option value="opel">14:00</option>
-                  <option value="audi">15:00</option></select></div><div class="p-2">前退房</div></div>
+                  <div class="p-2"><select class="form-control" id="tomorrow">
+                      <option value ="12:00">12:00</option>
+                      <option value ="13:00">13:00</option>
+                      <option value="14:00">14:00</option>
+                      <option value="15:00">15:00</option>
+                      <option value="16:00">16:00</option>
+                  </select></div><div class="p-2">前退房</div></div>
           </div>
       </div>
       <div class="p-2 mt-4">
-          <button class="btn btn-default" style="background-color: #F90; color:#FFF;" onclick="next('1','2')">下一步</button>
+          <button class="btn btn-default" style="background-color: #F90; color:#FFF;" onclick="step1('1','2')">下一步</button>
       </div>
 
   </div>
   <div class="col-md-2"> <input type="file" name="file" id="file1" accept="image/*" onchange="pimg('file1','img1')" hidden/><input type="file" name="file" id="file2" accept="image/*" onchange="pimg('file2','img2')" hidden/><input type="file" name="file" id="file3" accept="image/*" onchange="pimg('file3','img3')" hidden/></div>
 </div>
 
-            <div class="row mt-5 " hidden id="2">
+            <div class="row mt-5 " id="2" hidden>
                 <div class="col-md-2"></div>
                 <div class="col-md-8 p-0">
 
                     <div class="d-flex flex-column rounded bg-white p-3 text-dark" id="cz">
                         <div class="border-bottom pt-2 pb-2"><h4 class="text-orange">房型信息</h4></div>
+                        <div class="p-2 font-weight-bold" style="font-size: 20px;">房间名称：</div>
+                        <div class="border rounded border-orange mt-3 w-25">
+                            <input type="text" class="form-control border-0" placeholder="例如：4栋3024" style="-webkit-box-shadow:none; box-shadow:none" id="roomName">
+                        </div>
                                 <div class="p-2 font-weight-bold" style="font-size: 20px;">出租类型：</div>
                                 <div class="d-flex flex-row align-items-center p-2"  tabindex="0">
                                 <div class="p-4 bg-body rounded" tabindex="0"><i class="iconfont icon-zhengtaofangzi font-weight-bold" style=" font-size:2em;"></i></div>
                                 <div class="ml-3 text-gray6" style="font-size:14px;"><h5 style="color:#000;">整套房子</h5>
 客人可以预订整个空间，不与您或其它客人共住，如一整套三居室</div>
                                 </div>
-
                                  <div class="d-flex flex-row align-items-center p-2"  tabindex="0">
                                 <div class="p-4 bg-body rounded" tabindex="0"><i class="iconfont icon-danjian font-weight-bold" style=" font-size:2em;"></i></div>
                                 <div class="ml-3 text-gray6" style="font-size:14px;"><h5 style="color:#000;">独立房间</h5>
@@ -316,7 +333,7 @@ a{
                                 </div>
 
                                 <div class="p-2 mt-4 font-weight-bold" style="font-size: 20px;">房型面积：</div>
-                                <div class="d-flex flex-row"> <div class="border rounded ml-2 pr-2"> <input type="text" class="form-control border-0" placeholder="" style="-webkit-box-shadow:none; box-shadow:none"></div><div class="align-self-center ml-2">㎡</div></div>
+                                <div class="d-flex flex-row"> <div class="border rounded ml-2 pr-2"> <input type="text" class="form-control border-0" placeholder="" style="-webkit-box-shadow:none; box-shadow:none" id="mianji"></div><div class="align-self-center ml-2">㎡</div></div>
                                 <div class="p-2 mt-4 font-weight-bold" style="font-size: 20px;">床型：</div>
                                 <div class="d-flex flex-row align-items-center p-2">
                                     <div class="d-flex flex-row border border-orange rounded align-items-center" tabindex="0">
@@ -366,17 +383,17 @@ a{
                                 </div>
 
                                 <div class="p-2 mt-4 font-weight-bold" style="font-size: 20px;">卫生间类型：</div>
-                                <div class="d-flex flex-row align-items-center p-2"  tabindex="0">
-                                    <div class="p-4 bg-body rounded" tabindex="0"><i class="iconfont icon-_huabanfuben" style=" font-size:2em;"></i></div>
+                                <div class="d-flex flex-row align-items-center p-2">
+                                    <div class="p-4 bg-body rounded"><i class="iconfont icon-_huabanfuben" style=" font-size:2em;"></i></div>
                                     <div class="ml-3"><h5 style="color:#000;">独立卫生间</h5></div>
                                 </div>
 
-                                <div class="d-flex flex-row align-items-center p-2"  tabindex="0">
-                                    <div class="p-4 bg-body rounded" tabindex="0"><i class="iconfont icon-gonggongweishengjian1" style="font-size:2em;"></i></div>
+                                <div class="d-flex flex-row align-items-center p-2">
+                                    <div class="p-4 bg-body rounded"><i class="iconfont icon-gonggongweishengjian1" style="font-size:2em;"></i></div>
                                     <div class="ml-3"><h5 style="color:#000;">公共卫生间</h5></div>
                                 </div>
                         <div class="p-2 mt-4">
-                            <button class="btn btn-default" style="background-color: #F90; color:#FFF;" onclick="next('2','3')">下一步</button>
+                            <button class="btn btn-default" style="background-color: #F90; color:#FFF;" onclick="step2('2','3')">下一步</button>
                         </div>
                     </div>
                 </div>
@@ -433,7 +450,7 @@ a{
                     </div>
 
                     <div class="p-2 mt-4">
-                        <button class="btn btn-default" style="background-color: #F90; color:#FFF;" onclick="next('3','4')">下一步</button>
+                        <button class="btn btn-default" style="background-color: #F90; color:#FFF;" onclick="step3('3','4')">下一步</button>
                     </div>
                 </div>
             </div>
@@ -495,7 +512,7 @@ a{
 
 
                         <div class="p-2 mt-4">
-                            <button class="btn btn-default" style="background-color: #F90; color:#FFF;" onclick="next('4','5')">下一步</button>
+                            <button class="btn btn-default" style="background-color: #F90; color:#FFF;" onclick="step4('4','5')">下一步</button>
                         </div>
                     </div>
                 </div>
@@ -512,9 +529,9 @@ a{
                     <div class="d-flex flex-column rounded bg-white p-3">
                         <div class="border-bottom pt-2 pb-2"><h4 class="text-orange">价格规则</h4></div>
                         <div class="p-2 mt-4 font-weight-bold" style="font-size: 20px;">日价：</div>
-                        <div class="d-flex flex-row"><div class="border rounded ml-2"> <input type="text" class="form-control border-0" style="-webkit-box-shadow:none; box-shadow:none"></div><div class="p-2">元/晚</div></div>
+                        <div class="d-flex flex-row"><div class="border rounded ml-2"> <input type="text" class="form-control border-0" style="-webkit-box-shadow:none; box-shadow:none" id="price"></div><div class="p-2">元/晚</div></div>
                         <div class="p-2 mt-4 font-weight-bold" style="font-size: 20px;">清洁费：<span style="font-size:14px;color: #999;">用于房客入住前后的房屋清洁、布草更换等。</span></div>
-                        <div class="d-flex flex-row"><div class="border rounded ml-2"> <input type="text" class="form-control border-0" style="-webkit-box-shadow:none; box-shadow:none"></div><div class="p-2">元</div></div>
+                        <div class="d-flex flex-row"><div class="border rounded ml-2"> <input type="text" class="form-control border-0" style="-webkit-box-shadow:none; box-shadow:none" id="clear"></div><div class="p-2">元</div></div>
                         <div class="p-2 mt-4 font-weight-bold" style="font-size: 20px;">宜居人数：</div>
                         <div class="d-flex flex-row border border-orange rounded align-items-center ml-3" style="width: 110px;" tabindex="0">
                             <div class="p-2"> <i class="iconfont icon-jian"  style="font-size:14px;" onclick="jian('yiju')"></i></div>
@@ -524,7 +541,7 @@ a{
 
 
                         <div class="p-2 mt-4">
-                            <button class="btn btn-default" style="background-color: #F90; color:#FFF;">发布</button>
+                            <button class="btn btn-default" style="background-color: #F90; color:#FFF;" onclick="step5()">发布</button>
                         </div>
                     </div>
                 </div>
@@ -541,42 +558,235 @@ a{
 </div>
 </body>
 
-<script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.14&key=9839aaba1926a947266476327971a8ea&plugin=AMap.AdvancedInfoWindow,AMap.Autocomplete"></script>
+<script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.14&key=9839aaba1926a947266476327971a8ea&plugin=AMap.AdvancedInfoWindow,AMap.Autocomplete,AMap.Geocoder"></script>
 <script type="text/javascript" src="https://cache.amap.com/lbs/static/addToolbar.js"></script>
 <script src="//webapi.amap.com/ui/1.0/main.js"></script>
 <script>
+    var address,addressName;//地址坐标、地址名
+    var fangyuan;
+    var homestayImg={};    //名宿图片
+    var roomstayImg={};    //房型图片
+    homestayImg['封面']=[];
+    homestayImg['内部']=[];
+    homestayImg['周边']=[];
+    roomstayImg['封面']=[];
+    roomstayImg['客厅']=[];
+    roomstayImg['卧室']=[];
+    roomstayImg['卫浴']=[];
+    roomstayImg['厨房']=[];
+    roomstayImg['其他']=[];
+    var zhengce={};
+    zhengce['ruzhu']={'today':$('#today').val(),'tomorrow':$('#tomorrow').val()};
 
+   function step1(now,next){    //第一步
+
+        var step1={};
+         step1['address']={'address':address,'addressName':addressName};
+         step1['homestay']={'fangyuan':fangyuan,'homestayName':$('#homestayName').val(),'homestayBrief':$('#homestayBrief').html()};
+         step1['img']=homestayImg;
+         step1['zhengce']=zhengce;
+         var CD=$('#address').val().split('/');
+         step1['city']=CD[1];
+         step1['district']=CD[2];
+         step1['owner']="17738505200";
+         $.ajax({
+             type: 'post',
+             url:"/homestay/step1",
+             data: JSON.stringify(step1),
+             cache: false,
+             processData: false,
+             contentType : 'application/json;charset=utf-8',
+             success: function (data) {
+             if(data=='1') {
+               nextPage(now,next);
+ }else{
+            alert("保存失败！")
+             }
+             }, error: function (XMLHttpRequest, textStatus, error) {
+                 alert("保存失败！")
+             }
+         });
+    }
+    var fangxin,weiyu;
+function step2(now,next){
+
+    var step2={};
+    step2['leixing']={'shi':$('#shi').html(),'ting':$('#ting').html(),'wei':$("#wei").html(),'chu':$("#chu").html(),'yangtai':$("#yangtai").html(),'mianji':$("#mianji").val()};
+    var bed={'2bigbed':$('#2bigbed').html(),'2bed':$('#2bed').html(),'1bed':$('#1bed').html(),'shangxia':$('#shangxia').html(),'shafa':$('#shafa').html(),'tatami':$('#tatami').html(),'qita':$('#qita').html()};
+    step2['leixing'].bed=bed;
+    step2['leixing'].weiyu=weiyu;
+    step2['fangxin']=fangxin;
+    step2['roomName']=$('#roomName').val();
+    $.ajax({
+        type: 'post',
+        url:"/homestay/step2",
+        data: JSON.stringify(step2),
+        cache: false,
+        processData: false,
+        contentType : 'application/json;charset=utf-8',
+        success: function (data) {
+            if(data=='1') {
+                nextPage(now,next);
+            }else{
+                alert("保存失败！")
+            }
+        }, error: function (XMLHttpRequest, textStatus, error) {
+            alert("保存失败！")
+        }
+    });
+}
+var sheshi={' 热水淋浴':0,' 浴缸':0,' 手纸':0,' 毛巾':0,' 浴液/洗发水':0,' 香皂':0,' 牙具':0,' 拖鞋':0,' 空调':0,' 电视':0,' 洗衣机':0,' 饮水设备':0,' 冰箱':0,' 无线网络':0,' 有线网络':0,' 暖气':0,' 门禁':0,' 停车位':0,' 电梯':0,' 允许携宠':0,' 允许聚会':0,' 允许做饭':0};
+function  step3(now,next) {
+alert(JSON.stringify(sheshi));
+    $.ajax({
+        type: 'post',
+        url:"/homestay/step3",
+        data: JSON.stringify(sheshi),
+        cache: false,
+        processData: false,
+        contentType : 'application/json;charset=utf-8',
+        success: function (data) {
+            if(data=='1') {
+                nextPage(now,next);
+            }else{
+                alert("保存失败！")
+            }
+        }, error: function (XMLHttpRequest, textStatus, error) {
+            alert('保存失败！');
+        }
+    });
+}
+function  step4(now,next) {
+
+        $.ajax({
+            type: 'post',
+            url:"/homestay/step4",
+            data: JSON.stringify(roomstayImg),
+            cache: false,
+            processData: false,
+            contentType : 'application/json;charset=utf-8',
+            success: function (data) {
+                if(data=='1') {
+                    nextPage(now,next);
+                }else{
+                    alert("保存失败！")
+                }
+            }, error: function (XMLHttpRequest, textStatus, error) {
+                alert('保存失败！');
+            }
+        });
+    }
+    function  step5() {
+var step5={'price':$('#price').val(),'clear':$('#clear').val(),'yiju':$('#yiju').html()};
+alert(JSON.stringify(step5));
+        $.ajax({
+            type: 'post',
+            url:"/homestay/step5",
+            data: JSON.stringify(step5),
+            cache: false,
+            processData: false,
+            contentType : 'application/json;charset=utf-8',
+            success: function (data) {
+                if(data=='1') {
+                    alert("发布成功！")
+                }else{
+                    alert("保存失败！")
+                }
+            }, error: function (XMLHttpRequest, textStatus, error) {
+                alert('保存失败！');
+            }
+        });
+    }
+
+        var auto = new AMap.Autocomplete({
+        input: "road"
+    });
     var auto = new AMap.Autocomplete({
-        input: "search"
+        input: "village"
+    });
+    var map = new AMap.Map('container', {
+        resizeEnable: true
+    });
+    AMap.plugin('AMap.Geolocation', function() {              //精确定位
+        var geolocation = new AMap.Geolocation({
+            enableHighAccuracy: true,//是否使用高精度定位，默认:true
+            timeout: 10000,          //超过10秒后停止定位，默认：5s
+            buttonPosition:'RB',    //定位按钮的停靠位置
+            buttonOffset: new AMap.Pixel(10, 20),//定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
+            zoomToAccuracy: true,   //定位成功后是否自动调整地图视野到定位点
+            showMarker: false,
+        });
+        map.addControl(geolocation);
+        geolocation.getCurrentPosition(function(status,result){
+            if(status=='complete'){
+                onComplete(result)
+            }else{
+                onError(result)
+            }
+        });
+    });
+    var geocoder = new AMap.Geocoder({
+        radius: 1000 //范围，默认：500
     });
 
-    var map = new AMap.Map('container', {
-        resizeEnable: true, //是否监控地图容器尺寸变化
-        zoom:16, //初始化地图层级
-        center:[103.985289,30.581767]
-    });
+    addressName="";
     var marker = new AMap.Marker({
-        position:[103.985289,30.581767]//位置
     })
     marker.setMap(map);
+    //实例化信息窗体
+    var content = [];
+    var infoWindow;
     //鼠标点击marker弹出自定义的信息窗体
     AMap.event.addListener(marker, 'click', function () {
         infoWindow.open(map, marker.getPosition());
     });
-    //实例化信息窗体
-    var content = [];
-    content.push("<span style='font-weight: bold;'>地址：</span>成都信息工程大学航空港校区体育公园   <a href='https://www.amap.com/?30.581767,103.985289' style='margin-left: 16px;'>>>>导航</a>");
-    var infoWindow = new AMap.InfoWindow({
-        content:  content.join("<br/>"),
-        offset: new AMap.Pixel(16, -45)
+    function onComplete(data) {
+        geocoder.getAddress(data.position, function(status, result) {             //根据坐标获取地址名称
+            address=data.position;
+            if (status === 'complete'&&result.regeocode) {
+               addressName = result.regeocode.formattedAddress;
+                content.push("<span style='font-weight: bold;'>地址：</span>"+addressName+"   <a href='https://www.amap.com/search?query="+addressName+"' style='margin-left: 16px;'>>>>导航</a>");
+                infoWindow = new AMap.InfoWindow({                  //创建信息窗体
+                    content:  content.join("<br/>"),
+                    offset: new AMap.Pixel(16, -45)
+                });
+                marker.setPosition(data.position);
+            }else{
+                log.error('根据经纬度查询地址失败')
+            }
+        });
+    }
+function search() {
+    infoWindow.close();
+    addressName=$('#address').val().replace(/\//g,"")+$('#road').val()+$('#village').val()+$('#floor').val();    //地址名
+    geocoder.getLocation(addressName, function(status, result) {
+        if (status === 'complete'&&result.geocodes.length) {
+            address = result.geocodes[0].location;        //获取坐标
+            if(!marker){
+                marker = new AMap.Marker();
+                map.add(marker);
+            }
+            marker.setPosition(address);
+            map.setFitView(marker);
+            var content = [];
+            content.push("<span style='font-weight: bold;'>地址：</span>"+addressName+"   <a href='https://www.amap.com/search?query="+addressName+"' style='margin-left: 16px;'>>>>导航</a>");
+            infoWindow = new AMap.InfoWindow({
+                content:  content.join("<br/>"),
+                offset: new AMap.Pixel(16, -45)             //创建信息窗体
+            });
+        }else{
+            log.error('根据地址查询位置失败');
+        }
     });
+}
+
 
     function shangchuan(id) {
         $('#'+id+'').click();
     }
-    function pimg(id,img){
+    function pimg(id,img){                         //上传图片
         var formData = new FormData();
-        formData.append("file",$('#'+id+'')[0].files[0]);
+        formData.append("file",$('#'+id+'')[0].files[0]);      //文件添加至表单
         $.ajax({
             type: 'post',
             url:"/img/pimg",
@@ -588,6 +798,35 @@ a{
                 $('#'+img+'').prepend("<div class=\"ml-2 mr-2\" style=\"width:6em; height:6em;\" id=\""+data+"\" ><img src=\"../img/space/"+data+"\" class=\"img-thumbnail\" style=\"max-height:100%; width:100%;\" ></div><i class=\"iconfont icon-shanchu ml-n4 bg-white text-danger align-self-start mt-3 rounded-circle\" onclick=\"del('"+id+"','"+data+"',this)\"></i>");
                 if(id=='file1'){$("#shangchuan").addClass('disabl');}
                 if(id=='file4'){$("#shangchuan2").addClass('disabl');}
+                switch(img){                                //添加图片json数据
+                    case 'img1':
+                        homestayImg['封面'].push(data);
+                    break;
+                    case 'img2':
+                        homestayImg['内部'].push(data);
+                    break;
+                    case 'img3':
+                        homestayImg['周边'].push(data);
+                        break;
+                    case 'img4':
+                        roomstayImg['封面'].push(data);
+                        break;
+                    case 'img5':
+                        roomstayImg ['客厅'].push(data);
+                        break;
+                    case 'img6':
+                        roomstayImg ['卧室'].push(data);
+                        break;
+                    case 'img7':
+                        roomstayImg ['卫浴'].push(data);
+                        break;
+                    case 'img8':
+                        roomstayImg ['厨房'].push(data);
+                        break;
+                    case 'img9':
+                        roomstayImg ['其他'].push(data);
+                        break;
+                }
             },
             error: function (XMLHttpRequest, textStatus, error) {
                 alert('照片名含有非法字符，请重新上传！');
@@ -595,7 +834,7 @@ a{
         });
     };
 
-    function del(id,img,obj){
+    function del(id,img,obj){    //删除图片
         $.ajax({
             type: 'post',
             url:"/img/dimg?img="+img,
@@ -619,25 +858,77 @@ a{
         }
     }
     function jia(id){
-
             $('#' + id + '').html(($('#' + id + '').html()*1+1*1));
-
     }
 
-    function next(now,next){
+    function nextPage(now,next){          //跳页
         $('#'+now+'').hide();
         $('#'+now+'p').attr('class','text-orange')
         $('#'+now+'n').attr('class','text-white bg-orange rounded-circle')
         $('#'+now+'l').attr('class','col my-auto border border-orange bg-orange')
         $('#'+next+'').removeAttr("hidden");
         $('#'+next+'').show();
-        $('#'+now+'n').bind('click',function (){
+        $('#'+now+'n').on('click',function (){
             $('#content>.row:eq('+now+')').show();
             $('#content>.row:gt('+now+')').hide();
             $('#content>.row:lt('+now+'):gt(0)').hide();
         })
+        $('#'+next+'n').on('click',function (){
+            $('#content>.row:eq('+next+')').show();
+            $('#content>.row:gt('+next+')').hide();
+            $('#content>.row:lt('+next+'):gt(0)').hide();
+        })
     }
 
 
+
+        $(function(){
+            $(".title").on('DOMSubtreeModified',function () {
+                search();
+            });
+        });
+
+    $('#fangyuan .d-flex .rounded').click(function(){             //按钮选定
+        var index=$('#fangyuan .d-flex .rounded').index(this);
+        $('#fangyuan>.d-flex>.rounded:eq('+index+')').addClass('fangyuanClick');
+        $('#fangyuan>.d-flex>.rounded:gt('+index+')').removeClass('fangyuanClick');
+        $('#fangyuan>.d-flex>.rounded:lt('+index+')').removeClass('fangyuanClick');
+      fangyuan=$(this).html();
+    });
+    $('#zc .d-flex .border-orange').click(function(){
+        var index=$('#zc .d-flex .border-orange').index(this);
+        $('#zc>.d-flex>.border-orange:eq('+index+')').addClass('zcClick');
+        $('#zc>.d-flex>.border-orange:gt('+index+')').removeClass('zcClick');
+        $('#zc>.d-flex>.border-orange:lt('+index+')').removeClass('zcClick');
+    zhengce['tuiding']=$(this).next().html();
+    })
+
+    $('#cz .d-flex .bg-body').click(function(){
+        var index=$('#cz .d-flex .bg-body').index(this);
+        if(index>1) {
+            $('#cz .d-flex .bg-body:eq(' + index + ')').addClass('czClick');
+            $('#cz .d-flex .bg-body:gt(' + index + ')').removeClass('czClick');
+            $('#cz .d-flex .bg-body:lt(' + index + '):gt(1)').removeClass('czClick');
+            weiyu=$(this).next().children("h5").html();
+        }else{
+            $('#cz .d-flex .bg-body:eq(' + index + ')').addClass('czClick');
+            $('#cz .d-flex .bg-body:gt(' + index + '):lt(2)').removeClass('czClick');
+            $('#cz .d-flex .bg-body:lt(' + index + ')').removeClass('czClick');
+           if($(this).next().children("h5").html()=="整套房子"){
+               fangxin=0;
+            }else{
+               fangxin=1;
+           }
+        }
+    })
+    $('#3 .ml-5').click(function () {
+        if($(this).hasClass('threeClick')){
+            $(this).removeClass('threeClick');
+            sheshi[$(this).text()]=0;
+        }else {
+            $(this).addClass('threeClick');
+            sheshi[$(this).text()]=1;
+        }
+    })
 </script>
 </html>

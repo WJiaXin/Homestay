@@ -13,6 +13,8 @@
     <script src="../bootstrap-4.3.1-dist/js/bootstrap.js"></script>
 <script src="http://cdn.bootcss.com/bootstrap-daterangepicker/2.1.25/moment.min.js"></script>
 <script src="http://cdn.bootcss.com/bootstrap-daterangepicker/2.1.25/daterangepicker.js"></script>
+<script src="../js/order1.js"></script>
+
 <style>
 .dropdown:hover .dropdown-menu {
 display: block;
@@ -144,7 +146,7 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', en
                     <i class="fas fa-home" ></i> <span style="font-size:22px;color:#000;">整套出租</span><h6>房屋面积：65平方米</h6>
 <h6>房屋户型：1室1厅1卫</h6>
 </div>
-                    <div class="flex-fill fa-2x" style="text-align:center;"><i class="fas fa-users" style="color:#999;"></i> <span style="font-size:22px;color:#000;">宜居3人</span><h6>房客独享整套房屋</h6></div>
+                    <div class="flex-fill fa-2x" style="text-align:center;"><i class="fas fa-users" style="color:#999;"></i> <span id="people" style="font-size:22px;color:#000;">宜居3人</span><h6>房客独享整套房屋</h6></div>
                     <div class="flex-fill  fa-2x" style="text-align:center;"><i class="fas fa-bed" style="color:#999;"></i> <span style="font-size:22px;color:#000;">共3张</span><h6>双人床：1.5m宽×2.0m长×2张</h6>
                     <h6>单人床：1.3m宽×2.0m长×1张</h6></div>
                     </div>
@@ -157,13 +159,12 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', en
                 
                       <div class="d-flex  bg-white flex-column flex-fill" style=" border:#DDD solid 1px;" id="pay">  
     <div class="d-flex p-3">
-     <div style="color:#F60;">￥<span style="font-size:32px;">200</span></div>
+     <div style="color:#F60;">￥<span id="price"  style="font-size:32px;">190</span></div>
     <div class="flex-fill align-self-center text-right">每晚</div>
     </div>
  
   <hr class="ml-3 mr-3">
     <h6 class="ml-3 mr-3" style=" font-size:14px; color:#666666;">入住日期</h6>
-    
     <div class="pl-3 pr-3"  style="text-align:center;">
      <div class="rounded bg-white d-flex" style="height:40px; border:#DDD solid 1px;"> 
      <div class=" ml-3 mr-3 bg-white float-left" id="daterange" style="line-height:38px;">
@@ -175,7 +176,7 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', en
             </div>
             
             <div class="mt-2  p-3 ">
-             <button class="btn btn-default w-100 pt-2 pb-2" style="background-color:#FC6; color:#FFF;">立即预定</button>
+             <button  type="button"  onclick="setOrderRoom()"  class="btn btn-default w-100 pt-2 pb-2" style="background-color:#FC6; color:#FFF;">立即预定</button>
             </div>
             
             <div class="flex-grow-1 ml-3 mr-3 border-top flex-fill p-3" style="text-align:center;">
@@ -278,4 +279,5 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', en
 
 </body>
 <script src="../js/room.js"></script>
+<script src="../js/roomInfo.js"></script>
 </html>

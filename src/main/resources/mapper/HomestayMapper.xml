@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.dao.HomestayDao" >
+    <resultMap id="homestay" type="com.example.demo.entity.Homestay">
+        <id column="H_id" property="H_id" />
+        <collection column="H_id" property="roomType" ofType="int" javaType="java.util.List" select="selectRoomType">
+        </collection>
+        <collection column="H_id" property="price" ofType="int" select="selectMinPrice">
+        </collection>
+    </resultMap>
+    <insert id="setHomestay" parameterType="com.example.demo.entity.Homestay">
+      insert into hotel(H_id,H_owner,H_name,H_address,H_rule,H_brief,city,district,picture,type,state,time) values (#{H_id},#{H_owner},#{H_name},#{H_address},#{H_rule},#{H_brief},#{city},#{district},#{picture},#{type},#{state},#{time})
+    </insert>
+    <select id="findHomestay" resultType="com.example.demo.entity.Homestay">
+        select *from hotel where H_owner=#{arg0} and time=#{arg1}
+    </select>
+    <insert id="setRoom" parameterType="com.example.demo.entity.Room">
+        insert into room(R_hotel,R_type,R_norms,R_time,state,R_permit,R_name) values (#{R_hotel},#{R_type},#{R_norms},#{R_time},#{state},#{R_permit},#{R_name})
+    </insert>
+    <select id="findRoom" resultType="com.example.demo.entity.Room">
+        select *from room where R_hotel=#{arg0} and R_time=#{arg1}
+    </select>
+    <update id="setRoomFacility" parameterType="com.example.demo.entity.Room">
+      update room set R_facilities=#{R_facilities} where R_id=#{R_id}
+    </update>
+    <update id="setRoomImg" parameterType="com.example.demo.entity.Room">
+      update room set R_picture=#{R_picture} where R_id=#{R_id}
+    </update>
+    <update id="setRoomPrice" parameterType="com.example.demo.entity.Room">
+      update room set R_price=#{R_price},R_numPeople=#{R_numPeople},R_rule=#{R_rule},state=#{state} where R_id=#{R_id}
+    </update>
+    <update id="setHstate">
+      update hotel set state=#{arg1} where H_id=#{arg0}
+    </update>
+    <select id="findIdHomestay" resultMap="homestay">
+        select *from hotel where H_owner=#{arg0}
+    </select>
+    <select id="selectRoomType" parameterType="int" resultType="int">
+        SELECT DISTINCT R_type FROM room WHERE R_hotel=#{H_id}
+    </select>
+    <select id="selectMinPrice" parameterType="int" resultType="int">
+        SELECT min(R_price) FROM room WHERE R_hotel=#{H_id} and state='已上线'
+    </select>
+    <select id="findIdRoom"  resultType="com.example.demo.entity.Room">
+        SELECT *FROM room WHERE R_hotel=#{arg0}
+    </select>
+    <select id="findAllHomestay" resultMap="homestay">           /*人气民宿 */
+        select *from hotel where state='已上线' order by renqi  limit 8
+    </select>
+</mapper>

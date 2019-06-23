@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.dao.OrderDao" >
+
+    <insert id="addOrder"  parameterType="com.example.demo.entity.Order">
+        insert into `order` (O_user,
+        O_name,
+        O_phone,
+        O_price,
+        O_time,
+        O_Stime,
+        O_room,
+        O_account,
+        O_Etime,
+        state)
+        values
+        (#{O_user},
+        #{O_name},
+        #{O_phone},
+        #{O_price},
+        #{O_time},
+        #{O_Stime},
+        #{O_room},
+        #{O_account},
+        #{O_Etime},
+        #{state})
+    </insert>
+
+    <delete id="deleteOrderById" parameterType="int">
+        DELETE FROM `order` WHERE O_id = #{id}
+    </delete>
+
+    <select id="myOrder" parameterType="int" resultType="com.example.demo.entity.Order">
+        select * from `order` where O_user = #{id}
+    </select>
+
+    <update id="updateOrder" parameterType="com.example.demo.entity.Order">
+        update `order` set state = #{state} where  O_id = #{O_id}
+    </update>
+    <select id="getEndOrder"
+            resultType="Map">
+		SELECT * FROM `order`,room
+		where `order`.O_user= #{param1} and `order`.state= #{param2}
+		and `order`.O_room=room.R_id  limit #{param3},5
+	</select>
+    <select id="getAllOrder"
+            resultType="Map">
+		SELECT * FROM `order`,room
+		where `order`.O_user= #{param1}
+		and `order`.O_room=room.R_id  limit #{param2},5
+	</select>
+    <select id="getBookingOrder"
+            resultType="Map">
+		SELECT * FROM `order`,room
+		where `order`.O_user= #{param1} and (`order`.state= #{param2} or `order`.state = #{param3} )
+		and `order`.O_room=room.R_id limit #{param4},5
+	</select>
+    <select id="getOrderNum"
+            resultType="int">
+		SELECT count(*) FROM `order`
+		where `order`.O_user= #{id}
+	</select>
+    <select id="getEndNum"
+            resultType="int">
+		SELECT count(*) FROM `order`,room
+		where `order`.O_user= #{param1} and `order`.state= #{param2}
+		and `order`.O_room=room.R_id
+	</select>
+    <select id="getAfterNum"
+            resultType="int">
+		SELECT count(*) FROM `order`,room
+		where `order`.O_user= #{param1} and (`order`.state= #{param2} or `order`.state = #{param3} )
+		and `order`.O_room=room.R_id
+	</select>
+    <update id="updateOrderState">
+         update `order` set state = #{param2} where  O_id = #{param1}
+    </update>
+    <select id="getAllOrderForH"
+            resultType="Map">
+		select * from `order`,room,hotel where hotel.H_owner = #{param1} and hotel.H_id = room.R_hotel and `order`.O_room = room.R_id  limit #{param2},5
+	</select>
+    <select id="getAllOrderForHNum"
+            resultType="int">
+		select count(*) from `order`,room,hotel where hotel.H_owner = #{param1} and hotel.H_id = room.R_hotel and `order`.O_room = room.R_id
+	</select>
+    <select id="getOneTypeOrder"
+            resultType="Map">
+		select * from `order`,room,hotel where  hotel.H_owner= #{param1} and `order`.state= #{param2}
+		and hotel.H_id = room.R_hotel and `order`.O_room = room.R_id  limit #{param3},5
+	</select>
+    <select id="getOneTypeOrderNum"
+            resultType="int">
+		select count(*) from `order`,room,hotel where hotel.H_owner = #{param1} and hotel.H_id = room.R_hotel and `order`.O_room = room.R_id and `order`.state= #{param2}
+	</select>
+    <select id="getOneOrder" parameterType="int"
+            resultType="com.example.demo.entity.Order">
+		select * from `order` where O_id= #{id}
+	</select>
+
+</mapper>

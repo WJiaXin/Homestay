@@ -22,7 +22,7 @@ function shangchuan(){
         processData: false,
         contentType: false,
         success: function (data) {
-            $("#img").append("<div class=\"ml-2 mr-2\" style=\"width:12em; height:12em;\"><img src=\"../img/space/"+data+"\" class=\"img-thumbnail\" style=\"max-height:100%; width:100%;\"></div>");
+            $("#img").prepend("<div class=\"ml-2 mr-2\" style=\"width:12em; height:12em;\"><img src=\"../img/space/"+data+"\" class=\"img-thumbnail\" style=\"max-height:100%; width:100%;\"></div>");
         },
         error: function (XMLHttpRequest, textStatus, error) {
             alert(error);

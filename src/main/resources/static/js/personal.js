@@ -89,23 +89,4 @@ function upPwd() {
             }
         })
     }
-}//修改密码
-$.ajax({
-    type: 'post',        //数据提交的方式
-    url: "/comment/getComment",//数据提交的路径
-    data: formData,
-    cache: false,
-    processData: false,
-    contentType: false,
-    success: function (data) {
-        document.getElementById("c_time").innerHTML =data.C_time;
-        document.getElementById("C_content").innerHTML = data.C_content;
-        $('#C_picture').html("<img src=\"../img"+data.C_picture+"\"style=\"max-width:120px;\"width=\"100%\"/>");
-        $('#myModal').modal('hide');
-    },
-    // }
-    error: function (XMLHttpRequest, textStatus, error) {
-        alert("错误！");
-
-    }
-})//评论信息显示
+}

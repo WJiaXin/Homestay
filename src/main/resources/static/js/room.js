@@ -1,3 +1,4 @@
+
 function init() {
     //定义locale汉化插件
     var locale = {
@@ -47,3 +48,4 @@ $(window).scroll(function(){
     }
 
 });
+

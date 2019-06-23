@@ -122,9 +122,10 @@ function login() {
     formData.append("inputPhone", $('#inputPhone').val());
     formData.append("inputPassword", $('#inputPassword').val());
     formData.append("inputCord1", $('#inputCord1').val());
-    if(formData.get('inputPhone')==""||formData.get('inputPassword')==""){
-        alert("账号或密码不能为空！");
-    } else {
+
+   //if(formData1.get('inputPhone')==""){
+    //    alert("用户账号不能为空！");
+    //} else {
         $.ajax({
             type: 'post',        //数据提交的方式
             url: "/user/login",//数据提交的路径
@@ -133,22 +134,26 @@ function login() {
             processData: false,
             contentType: false,
             success: function (data) {
-                if(data=='0'){
-                    alert("验证码错误！");
-                }else if(data=='1'){
-                    alert("该用户未注册!");
-                }else if(data=='2'){
-                    alert("密码不正确！");
-                }else {
-                    alert("登录成功！");
-                    location.reload(true);
-                }
-            },
+                var json = eval('(' + data + ')');
+          //      if(data==="0"){
+        //            alert("验证码错误！");
+        //        }else if(date==="1"){
+       //             alert("该用户未注册！");
+     //           }else if(data==="2"){
+     //               alert("密码不正确！");
+     //           }else{
+                    $('#user .dropdown-toggle').html("<img src=\"../img/user/"+json.user_id+"/"+json.user_picture+"\" height=\"35px\"  width=\"35px\" style=\"border-radius:20px;\"/> "+json.user_name);
+                    $('#myModal').modal('hide');
+                    $('#user_name').html(json.user_name);
+                  //  location.reload(true);
+                    $('#user').attr('style','display:inline;')
+
+                },
+           // }
             error: function (XMLHttpRequest, textStatus, error) {
-                alert("登录失败！");
+                alert("登录失败,请检查用户是否注册，或者密码是否输入正确！");
+
             }
         })
-    }
+   // }
 }//登陆处理
-
-
