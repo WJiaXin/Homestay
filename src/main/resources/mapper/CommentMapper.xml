@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.dao.CommentDao" >
+    <select id="findUserById"  parameterType="map" resultType="com.example.demo.entity.Comment">
+        select * from comment where C_userid = #{C_userid}
+    </select>
+    <insert id="insertComment"  parameterType="com.example.demo.entity.Comment">
+        insert into comment
+        (
+          C_id,
+          C_userid,
+          C_order,
+          C_content,
+          C_time,
+          C_score,
+          C_picture
+        )
+        values
+        (
+        #{C_id},
+        #{C_userid},
+        #{C_order},
+        #{C_content},
+        #{C_time},
+        #{C_score},
+        #{C_picture}
+        )
+
+    </insert>
+</mapper>
