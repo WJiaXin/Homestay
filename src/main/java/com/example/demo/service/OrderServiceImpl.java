@@ -66,19 +66,19 @@ public class OrderServiceImpl implements OrderService {
       orderDao.updateOrderState(id,state);
     }
     @Override
-        public List<Map<String, Object>> getAllOrderForH(@Param("id") int id,@Param("start") int start){
+        public List<Map<String, Object>> getAllOrderForH(@Param("id") String id,@Param("start") int start){
         return orderDao.getAllOrderForH(id, start);
     }
     @Override
-        public int getAllOrderForHNum(int id){
+        public int getAllOrderForHNum(String id){
             return orderDao.getAllOrderForHNum(id);
     }
     @Override
-    public List<Map<String, Object>> getOneTypeOrder(@Param("id") int id,@Param("state") String state,@Param("start") int start){
+    public List<Map<String, Object>> getOneTypeOrder(@Param("id") String id,@Param("state") String state,@Param("start") int start){
         return orderDao.getOneTypeOrder(id, state, start);
     }
     @Override
-    public int getOneTypeOrderNum(@Param("id") int id,@Param("state") String state){
+    public int getOneTypeOrderNum(@Param("id") String id,@Param("state") String state){
         return  orderDao.getOneTypeOrderNum(id, state);
     }
     @Override

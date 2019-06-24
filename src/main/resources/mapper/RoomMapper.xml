@@ -6,5 +6,19 @@
         SELECT * FROM room WHERE R_id = #{id}
     </select>
 
-
+    <select id="getApplyRoom" resultType="com.example.demo.entity.Room">
+        select * from room where state = '审核中' limit #{param1},5
+    </select>
+    <update id="updataRoomState">
+        update room set state = #{param2} where R_id = #{param1}
+    </update>
+    <select id="getRoomApplyNum"  resultType="int">
+        select count(*) from room where state = '审核中'
+    </select>
+    <select id="getMinRoomPrice"  resultType="int" parameterType="int">
+        select min(R_price) from room where R_hotel = #{id}
+    </select>
+    <select id="getRoomByHid" resultType="com.example.demo.entity.Room">
+        select * from room where state = '审核中' and R_hotel = #{id}
+    </select>
 </mapper>

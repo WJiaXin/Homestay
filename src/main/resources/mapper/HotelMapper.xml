@@ -5,5 +5,13 @@
     <select id="getHotelById" parameterType="int" resultType="com.example.demo.entity.Hotel">
         select * from hotel where H_id = #{id}
     </select>
-
+    <select id="getApplyHotel"  resultType="com.example.demo.entity.Hotel">
+        select * from hotel where state = '审核中' limit #{param1},5
+    </select>
+    <update id="updataHotelState">
+        update hotel set state = #{param2},H_score1 = 5.0,H_score2 = 5.0,H_score3 = 5.0,H_score4 = 5.0 where H_id = #{param1}
+    </update>
+    <select id="getHotelApplyNum"  resultType="int">
+        select count(*) from hotel where state = '审核中'
+    </select>
 </mapper>
