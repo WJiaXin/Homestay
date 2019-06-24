@@ -9,6 +9,7 @@
     <link href="http://cdn.bootcss.com/bootstrap-daterangepicker/2.1.25/daterangepicker.css" rel="stylesheet">
 
     <script src="../js/jquery-3.3.1.min.js"></script>
+	<script src="http://code.changer.hk/jquery/plugins/jquery.cookie.js"></script>
     <script src="../bootstrap-3.3.7-dist/js/bootstrap.js"></script>
 
     <script src="../js/city-picker.data.js"></script>
@@ -100,12 +101,12 @@
 				</div> <a class="left carousel-control" href="#carousel-338274" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a> <a class="right carousel-control" href="#carousel-338274" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
                  <div style="width:64%; margin-left: 18%; background-color:#FFF; margin-top:-10%; z-index:2; height:60px; position:absolute; border-radius:5px;">
                 <div style=" float:left; line-height:60px; width:7%; text-align:center;"><span class="glyphicon glyphicon-map-marker" style=" font-size:18px;"></span></div>
-                <div  style="width: 30%; float: left;height: 60px; color: #999; font-size:18px;" > <input type="text" class="form-control" readonly placeholder="城市或目的地" data-toggle="city-picker" style="height:60px;"></div>
+                <div  style="width: 30%; float: left;height: 60px; color: #999; font-size:18px;" > <input type="text" class="form-control" readonly placeholder="城市或目的地" data-toggle="city-picker" style="height:60px;" id="city"></div>
                  <div style=" float:left; line-height:60px; width:7%; text-align:center;" id="daterange">
                  <span class="glyphicon glyphicon-calendar" style=" font-size:18px;"></span>
                  </div>
                 <div style="float: left; width: 30%;height: 60px; color: #999;"><input type="text" class="form-control" readonly placeholder="入住日期" id="daterangeC" style="height:60px; font-size:18px;"></div>
-          <div style="line-height: 56px; background-color:#333; float: left; width: 25.7%; border-radius: 5px; text-align: center; color: #FFF; margin-top:2px; font-size:18px" >搜索</div>
+          <div style="line-height: 56px; background-color:#333; float: left; width: 25.7%; border-radius: 5px; text-align: center; color: #FFF; margin-top:2px; font-size:18px" onclick="search()">搜索</div>
 			</div>
 
  

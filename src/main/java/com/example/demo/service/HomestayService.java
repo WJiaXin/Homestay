@@ -15,10 +15,15 @@ public interface HomestayService {
    int setRoomPrice(Room room);
    List<Homestay> findIdHomestay(String userid);
    Homestay findHidHomestay(int hid);
+   Homestay findHidHomestayS(int hid);
    int setHstate(int H_id,String state);
    List<Room> findIdRoom(int Hid);
    List<Homestay> findAllHomestay();
    int setRoomState(int rid,String state);
    int deleteHomestay(int hid);
    int deleteRoom(int rid);
+   List<Homestay> findCityHomestay(String city);        //
+   List<Homestay> findDistrHomestay(String district);    //
+   Integer isFull(String Stime,String Etime,int room);        //是否满房
+
 }

@@ -9,7 +9,22 @@
         </collection>
         <collection column="H_id" property="room"  javaType="java.util.List" select="findHidRoom">
         </collection>
+        <collection column="H_owner" property="user"   select="findHidUser">
+        </collection>
     </resultMap>
+        <resultMap id="homestayShow" type="com.example.demo.entity.Homestay">
+            <id column="H_id" property="H_id" />
+            <collection column="H_id" property="roomType" ofType="int" javaType="java.util.List" select="selectRoomType">
+            </collection>
+            <collection column="H_id" property="price" ofType="int" select="selectMinPrice">
+            </collection>
+            <collection column="H_id" property="room"  javaType="java.util.List" select="findHidRoom">
+            </collection>
+            <collection column="H_owner" property="user"   select="findHidUser">
+            </collection>
+            <collection column="H_id" property="commentList" javaType="java.util.List"  select="findHidComment">
+            </collection>
+        </resultMap>
     <insert id="setHomestay" parameterType="com.example.demo.entity.Homestay">
       insert into hotel(H_id,H_owner,H_name,H_address,H_rule,H_brief,city,district,picture,type,state,time) values (#{H_id},#{H_owner},#{H_name},#{H_address},#{H_rule},#{H_brief},#{city},#{district},#{picture},#{type},#{state},#{time})
     </insert>
@@ -24,6 +39,9 @@
     </select>
     <select id="findHidRoom" resultType="com.example.demo.entity.Room">
         select *from room where R_hotel=#{H_id}
+    </select>
+    <select id="findHidComment" resultType="com.example.demo.entity.Comment">
+       select *FROM comment WHERE C_order in (SELECT O_id FROM `order` where O_room in (SELECT R_id from room where R_hotel=#{H_id}))
     </select>
     <update id="setRoomFacility" parameterType="com.example.demo.entity.Room">
       update room set R_facilities=#{R_facilities} where R_id=#{R_id}
@@ -40,8 +58,20 @@
     <select id="findIdHomestay" resultMap="homestay">
         select *from hotel where H_owner=#{arg0}
     </select>
+    <select id="findHidUser" resultType="com.example.demo.entity.User">
+        select *from user where user_id=#{H_owner}
+    </select>
     <select id="findHidHomestay" resultMap="homestay">
         select *from hotel where H_id=#{arg0}
+    </select>
+    <select id="findHidHomestayS" resultMap="homestayShow">
+        select *from hotel where H_id=#{arg0}
+    </select>
+    <select id="findCityHomestay" resultMap="homestay">
+        select *from hotel where city=#{arg0} and state="已上线" order by renqi desc
+    </select>
+    <select id="findDistrHomestay" resultMap="homestay">
+        select *from hotel where district=#{arg0} and state="已上线" order by renqi desc
     </select>
     <select id="selectRoomType" parameterType="int" resultType="int">
         SELECT DISTINCT R_type FROM room WHERE R_hotel=#{H_id}
@@ -53,7 +83,7 @@
         SELECT *FROM room WHERE R_hotel=#{arg0}
     </select>
     <select id="findAllHomestay" resultMap="homestay">           /*人气民宿 */
-        select *from hotel where state='已上线' order by renqi  limit 8
+        select *from hotel where state='已上线' order by renqi desc limit 8
     </select>
     <update id="setRoomState">
       update room set state=#{arg1} where R_id=#{arg0}
@@ -64,4 +94,7 @@
     <delete id="deleteRoom">
        delete *from room where R_id=#{arg0}
     </delete>
+    <select id="isFull" resultType="Integer">
+        SELECT *FROM `order` WHERE O_Etime &gt; #{arg0} AND O_Stime &lt; #{arg1} and O_room=#{arg2} AND state NOT in('已取消','已退款')
+    </select>
 </mapper>

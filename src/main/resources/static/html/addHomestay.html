@@ -581,7 +581,7 @@ a{
    function step1(now,next){    //第一步
 
         var step1={};
-         step1['address']={'address':address,'addressName':addressName};
+         step1['address']={'address':address.toString(),'addressName':addressName};
          step1['homestay']={'fangyuan':fangyuan,'homestayName':$('#homestayName').val(),'homestayBrief':$('#homestayBrief').html()};
          step1['img']=homestayImg;
          step1['zhengce']=zhengce;
@@ -707,34 +707,35 @@ alert(JSON.stringify(step5));
     var map = new AMap.Map('container', {
         resizeEnable: true
     });
-    AMap.plugin('AMap.Geolocation', function() {              //精确定位
+    var geocoder = new AMap.Geocoder({
+        radius: 1000 //范围，默认：500
+    });
+if($('#address').val()=="") {
+    AMap.plugin('AMap.Geolocation', function () {              //精确定位
         var geolocation = new AMap.Geolocation({
             enableHighAccuracy: true,//是否使用高精度定位，默认:true
             timeout: 10000,          //超过10秒后停止定位，默认：5s
-            buttonPosition:'RB',    //定位按钮的停靠位置
+            buttonPosition: 'RB',    //定位按钮的停靠位置
             buttonOffset: new AMap.Pixel(10, 20),//定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
             zoomToAccuracy: true,   //定位成功后是否自动调整地图视野到定位点
             showMarker: false,
         });
         map.addControl(geolocation);
-        geolocation.getCurrentPosition(function(status,result){
-            if(status=='complete'){
+        geolocation.getCurrentPosition(function (status, result) {
+            if (status == 'complete') {
                 onComplete(result)
-            }else{
+            } else {
                 onError(result)
             }
         });
     });
-    var geocoder = new AMap.Geocoder({
-        radius: 1000 //范围，默认：500
-    });
-
-    addressName="";
+}else{
+    search();
+}
     var marker = new AMap.Marker({
     })
     marker.setMap(map);
     //实例化信息窗体
-    var content = [];
     var infoWindow;
     //鼠标点击marker弹出自定义的信息窗体
     AMap.event.addListener(marker, 'click', function () {
@@ -745,7 +746,8 @@ alert(JSON.stringify(step5));
             address=data.position;
             if (status === 'complete'&&result.regeocode) {
                addressName = result.regeocode.formattedAddress;
-                content.push("<span style='font-weight: bold;'>地址：</span>"+addressName+"   <a href='https://www.amap.com/search?query="+addressName+"' style='margin-left: 16px;'>>>>导航</a>");
+                var content = [];
+                content.push("<span style='font-weight: bold;'>地址：</span>"+addressName+"   <a href='https://uri.amap.com/marker?position="+address+"' style='margin-left: 16px;'>>>>导航</a>");
                 infoWindow = new AMap.InfoWindow({                  //创建信息窗体
                     content:  content.join("<br/>"),
                     offset: new AMap.Pixel(16, -45)
@@ -757,7 +759,7 @@ alert(JSON.stringify(step5));
         });
     }
 function search() {
-    infoWindow.close();
+
     addressName=$('#address').val().replace(/\//g,"")+$('#road').val()+$('#village').val()+$('#floor').val();    //地址名
     geocoder.getLocation(addressName, function(status, result) {
         if (status === 'complete'&&result.geocodes.length) {
@@ -769,7 +771,7 @@ function search() {
             marker.setPosition(address);
             map.setFitView(marker);
             var content = [];
-            content.push("<span style='font-weight: bold;'>地址：</span>"+addressName+"   <a href='https://www.amap.com/search?query="+addressName+"' style='margin-left: 16px;'>>>>导航</a>");
+            content.push("<span style='font-weight: bold;'>地址：</span>"+addressName+"   <a href='https://uri.amap.com/marker?position="+address+"' style='margin-left: 16px;'>>>>导航</a>");
             infoWindow = new AMap.InfoWindow({
                 content:  content.join("<br/>"),
                 offset: new AMap.Pixel(16, -45)             //创建信息窗体
@@ -779,7 +781,6 @@ function search() {
         }
     });
 }
-
 
     function shangchuan(id) {
         $('#'+id+'').click();

@@ -6,7 +6,7 @@
      <link href="../bootstrap-4.3.1-dist/css/bootstrap.css" rel="stylesheet" type="text/css">
       <link href="http://cdn.bootcss.com/bootstrap-daterangepicker/2.1.25/daterangepicker.css" rel="stylesheet">
      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
-    <link href="http://at.alicdn.com/t/font_1216890_jftcaadbzhp.css"  rel="stylesheet">
+    <link href="http://at.alicdn.com/t/font_1216890_h64jhyxvtj8.css"  rel="stylesheet">
 
 
     <script src="../js/jquery-3.3.1.min.js"></script>
@@ -93,19 +93,8 @@ margin-top: 0;
 				<div class="col-md-7 col-12  d-flex flex-column-reverse  bg-body p-0 pr-2">
 			
                 <div class="carousel slide flex-fill border rounded" id="carousel-237530"><!--轮播 -->
-				  <div class="carousel-inner rounded ">
-							<div class="carousel-item active">
-								<img class="d-block w-100" src="../img/room5.jpg" />
-								
-							</div>
-							<div class="carousel-item">
-								<img class="d-block w-100" src="../img/room4.jpg" />
-								
-							</div>
-							<div class="carousel-item">
-								<img class="d-block w-100" src="../img/room3.jpg" />
-								
-							</div>
+				  <div class="carousel-inner rounded" id="pictures">
+
 				  </div> <a class="carousel-control-prev" href="#carousel-237530" data-slide="prev"><span class="carousel-control-prev-icon"></span> <span class="sr-only">Previous</span></a> <a class="carousel-control-next" href="#carousel-237530" data-slide="next"><span class="carousel-control-next-icon"></span> <span class="sr-only">Next</span></a>
 					</div>
                     
@@ -139,8 +128,8 @@ margin-top: 0;
                 
                       <div class="d-flex  bg-white rounded flex-column flex-fill bg-info" style=" border:#DDD solid 1px;">  
     <div class="d-flex p-3">
-     <div><h1 style="color:#FF9F00;">4.9分</h1></div>
-    <div class="flex-fill align-self-center text-right"><a href="#">查看评价 ></a></div>
+     <div><h1 style="color:#FF9F00;" id="score">4.9分</h1></div>
+    <div class="flex-fill align-self-center text-right"><a href="#comment">查看评价 ></a></div>
     </div>
  
   <hr width="94%">
@@ -149,7 +138,7 @@ margin-top: 0;
     
   <img src="../img/test.jpg"  class="rounded img-fluid">
    <div class="caption pt-1">
-               	<h5 align="center">
+               	<h5 align="center" id="name">
 								房东昵称
 			  </h5>
                          <h6 style="color:#0C0; font-size:14px;">实名认证</h6>
@@ -162,7 +151,7 @@ margin-top: 0;
                   <div class="d-flex bg-body align-items-center"  style="height:120px;">
     <div class="p-2 flex-fill" style="text-align:center;">	<span class="glyphicon glyphicon-heart-empty"></span> 收藏</div>
     <div class="p-2 flex-fill" style="text-align:center;">	<i class="fa fa-share-alt"></i> 分享</div>
-    <div class="p-2 flex-fill" style="text-align:center; color:#F60; font-size:26px; text-align:right;">￥200起</div>
+    <div class="p-2 flex-fill" style="color:#F60; text-align:right;">￥<span style="text-align:center;color:#F60;font-size:26px;" id="price">200</span>起</div>
   </div>
      
 				</div>
@@ -192,151 +181,39 @@ margin-top: 0;
             </div>
             
             <div class="ml-3">
-                    <button class="btn btn-default" style="background-color: #69F; color:#FFF;">重新搜索</button>
+                    <button class="btn btn-default" style="background-color: #69F; color:#FFF;" onclick="search()">重新搜索</button>
                    </div>
                    
                    </div>
                    
                    <hr class="ml-3 mr-3">
-                   
-                   <div class="d-flex flex-column">
-                   <div class="media bg-white pb-3 ml-3 mr-3">
-  <img src="../img/room3.jpg" alt="John Doe" class="mr-3 mt-3 rounded" style="width:130px; height:90px;">
-  <div class="media-body bg-white pt-3 d-flex flex-column-reverse" >
-   <div class="d-flex mt-2" style="font-size:12px;">
-   <div class="pl-0 pr-2"><i class="fas fa-bed pr-1" style="color:#999;" title="床型"></i> 大床2.0×2.2米1张</div>
-    <div class="pl-2 pr-3"><i class="fas fa-concierge-bell pr-1" style="color:#999;"></i>允许做饭</div>
-    <div class="pl-2 pr-3"><i class="fas fa-dog pr-1" style="color:#999;"></i>允许携宠</div>
-     <div class="pl-2 pr-3"><i class="fas fa-glass-cheers pr-1" style="color:#999;"></i>允许聚会</div>
-   <div class=" ml-auto"><button class="btn btn-default rounded-pill pl-4 pr-4 pt-1 pb-1"  style="background-color:#FC6; color:#FFF; font-weight:bolder;">预定</button></div>
-   </div>
-   <div class="d-flex flex-row mt-3" style="font-size:12px;">
-   <div class="pl-0 pr-3  bg-white border-right"><span class="pr-1" style="color:#999;">类型:</span> 单间</div>
-    <div class="pl-3 pr-3  border-right"><span class="pr-1" style="color:#999;">卫浴:</span> 公共</div>
-    <div class="pl-3 pr-3  border-right"><span class="pr-1" style="color:#999;">户型:</span> 1室1厅1卫1厨</div>
-    <div class="pl-3 pr-3 "><span class="pr-1" style="color:#CCC;">面积:</span> 20-30㎡</div>
-    </div>
-    <div class="d-flex">
-    <div onclick="javascript:window.location.href='/room/getRoomId?id=1'"><h5>单间</h5></div>
-    <div class=" ml-auto pr-3" style="color:#F60; font-size:24px;"><span style=" font-size:8px;">￥</span>200</div>
-    </div>
-  </div>
-</div>
+                  
 
- <div class="media border-bottom bg-white pb-3 ml-3 mr-3">
-  <img src="../img/room2.jpg" alt="John Doe" class="mr-3 mt-3 rounded" style="width:130px; height:90px;">
-  <div class="media-body bg-white pt-3 d-flex flex-column-reverse" >
-   <div class="d-flex mt-2" style="font-size:12px;">
-   <div class="pl-0 pr-2"><i class="fas fa-bed pr-1" style="color:#999;" title="床型"></i> 大床2.0×2.2米1张</div>
-   <div class="pl-2 pr-3"><i class="fas fa-concierge-bell pr-1" style="color:#999;"></i>允许做饭</div>
-    <div class="pl-2 pr-3"><i class="fas fa-dog pr-1" style="color:#999;"></i>允许携宠</div>
-     <div class="pl-2 pr-3"><i class="fas fa-glass-cheers pr-1" style="color:#999;"></i>允许聚会</div>
-   <div class=" ml-auto"><button class="btn btn-default rounded-pill pl-4 pr-4 pt-1 pb-1"  style="background-color:#999; color:#FFF; font-weight:bolder;">满房</button></div>
-   </div>
-   <div class="d-flex flex-row mt-3" style="font-size:12px;">
-   <div class="pl-0 pr-3  bg-white border-right"><span class="pr-1" style="color:#999;">类型:</span> 整套</div>
-    <div class="pl-3 pr-3  border-right"><span class="pr-1" style="color:#999;">卫浴:</span> 独立</div>
-    <div class="pl-3 pr-3  border-right"><span class="pr-1" style="color:#999;">户型:</span> 1室1卫</div>
-    <div class="pl-3 pr-3 "><span class="pr-1" style="color:#CCC;">面积:㎡</span> 20-30</div>
-    </div>
-    <div class="d-flex">
-    <div><h5>2栋501</h5></div>
-    <div class=" ml-auto pr-3" style="color:#F60; font-size:24px;"><span style=" font-size:8px;">￥</span>400</div>
-    </div>
-  </div>
-</div>
-
- <div class="media border-bottom bg-white pb-3 ml-3 mr-3">
-  <img src="../img/room4.jpg" alt="John Doe" class="mr-3 mt-3 rounded" style="width:130px; height:90px;">
-  <div class="media-body bg-white pt-3 d-flex flex-column-reverse" >
-   <div class="d-flex  mt-2" style="font-size:12px;">
-   <div class="pl-0 pr-2"><i class="fas fa-bed pr-1" style="color:#999;" title="床型"></i> 大床2.0×2.2米1张</div>
-    <div class="pl-2 pr-3"><i class="fas fa-concierge-bell pr-1" style="color:#999;"></i>允许做饭</div>
-    <div class="pl-2 pr-3"><i class="fas fa-dog pr-1" style="color:#999;"></i>允许携宠</div>
-     <div class="pl-2 pr-3"><i class="fas fa-glass-cheers pr-1" style="color:#999;"></i>允许聚会</div>
-   <div class=" ml-auto"><button class="btn btn-default rounded-pill pl-4 pr-4 pt-1 pb-1"  style="background-color:#FC6; color:#FFF; font-weight:bolder;">预定</button></div>
-   </div>
-   <div class="d-flex flex-row mt-3" style="font-size:12px;">
-   <div class="pl-0 pr-3  bg-white border-right"><span class="pr-1" style="color:#999;">类型:</span> 单间</div>
-    <div class="pl-3 pr-3  border-right"><span class="pr-1" style="color:#999;">卫浴:</span> 公共</div>
-    <div class="pl-3 pr-3  border-right"><span class="pr-1" style="color:#999;">户型:</span> 1室1卫</div>
-    <div class="pl-3 pr-3 "><span class="pr-1" style="color:#CCC;">面积:</span> 20-30㎡</div>
-    </div>
-    <div class="d-flex">
-    <div><h5>单间</h5></div>
-    <div class=" ml-auto pr-3" style="color:#F60; font-size:24px;"><span style=" font-size:8px;">￥</span>200</div>
-    </div>
-  </div>
-</div>
-<div class="media border-bottom bg-white pb-3 ml-3 mr-3">
-  <img src="../img/room5.jpg" alt="John Doe" class="mr-3 mt-3 rounded" style="width:130px; height:90px;">
-  <div class="media-body bg-white pt-3 d-flex flex-column-reverse" >
-   <div class="d-flex  mt-2" style="font-size:12px;">
-   <div class="pl-0 pr-2"><i class="fas fa-bed pr-1" style="color:#999;" title="床型"></i> 大床2.0×2.2米1张</div>
-    <div class="pl-2 pr-3"><i class="fas fa-concierge-bell pr-1" style="color:#999;"></i>允许做饭</div>
-    <div class="pl-2 pr-3"><i class="fas fa-dog pr-1" style="color:#999;"></i>允许携宠</div>
-     <div class="pl-2 pr-3"><i class="fas fa-glass-cheers pr-1" style="color:#999;"></i>允许聚会</div>
-   <div class=" ml-auto"><button class="btn btn-default rounded-pill pl-4 pr-4 pt-1 pb-1"  style="background-color:#FC6; color:#FFF; font-weight:bolder;">预定</button></div>
-   </div>
-   <div class="d-flex flex-row mt-3" style="font-size:12px;">
-   <div class="pl-0 pr-3  bg-white border-right"><span class="pr-1" style="color:#999;">类型:</span> 单间</div>
-    <div class="pl-3 pr-3  border-right"><span class="pr-1" style="color:#999;">卫浴:</span> 公共</div>
-    <div class="pl-3 pr-3  border-right"><span class="pr-1" style="color:#999;">户型:</span> 1室1厅1卫</div>
-    <div class="pl-3 pr-3 "><span class="pr-1" style="color:#CCC;">面积:</span> 20-30㎡</div>
-    </div>
-    <div class="d-flex">
-    <div><h5>单间</h5></div>
-    <div class=" ml-auto pr-3" style="color:#F60; font-size:24px;"><span style=" font-size:8px;">￥</span>200</div>
-    </div>
-  </div>
-</div>
-<div class="media border-bottom bg-white pb-3 ml-3 mr-3">
-  <img src="../img/room2.jpg" alt="John Doe" class="mr-3 mt-3 rounded" style="width:130px; height:90px;">
-  <div class="media-body bg-white pt-3 d-flex flex-column-reverse" >
-   <div class="d-flex  mt-2" style="font-size:12px;">
-   <div class="pl-0 pr-2"><i class="fas fa-bed pr-1" style="color:#999;" title="床型"></i> 大床2.0×2.2米1张</div>
-    <div class="pl-2 pr-3"><i class="fas fa-concierge-bell pr-1" style="color:#999;"></i>允许做饭</div>
-    <div class="pl-2 pr-3"><i class="fas fa-dog pr-1" style="color:#999;"></i>允许携宠</div>
-     <div class="pl-2 pr-3"><i class="fas fa-glass-cheers pr-1" style="color:#999;"></i>允许聚会</div>
-   <div class=" ml-auto"><button class="btn btn-default rounded-pill pl-4 pr-4 pt-1 pb-1"  style="background-color:#FC6; color:#FFF; font-weight:bolder;">预定</button></div>
-   </div>
-   <div class="d-flex flex-row mt-3" style="font-size:12px;">
-   <div class="pl-0 pr-3  bg-white border-right"><span class="pr-1" style="color:#999;">类型:</span> 单间</div>
-    <div class="pl-3 pr-3  border-right"><span class="pr-1" style="color:#999;">卫浴:</span> 公共</div>
-    <div class="pl-3 pr-3  border-right"><span class="pr-1" style="color:#999;">户型:</span> 1室1卫</div>
-    <div class="pl-3 pr-3 "><span class="pr-1" style="color:#CCC;">面积:</span> 20-30㎡</div>
-    </div>
-    <div class="d-flex">
-    <div><h5>单间</h5></div>
-    <div class=" ml-auto pr-3" style="color:#F60; font-size:24px;"><span style=" font-size:8px;">￥</span>200</div>
-    </div>
-  </div>
-</div>
                    </div>
 		    </div><!--房型预定 end -->
             
             <h3 class="mt-3 mb-2" id="homestay">民宿信息</h3>
             
-            <div class="border bg-white d-flex flex-row rounded">
+            <div class="border bg-white d-flex flex-row rounded" style="min-height: 450px;">
             <div style="width:60%;" id="container">
   </div>
   
   <div class="d-flex flex-column-reverse" style="font-size:14px; color:#666; width:40%">
   
-    <div class="p-3 ml-2 mr-2 flex-fill"><span class="mr-3" style="color:#000; font-weight:bold;">民宿简介</span> 水木尚品公寓位于成都市双流区学府西路北二街214号，紧靠机场高速、信息工程大学、西南民族学院、四川大学（江安校区）；得天独厚的地理位置，为宾客转机、赶飞机提供便捷的居住地。本公寓设备齐全，景致秀美，舒服温暖，优质服务。酒店共有五十余间客房，房内设施完善，环境舒适、温馨。公寓附近就是出名的美食一条街，更临近北京华联中心商场，购物、健身、吃美食只需步行几分钟，为您提供舒适的休闲时光。 为方便宾客，酒店还提供24小时免费接送服务，我们本着“以人为本，顾客至上”的服务理念，为宾客提供便捷实惠的旅途驿站。</div>
+    <div class="p-3 ml-2 mr-2 flex-fill" id="brief"><span class="mr-3" style="color:#000; font-weight:bold;">民宿简介</span> 水木尚品公寓位于成都市双流区学府西路北二街214号，紧靠机场高速、信息工程大学、西南民族学院、四川大学（江安校区）；得天独厚的地理位置，为宾客转机、赶飞机提供便捷的居住地。本公寓设备齐全，景致秀美，舒服温暖，优质服务。酒店共有五十余间客房，房内设施完善，环境舒适、温馨。公寓附近就是出名的美食一条街，更临近北京华联中心商场，购物、健身、吃美食只需步行几分钟，为您提供舒适的休闲时光。 为方便宾客，酒店还提供24小时免费接送服务，我们本着“以人为本，顾客至上”的服务理念，为宾客提供便捷实惠的旅途驿站。</div>
     
-    <div class="p-3 ml-2 mr-2 border-bottom"><span class="mr-3" style="color:#000; font-weight:bold;">民宿政策</span>入住时间: 12:00以后 离店时间: 12:00之前</div>
+    <div class="p-3 ml-2 mr-2 border-bottom" id="zhengce"><span class="mr-3" style="color:#000; font-weight:bold;">民宿政策</span>入住时间: 12:00以后 离店时间: 12:00之前</div>
    
-    <div class="p-3 ml-2 mr-2 border-bottom"><span class="mr-3" style="color:#000; font-weight:bold;">联系方式</span> 123456789</div>
+    <div class="p-3 ml-2 mr-2 border-bottom" id="phone"><span class="mr-3" style="color:#000; font-weight:bold;">联系方式</span> 123456789</div>
     
   </div>
   
 </div><!--民宿信息 end-->
 
 <h3 class="mt-3 mb-2" id="comment">住客点评</h3>
-<div class="d-flex bg-white rounded flex-column border">
+<div class="d-flex bg-white rounded flex-column border" id="commentC">
 
-<div class="d-flex flex-row ml-3 mr-3 border-bottom" >
+<div class="d-flex flex-row ml-3 mr-3 border-bottom" id="scoreAll">
 <div class="m-4" style="font-size:28px;">
 <span style="color:#FF9F00; font-size:42px;">4.9</span>/5分
 </div>
@@ -368,144 +245,6 @@ margin-top: 0;
    </div>
    </div>
    <div class="pt-1 pb-1" style="font-size:12px;">
-   2019-05-26
-#位置好##服务好##干净卫生##房间大##性价比高#房间是真的宽大，干净舒适，有人接送机，服务周到，前台小姐姐待人热情有耐心，我找到酒店在哪儿，他直接来接我，唯一不好的是没有电梯，不过还好啦最高也就4-5楼，临走时拍了三张图
-   </div>
-   <div class="d-flex flex-row">
-   <div class="p-2" style="max-width:120px;">
-   <img src="../img/room2.jpg" width="100%">
-   </div>
-     <div class="p-2" style="max-width:120px;">
-   <img src="../img/room3.jpg" width="100%">
-   </div>
-     <div class="p-2" style="max-width:120px;">
-   <img src="../img/room4.jpg" width="100%">
-   </div>
-   </div>
-   <div class="mt-3" style="font-size:12px; color:#69F;">
-  商家回复:我们会继努力，让我们的客人来我们店都住的开心…24小时免费接送机，旁边有3所大学，机场直线2.6公里，地铁站1.6公里旁边就是小吃街。水木尚品欢迎您再次光临！祝您：开心快乐！幸福安康！
-   </div>
-  </div>
-</div>
-<div class="media p-2">
-  <img src="https://static.runoob.com/images/mobile-icon.png" class="align-self-start m-3 rounded-circle" style="width:60px">
-  <div class="media-body d-flex flex-column pt-2 pb-4 ml-2 border-bottom">
-      <div class="pt-1 pb-1 d-flex align-items-center">
-          <div  class="pt-1 pb-1" style="color:#39F;">昵称</div>
-          <div class="ml-auto mr-3 font-weight-bold" style="font-size:12px;color:rgb(19, 209, 190);">整套出租</div>
-      </div>
-   <div class="pt-1 pb-1 d-flex" style="color:#FFCC33">
-   <div><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-   </div>
-   <div class=" ml-auto mr-3" style="color:#999999; font-size:12px;">
-   2019-05-19
-   </div>
-   </div>
-   <div class="pt-1 pb-1" style="font-size:12px;">
-   2019-05-26
-#位置好##服务好##干净卫生##房间大##性价比高#房间是真的宽大，干净舒适，有人接送机，服务周到，前台小姐姐待人热情有耐心，我找到酒店在哪儿，他直接来接我，唯一不好的是没有电梯，不过还好啦最高也就4-5楼，临走时拍了三张图
-   </div>
-   <div class="d-flex flex-row">
-  <div class="p-2" style="max-width:120px;">
-   <img src="../img/room2.jpg" width="100%">
-   </div>
-     <div class="p-2" style="max-width:120px;">
-   <img src="../img/room3.jpg" width="100%">
-   </div>
-     <div class="p-2" style="max-width:120px;">
-   <img src="../img/room4.jpg" width="100%">
-   </div>
-   </div>
-   <div class="mt-3" style="font-size:12px; color:#69F;">
-  商家回复:我们会继努力，让我们的客人来我们店都住的开心…24小时免费接送机，旁边有3所大学，机场直线2.6公里，地铁站1.6公里旁边就是小吃街。水木尚品欢迎您再次光临！祝您：开心快乐！幸福安康！
-   </div>
-  </div>
-</div>
-
-<div class="media p-2">
-  <img src="https://static.runoob.com/images/mobile-icon.png" class="align-self-start m-3 rounded-circle" style="width:60px">
-  <div class="media-body d-flex flex-column pt-2 pb-4 ml-2 border-bottom">
-      <div class="pt-1 pb-1 d-flex align-items-center">
-          <div  class="pt-1 pb-1" style="color:#39F;">昵称</div>
-          <div class="ml-auto mr-3 font-weight-bold" style="font-size:12px;color:rgb(19, 209, 190);">整套出租</div>
-      </div>
-   <div class="pt-1 pb-1 d-flex" style="color:#FFCC33">
-   <div><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-   </div>
-   <div class=" ml-auto mr-3" style="color:#999999; font-size:12px;">
-   2019-05-19
-   </div>
-   </div>
-   <div class="pt-1 pb-1" style="font-size:12px;">
-   2019-05-26
-#位置好##服务好##干净卫生##房间大##性价比高#房间是真的宽大，干净舒适，有人接送机，服务周到，前台小姐姐待人热情有耐心，我找到酒店在哪儿，他直接来接我，唯一不好的是没有电梯，不过还好啦最高也就4-5楼，临走时拍了三张图
-   </div>
-   <div class="d-flex flex-row">
-  <div class="p-2" style="max-width:120px;">
-   <img src="../img/room2.jpg" width="100%">
-   </div>
-     <div class="p-2" style="max-width:120px;">
-   <img src="../img/room3.jpg" width="100%">
-   </div>
-     <div class="p-2" style="max-width:120px;">
-   <img src="../img/room4.jpg" width="100%">
-   </div>
-   </div>
-   <div class="mt-3" style="font-size:12px; color:#69F;">
-  商家回复:我们会继努力，让我们的客人来我们店都住的开心…24小时免费接送机，旁边有3所大学，机场直线2.6公里，地铁站1.6公里旁边就是小吃街。水木尚品欢迎您再次光临！祝您：开心快乐！幸福安康！
-   </div>
-  </div>
-</div>
-<div class="media p-2">
-  <img src="https://static.runoob.com/images/mobile-icon.png" class="align-self-start m-3 rounded-circle" style="width:60px">
-  <div class="media-body d-flex flex-column pt-2 pb-4 ml-2 border-bottom">
-      <div class="pt-1 pb-1 d-flex align-items-center">
-          <div  class="pt-1 pb-1" style="color:#39F;">昵称</div>
-          <div class="ml-auto mr-3 font-weight-bold" style="font-size:12px;color:rgb(19, 209, 190);">整套出租</div>
-      </div>
-   <div class="pt-1 pb-1 d-flex" style="color:#FFCC33">
-   <div><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-   </div>
-   <div class=" ml-auto mr-3" style="color:#999999; font-size:12px;">
-   2019-05-19
-   </div>
-   </div>
-   <div class="pt-1 pb-1" style="font-size:12px;">
-   2019-05-26
-#位置好##服务好##干净卫生##房间大##性价比高#房间是真的宽大，干净舒适，有人接送机，服务周到，前台小姐姐待人热情有耐心，我找到酒店在哪儿，他直接来接我，唯一不好的是没有电梯，不过还好啦最高也就4-5楼，临走时拍了三张图
-   </div>
-   <div class="d-flex flex-row">
-  <div class="p-2" style="max-width:120px;">
-   <img src="../img/room2.jpg" width="100%">
-   </div>
-     <div class="p-2" style="max-width:120px;">
-   <img src="../img/room3.jpg" width="100%">
-   </div>
-     <div class="p-2" style="max-width:120px;">
-   <img src="../img/room4.jpg" width="100%">
-   </div>
-   </div>
-   <div class="mt-3" style="font-size:12px; color:#69F;">
-  商家回复:我们会继努力，让我们的客人来我们店都住的开心…24小时免费接送机，旁边有3所大学，机场直线2.6公里，地铁站1.6公里旁边就是小吃街。水木尚品欢迎您再次光临！祝您：开心快乐！幸福安康！
-   </div>
-  </div>
-</div>
-<div class="media p-2">
-  <img src="https://static.runoob.com/images/mobile-icon.png" class="align-self-start m-3 rounded-circle" style="width:60px">
-  <div class="media-body d-flex flex-column pt-2 pb-4 ml-2 border-bottom ">
-      <div class="pt-1 pb-1 d-flex align-items-center">
-          <div  class="pt-1 pb-1" style="color:#39F;">昵称</div>
-          <div class="ml-auto mr-3 font-weight-bold" style="font-size:12px;color:rgb(19, 209, 190);">整套出租</div>
-      </div>
-   <div class="pt-1 pb-1 d-flex" style="color:#FFCC33">
-   <div><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-   </div>
-   <div class=" ml-auto mr-3" style="color:#999999; font-size:12px;">
-   2019-05-19
-   </div>
-   </div>
-   <div class="pt-1 pb-1" style="font-size:12px;">
-   2019-05-26
 #位置好##服务好##干净卫生##房间大##性价比高#房间是真的宽大，干净舒适，有人接送机，服务周到，前台小姐姐待人热情有耐心，我找到酒店在哪儿，他直接来接我，唯一不好的是没有电梯，不过还好啦最高也就4-5楼，临走时拍了三张图
    </div>
    <div class="d-flex flex-row">
@@ -525,44 +264,57 @@ margin-top: 0;
   </div>
 </div>
 
-	<div class="bg-white m-4 align-self-end" style="font-size:16px;">
-				<nav>
-				<ul class="pagination">
-					<li class="page-item">
-						<a class="page-link" href="#"><</a>
-					</li>
-					<li class="page-item">
-						<a class="page-link" href="#">1</a>
-					</li>
-					<li class="page-item">
-						<a class="page-link" href="#">2</a>
-					</li>
-					<li class="page-item">
-						<a class="page-link" href="#">3</a>
-					</li>
-					<li class="page-item">
-						<a class="page-link" href="#">4</a>
-					</li>
-					<li class="page-item">
-						<a class="page-link" href="#">5</a>
-					</li>
-					<li class="page-item">
-						<a class="page-link" href="#">></a>
-					</li>
-				</ul>
-			</nav>
-			</div>
+<div class="media p-2">
+  <img src="https://static.runoob.com/images/mobile-icon.png" class="align-self-start m-3 rounded-circle" style="width:60px">
+  <div class="media-body d-flex flex-column pt-2 pb-4 ml-2 border-bottom">
+      <div class="pt-1 pb-1 d-flex align-items-center">
+          <div  class="pt-1 pb-1" style="color:#39F;">昵称</div>
+          <div class="ml-auto mr-3 font-weight-bold" style="font-size:12px;color:rgb(19, 209, 190);">整套出租</div>
+      </div>
+   <div class="pt-1 pb-1 d-flex" style="color:#FFCC33">
+   <div><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+   </div>
+   <div class=" ml-auto mr-3" style="color:#999999; font-size:12px;">
+   2019-05-19
+   </div>
+   </div>
+   <div class="pt-1 pb-1" style="font-size:12px;">
+#位置好##服务好##干净卫生##房间大##性价比高#房间是真的宽大，干净舒适，有人接送机，服务周到，前台小姐姐待人热情有耐心，我找到酒店在哪儿，他直接来接我，唯一不好的是没有电梯，不过还好啦最高也就4-5楼，临走时拍了三张图
+   </div>
+   <div class="d-flex flex-row">
+  <div class="p-2" style="max-width:120px;">
+   <img src="../img/room2.jpg" width="100%">
+   </div>
+     <div class="p-2" style="max-width:120px;">
+   <img src="../img/room3.jpg" width="100%">
+   </div>
+     <div class="p-2" style="max-width:120px;">
+   <img src="../img/room4.jpg" width="100%">
+   </div>
+   </div>
+   <div class="mt-3" style="font-size:12px; color:#69F;">
+  商家回复:我们会继努力，让我们的客人来我们店都住的开心…24小时免费接送机，旁边有3所大学，机场直线2.6公里，地铁站1.6公里旁边就是小吃街。水木尚品欢迎您再次光临！祝您：开心快乐！幸福安康！
+   </div>
+  </div>
+</div>
+
+
+
+
+
+
 </div><!--住客评论end  -->
-            <hr class="mt-5 mb-5">
-              <div class="jumbotron text-center bg-body" style="margin-bottom:0">
-  <p>底部内容</p>
-</div>
         </div>
             <div class="col-md-1"></div>
+
+
             </div><!--ROW2 -->
-          
-          
+
+            <div class="jumbotron text-center bg-body" style="margin-bottom:0">
+                <p>底部内容</p>
+            </div>
 		</div>
+
 	</div>
 </div>
 
@@ -574,23 +326,172 @@ margin-top: 0;
  var map = new AMap.Map('container', {
         resizeEnable: true, //是否监控地图容器尺寸变化
         zoom:16, //初始化地图层级
-       center:[103.985289,30.581767]
     });
  var marker = new AMap.Marker({
-        position:[103.985289,30.581767]//位置
     })
    marker.setMap(map);
-//鼠标点击marker弹出自定义的信息窗体
-AMap.event.addListener(marker, 'click', function () {
-    infoWindow.open(map, marker.getPosition());
-});
-//实例化信息窗体
-var content = [];
-content.push("<span style='font-weight: bold;'>地址：</span>成都信息工程大学航空港校区体育公园   <a href='https://www.amap.com/?30.581767,103.985289' style='margin-left: 16px;'>>>>导航</a>");
-var infoWindow = new AMap.InfoWindow({
-    content:  content.join("<br/>"),
-    offset: new AMap.Pixel(16, -45)
-});
 
+//实例化信息窗体
+
+ $(function(){
+     $.ajax({
+         type: 'post',
+         url: "/homestay/lookHomestay",
+         cache: false,
+         processData: false,
+         contentType: 'application/json;charset=utf-8',
+         success: function (data) {
+         $('#daterangeC').html(data[0]);
+        var city=data[1].split("/");
+        $('#ulb li a:eq(0)').html(city[city.length-1]);
+        $('#ulb li a:eq(1)').html(data[2]);
+        $('#ulb li:eq(2)').html(data[3].h_name);
+        $('#ulb').next().html(data[3].h_name);
+        $('#score').html(data[3].h_allscore+"分");
+        $('#name').html(data[3].user.user_name);
+        $('#price').html(data[3].price);
+        $('.flex-grow-1 img').attr('src',"../img/user/" + data[3].user.user_id + "/" + data[3].user.user_picture);
+        $('#brief').html("<span class=\"mr-3\" style=\"color:#000; font-weight:bold;\">民宿简介</span>"+data[3].h_brief);
+        var zhengce=$.parseJSON(data[3].h_rule);
+        $('#zhengce').html("<span class=\"mr-3\" style=\"color:#000; font-weight:bold;\">民宿政策</span>"+"入住时间: "+zhengce.ruzhu.today+"以后 离店时间: "+zhengce.ruzhu.tomorrow+"之前");
+        $('#phone').html("<span class=\"mr-3\" style=\"color:#000; font-weight:bold;\">联系方式</span> "+data[3].user.user_id);
+        var picture=$.parseJSON(data[3].picture);
+
+             var content = [];
+             content.push("<span style='font-weight: bold;'>地址：</span>"+$.parseJSON(data[3].h_address).addressName+"   <a href='https://uri.amap.com/marker?position="+$.parseJSON(data[3].h_address).address+"' style='margin-left: 16px;'>>>>导航</a>");
+             var infoWindow = new AMap.InfoWindow({
+                 content:  content.join("<br/>"),
+                 offset: new AMap.Pixel(16, -45)
+             });
+             var AD=$.parseJSON(data[3].h_address).address.split(",");
+             marker.setPosition(new AMap.LngLat(AD[0],AD[1]));
+             //鼠标点击marker弹出自定义的信息窗体
+             AMap.event.addListener(marker, 'click', function () {
+                 infoWindow.open(map, marker.getPosition());
+             });
+             map.setFitView(marker);
+
+        for(p in picture) {                              //轮播图片
+            for (i in picture[p]) {
+                if(p=="封面") {
+                    $('#pictures').append("<div class=\"carousel-item active\"><img class=\"d-block w-100\" style='height: 400px;' src=\"../img/user/" + data[3].user.user_id + "/" + picture[p][i] + " \" />\n" +
+                        " <div class=\"carousel-caption\"><h4><span class=\"badge badge-dark\" style=\"opacity:0.6;\">" + p + "</span></h4></div></div>");
+                }else{
+                    $('#pictures').append("<div class=\"carousel-item\"><img class=\"d-block w-100\" style='height: 400px;' src=\"../img/user/" + data[3].user.user_id + "/" + picture[p][i] + " \" />\n" +
+                        " <div class=\"carousel-caption\"><h4><span class=\"badge badge-dark\" style=\"opacity:0.6;\">" + p + "</span></h4></div></div>");
+                }
+            }
+        }
+             var type=["整套出租","独立单间"];
+             for(i in data[3].room) {                        //房型
+                 if (data[3].room[i].state == "已上线") {
+                     var norms = $.parseJSON(data[3].room[i].r_norms);
+                     var facilities = eval('(' + data[3].room[i].r_facilities + ')');
+                     var str = "  <div id=\"" + data[3].room[i].r_id + "\" class=\"media border-bottom bg-white pb-3 ml-3 mr-3\">\n" +
+                         "                                <img src=\"../img/user/" + data[3].user.user_id + "/" + $.parseJSON(data[3].room[i].r_picture).封面 + "\" alt=\"John Doe\" class=\"mr-3 mt-3 rounded\" style=\"width:130px; height:90px;\">\n" +
+                         "                                <div class=\"media-body bg-white pt-3 d-flex flex-column-reverse\" >\n" +
+                         "                                    <div class=\"d-flex mt-2\" style=\"font-size:12px;\">";
+
+                     if (facilities[' 允许做饭'] == '1') {
+                         str += "<div class=\"pl-0 pr-3\"><i class=\"fas fa-concierge-bell pr-1\" style=\"color:#999;\"></i>允许做饭</div>";
+                     } else {
+                         str += "<div class=\"pl-0 pr-3\"><i class=\"iconfont icon-jinzhi pr-1\" style=\"color:#999;\"></i>允许做饭</div>";
+                     }
+                     if (facilities[" 允许携宠"] == '1') {
+                         str += "<div class=\"pl-2 pr-3\"><i class=\"fas fa-dog pr-1\" style=\"color:#999;\"></i>允许携宠</div>";
+                     } else {
+                         str += "<div class=\"pl-2 pr-3\"><i class=\"iconfont icon-jinzhi pr-1\" style=\"color:#999;\"></i>允许携宠</div>";
+                     }
+                     if (facilities[" 允许聚会"] == '1') {
+                         str += "<div class=\"pl-2 pr-3\"><i class=\"fas fa-glass-cheers pr-1\" style=\"color:#999;\"></i>允许聚会</div>";
+                     } else {
+                         str += "<div class=\"pl-2 pr-3\"><i class=\"iconfont icon-jinzhi pr-1\" style=\"color:#999;\"></i>允许聚会</div>";
+                     }
+                     if(data[3].room[i].full=="满房"){
+                         str+="<div class=\" ml-auto\"><button class=\"btn btn-default rounded-pill pl-4 pr-4 pt-1 pb-1\"  style=\"background-color:#999; color:#FFF; font-weight:bolder;\" disabled='disabled'>满房</button></div>";
+                     }else{
+                         str+="<div class=\" ml-auto\"><button class=\"btn btn-default rounded-pill pl-4 pr-4 pt-1 pb-1\"  style=\"background-color:#FC6; color:#FFF; font-weight:bolder;\">预定</button></div>";
+                     }
+                     str += " </div><div class=\"d-flex flex-row mt-3\" style=\"font-size:12px;\"><div class=\"pl-0 pr-3  bg-white border-right\"><span class=\"pr-1\" style=\"color:#999;\">类型:</span> " + type[data[3].room[i].r_type] + "</div>\n" +
+                         "                                        <div class=\"pl-3 pr-3  border-right\"><span class=\"pr-1\" style=\"color:#999;\">卫浴:</span> " + norms.weiyu + "</div>\n" +
+                         "                                        <div class=\"pl-3 pr-3  border-right\"><span class=\"pr-1\" style=\"color:#999;\">户型:</span> " + norms.shi + "室" + norms.ting + "厅" + norms.wei + "卫" + norms.chu + "厨</div>\n" +
+                         "                                        <div class=\"pl-3 pr-3 \"><span class=\"pr-1\" style=\"color:#CCC;\">面积:</span> " + norms.mianji + "㎡</div>\n" +
+                         "                                    </div>\n" +
+                         "                                    <div class=\"d-flex\">\n" +
+                         "                                        <div onclick=\"toRoom('"+data[3].room[i].r_id+"')\"><h5>" + data[3].room[i].r_name + "</h5></div>\n" +
+                         "                                        <div class=\" ml-auto pr-3\" style=\"color:#F60; font-size:28px;\"><span style=\" font-size:8px;\">￥</span>" + data[3].room[i].r_price + "</div>\n" +
+                         "                                    </div>\n" +
+                         "                                </div>";
+                     $('#roomType').append(str);
+                 }
+             }
+             for(i in data[3].commentList){
+                 var str="";
+                 str+="<div class=\"media p-2\">\n" +
+                     "  <img src=\"../img/test.jpg\" class=\"align-self-start m-3 rounded-circle\" style=\"width:60px\">\n" +
+                     "  <div class=\"media-body d-flex flex-column pt-2 pb-4 ml-2 border-bottom \">\n" +
+                     "      <div class=\"pt-1 pb-1 d-flex align-items-center\">\n" +
+                     "          <div  class=\"pt-1 pb-1\" style=\"color:#39F;\">"+data[3].commentList[i].c_name+"</div>\n" +
+                     "          <div class=\"ml-auto mr-3 font-weight-bold\" style=\"font-size:12px;color:rgb(19, 209, 190);\">"+data[3].commentList[i].c_room+"</div>\n" +
+                     "      </div>\n" +
+                     "      <div class=\"pt-1 pb-1 d-flex\" style=\"color:#FFCC33\">\n" +
+                     "   <div>";
+                     var j=0;
+                     for(;j<data[3].commentList[i].c_score&j<5;j++){
+                         str+="<i class=\"fas fa-star\"></i>";
+                     }
+                    for(;j<5;j++){
+                     str+="<i class=\"fas fa-star text-gray\"></i>";
+                 }
+                 str+="</div>\n" +
+                     "   <div class=\" ml-auto mr-3\" style=\"color:#999999; font-size:12px;\">"+data[3].commentList[i].c_time+"</div>\n" +
+                     "   </div><div class=\"pt-1 pb-1\" style=\"font-size:12px;\">"+data[3].commentList[i].c_content+"</div>\n" +
+                     "   <div class=\"d-flex flex-row\">\n" +
+                     "     <div class=\"p-2\" style=\"max-width:120px;\">\n" +
+                     "   <img src=\"../img/room4.jpg\" width=\"100%\">\n" +
+                     "   </div>\n" +
+                     "   </div>\n" +
+                     "   <div class=\"mt-3\" style=\"font-size:12px; color:#69F;\">\n" +
+                     "  商家回复:我们会继努力，让我们的客人来我们店都住的开心…24小时免费接送机，旁边有3所大学，机场直线2.6公里，地铁站1.6公里旁边就是小吃街。水木尚品欢迎您再次光临！祝您：开心快乐！幸福安康！\n" +
+                     "   </div>\n" +
+                     "  </div>\n" +
+                     "</div>";
+                     $('#commentC').append(str);
+             }
+         },
+         error: function (XMLHttpRequest, textStatus, error) {
+             alert(error);
+         }
+     })
+ });
+ function  search() {
+     $.ajax({
+         type: 'post',
+         url: "/homestay/isFull?daterangeC=" + $('#daterangeC').html(),
+         cache: false,
+         processData: false,
+         contentType: 'application/json;charset=utf-8',
+         success: function (data) {
+             for (i in data) {
+                 if (data[i].full == "满房") {
+                     $('#' + data[i].r_id + ' button').val("满房");
+                     $('#' + data[i].r_id + ' button').attr('style', 'background-color:#999; color:#FFF; font-weight:bolder;');
+                     $('#' + data[i].r_id + ' button').attr('disabled','disabled');
+                 } else {
+                     $('#' + data[i].r_id + ' button').val("预定");
+                     $('#' + data[i].r_id + ' button').attr('style', 'background-color:#FC6; color:#FFF; font-weight:bolder;');
+                     $('#' + data[i].r_id + ' button').attr('disabled','');
+                 }
+             }
+         },
+         error: function (XMLHttpRequest, textStatus, error) {
+             alert(error);
+         }
+
+     })
+ }
+ function toRoom(rid) {
+     window.location.href="/homestay/Room?rid="+rid;
+ }
 </script>
 </html>

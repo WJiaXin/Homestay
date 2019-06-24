@@ -7,7 +7,7 @@
   <link href="../bootstrap-4.3.1-dist/css/bootstrap.css" rel="stylesheet" type="text/css">
       <link href="http://cdn.bootcss.com/bootstrap-daterangepicker/2.1.25/daterangepicker.css" rel="stylesheet">
      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
-       <link href="http://at.alicdn.com/t/at.alicdn.com/t/font_1216890_jftcaadbzhp.css"  rel="stylesheet">
+<link href="http://at.alicdn.com/t/font_1216890_h64jhyxvtj8.css"  rel="stylesheet">
      
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../bootstrap-4.3.1-dist/js/bootstrap.js"></script>
@@ -115,19 +115,8 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', en
 				<div class="col-md-7 col-sm-12 d-flex p-0 flex-column border rounded" style="padding-right:5px;">
 			
                 <div class="carousel slide flex-fill" id="carousel-237530"><!--轮播 -->
-				  <div class="carousel-inner">
-							<div class="carousel-item active">
-								<img class="d-block w-100" src="../img/room5.jpg" />
-								
-							</div>
-							<div class="carousel-item">
-								<img class="d-block w-100" src="../img/room4.jpg" />
-								
-							</div>
-							<div class="carousel-item">
-								<img class="d-block w-100" src="../img/room3.jpg" />
-								
-							</div>
+				  <div class="carousel-inner" id="picture">
+
 				  </div> <a class="carousel-control-prev" href="#carousel-237530" data-slide="prev"><span class="carousel-control-prev-icon"></span> <span class="sr-only">Previous</span></a> <a class="carousel-control-next" href="#carousel-237530" data-slide="next"><span class="carousel-control-next-icon"></span> <span class="sr-only">Next</span></a>
 					</div>
                     
@@ -142,9 +131,8 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', en
 						</ol>
 	         </div>
                     <div class="d-flex flex-row m-0 bg-white pb-2" style="color:#999;">
-                    <div  style="text-align:center;" class="flex-fill fa-2x">
-                    <i class="fas fa-home" ></i> <span style="font-size:22px;color:#000;">整套出租</span><h6>房屋面积：65平方米</h6>
-<h6>房屋户型：1室1厅1卫</h6>
+                    <div  style="text-align:center;" class="flex-fill fa-2x" id="roomtype">
+
 </div>
                     <div class="flex-fill fa-2x" style="text-align:center;"><i class="fas fa-users" style="color:#999;"></i> <span id="people" style="font-size:22px;color:#000;">宜居3人</span><h6>房客独享整套房屋</h6></div>
                     <div class="flex-fill  fa-2x" style="text-align:center;"><i class="fas fa-bed" style="color:#999;"></i> <span style="font-size:22px;color:#000;">共3张</span><h6>双人床：1.5m宽×2.0m长×2张</h6>
@@ -211,31 +199,31 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', en
    </div>
     <div class="d-flex flex-row pl-3 ml-5 flex-fill" style="color:#444;font-size:14px;">
     <div class="d-flex flex-fill flex-column">
-    <div class="p-2"><i class="fas fa-shower"></i> 热水淋浴</div>
-    <div class="p-2"><i class="fas fa-snowflake"></i> 空调</div>
-    <div class="p-2"><i class="fas fa-tv"></i> 电视</div> 
-    <div class="p-2"><i class="fas fa-wifi"></i> 无线网络</div>
-    <div class="p-2"><i class="fas fa-network-wired"></i> 有线网络</div>
-    <div class="p-2"><i class="iconfont icon-xiyiji"></i> 洗衣机</div>
-    <div class="p-2"><i class="fas fa-tint"></i> 饮水设备</div>
-    <div class="p-2"><i class="fas fa-sun"></i> 暖气</div>
-    <div class="p-2"><i class="fas fa-door-closed"></i> 门禁</div>
-    <div class="p-2"><i class="iconfont icon-bingxiang"></i> 冰箱</div>
-    <div class="p-2"><i class="fas fa-parking"></i> 停车位</div>
+    <div class="p-2" id="热水淋浴"><i class="fas fa-shower"></i> 热水淋浴</div>
+    <div class="p-2" id="空调"><i class="fas fa-snowflake"></i> 空调</div>
+    <div class="p-2" id="电视"><i class="fas fa-tv"></i> 电视</div>
+    <div class="p-2" id="无线网络"><i class="fas fa-wifi"></i> 无线网络</div>
+    <div class="p-2" id="有线网络"><i class="fas fa-network-wired"></i> 有线网络</div>
+    <div class="p-2" id="洗衣机"><i class="iconfont icon-xiyiji"></i> 洗衣机</div>
+    <div class="p-2" id="饮水设备"><i class="fas fa-tint"></i> 饮水设备</div>
+    <div class="p-2" id="暖气"><i class="fas fa-sun"></i> 暖气</div>
+    <div class="p-2" id="门禁"><i class="fas fa-door-closed"></i> 门禁</div>
+    <div class="p-2" id="冰箱"><i class="iconfont icon-bingxiang"></i> 冰箱</div>
+    <div class="p-2" id="停车位"><i class="fas fa-parking"></i> 停车位</div>
     </div>
     
     <div class="d-flex flex-fill flex-column">
-     <div class="p-2"><i class="iconfont icon-diantirentiganying"></i> 电梯</div>
-     <div class="p-2"><i class="fas fa-bath"></i> 浴缸</div>
-     <div class="p-2"><i class="fas fa-toilet-paper"></i> 手纸</div>
-     <div class="p-2"><i class="iconfont icon-maojin"></i> 毛巾</div>
-     <div class="p-2"><i class="iconfont icon-iconfontmuyulu"></i> 浴液/洗发水</div>
-     <div class="p-2"><i class="iconfont icon-xiangzao"></i> 香皂</div>
-     <div class="p-2"><i class="iconfont icon-yaju"></i> 牙具</div>
-     <div class="p-2"><i class="iconfont icon-tuoxie"></i> 拖鞋</div>
-     <div class="p-2"><i class="fas fa-dog"></i> 允许携宠</div>
-     <div class="p-2"><i class="fas fa-glass-cheers"></i> 允许聚会</div>
-     <div class="p-2"><i class="fas fa-concierge-bell"></i> 允许做饭</div>
+     <div class="p-2" id="电梯"><i class="iconfont icon-diantirentiganying"></i> 电梯</div>
+     <div class="p-2" id="浴缸"><i class="fas fa-bath"></i> 浴缸</div>
+     <div class="p-2" id="手纸"><i class="fas fa-toilet-paper"></i> 手纸</div>
+     <div class="p-2" id="毛巾"><i class="iconfont icon-maojin"></i> 毛巾</div>
+     <div class="p-2" id="浴液/洗发水"><i class="iconfont icon-iconfontmuyulu"></i> 浴液/洗发水</div>
+     <div class="p-2" id="香皂"><i class="iconfont icon-xiangzao"></i> 香皂</div>
+     <div class="p-2" id="牙具"><i class="iconfont icon-yaju"></i> 牙具</div>
+     <div class="p-2" id="拖鞋"><i class="iconfont icon-tuoxie"></i> 拖鞋</div>
+     <div class="p-2" id="允许携宠"><i class="fas fa-dog"></i> 允许携宠</div>
+     <div class="p-2" id="允许聚会"><i class="fas fa-glass-cheers"></i> 允许聚会</div>
+     <div class="p-2" id="允许做饭"><i class="fas fa-concierge-bell"></i> 允许做饭</div>
     </div>
    </div>
     </div>
@@ -243,7 +231,7 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', en
     <div class="p-3  flex-fill d-flex flex-row">
     <div  style="color:#999;text-align:center;"><span><i class=" iconfont icon-gonggao m-3" style="font-size:4em"></i> <h6 style="font-size:24px;">入住须知</h6></span>
    </div>
-   <div class="ml-5 mt-3 flex-fill pl-3" style="color:#999;">
+   <div class="ml-5 mt-3 flex-fill pl-3" style="color:#999;" id="permit">
    <h5>卫生间</h5>
    <h6 style="color:#333;">独立卫浴</h6>
    <hr>
@@ -257,7 +245,6 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', en
    <h6 style="color:#333;">入住的前5天12:00前退订，可获100%退款。之后退订不退款</h6>
     <hr>
    <h5>其他费用</h5>
-   <h6 style="color:#333;">加客：不允许加客</h6>
    <h6 style="color:#333;">其他额外费用：脏乱差，将收取清洁费</h6>
    </div>
    </div>
@@ -279,5 +266,64 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', en
 
 </body>
 <script src="../js/room.js"></script>
-<script src="../js/roomInfo.js"></script>
+
+<script>
+    $(function () {
+        $.ajax({
+            type: 'post',
+            url: "/homestay/lookRoom",
+            cache: false,
+            processData: false,
+            contentType: 'application/json;charset=utf-8',
+            success: function (data) {
+                $('#daterangeC').html(data[0]);
+                $('.flex-grow-1 img').attr('src',"../img/user/" + data[2].user_id + "/" + data[2].user_picture);
+                $('.flex-grow-1 h5:eq(0)').html(data[2].user_name);
+                $('#price').html(data[1].r_price);
+                $('#ulb li:eq(0)').html(data[3]);
+                $('#ulb li:eq(1)').html(data[1].r_name);
+                var norms=$.parseJSON(data[1].r_norms);
+                alert(data[1].r_type);
+                if(data[1].r_type=='0'){
+                    $('#roomtype').html("<i class=\"fas fa-home\" ></i> <span style=\"font-size:22px;color:#000;\">整套出租</span><h6>房屋面积："+norms.mianji+"平方米</h6><h6>房屋户型："+ norms.shi + "室" + norms.ting + "厅" + norms.wei + "卫" + norms.chu + "厨</h6>");
+                }else{
+                    $('#roomtype').html("<i class=\"iconfont icon-danjian\" style=\"font-size: 30px;\"></i> <span style=\"font-size:22px;color:#000;\">独立单间</span><h6>房屋面积："+norms.mianji+"平方米</h6><h6>房屋户型："+ norms.shi + "室" + norms.ting + "厅" + norms.wei + "卫" + norms.chu + "厨</h6>")
+                }
+                $('#people').html("宜居"+data[1].r_numPeople+"人");
+
+                var picture=$.parseJSON(data[1].r_picture);
+                for(p in picture) {                              //轮播图片
+                             for (i in picture[p]) {
+                                 if(p=="封面") {
+                                     $('#picture').append("<div class=\"carousel-item active\"><img class=\"d-block w-100\" style='height: 400px;' src=\"../img/user/" + data[2].user_id + "/" + picture[p][i] + " \" />\n" +
+                                         " <div class=\"carousel-caption\"><h4><span class=\"badge badge-dark\" style=\"opacity:0.6;\">" + p + "</span></h4></div></div>");
+                                 }else{
+                                     $('#picture').append("<div class=\"carousel-item\"><img class=\"d-block w-100\" style='height: 400px;' src=\"../img/user/" + data[2].user_id + "/" + picture[p][i] + " \" />\n" +
+                                         " <div class=\"carousel-caption\"><h4><span class=\"badge badge-dark\" style=\"opacity:0.6;\">" + p + "</span></h4></div></div>");
+                                 }
+                             }
+                         }
+                     var facilities=$.parseJSON(data[1].r_facilities);
+                for(f in facilities)        {
+                    if(facilities[f]==0)  {
+                         $('#'+f.replace(/ /g,"")+'').addClass('text-gray');
+                         $('#'+f.replace(/ /g,"")+' i').remove();
+                         $('#'+f.replace(/ /g,"")+'').prepend("<i class=\"iconfont icon-jinzhi\" style='font-size:14px; '></i>")
+                    }
+                }
+
+                $('#permit h6:eq(0)').html(norms.weiyu);
+                var permit=$.parseJSON(data[1].r_permit);
+                 $('#permit h6:eq(1)').html(permit.ruzhu.today+"后");
+                 $('#permit h6:eq(2)').html(permit.ruzhu.tomorrow+"前");
+                 $('#permit h6:eq(3)').html(permit.tuiding);
+                  $('#permit h6:eq(4)').append(data[1].r_rule+"元");
+            },
+            error: function (XMLHttpRequest, textStatus, error) {
+                alert(error);
+            }
+
+        })
+    })
+</script>
 </html>

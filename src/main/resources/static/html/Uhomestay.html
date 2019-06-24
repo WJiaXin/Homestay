@@ -14,7 +14,12 @@
 <script src="../bootstrap-4.3.1-dist/js/bootstrap.js"></script>
 <script src="http://cdn.bootcss.com/bootstrap-daterangepicker/2.1.25/moment.min.js"></script>
 <script src="http://cdn.bootcss.com/bootstrap-daterangepicker/2.1.25/daterangepicker.js"></script>
-
+<style>
+.pageA{
+        background-color:#F90 !important;
+        color: #FFF !important;
+    }
+</style>
 <body>
 <div class="bg-light">
     <div class="row">
@@ -53,10 +58,10 @@
                     </ul>
                 </div>
             </nav>
-            <div class="row">
+            <div class="row mt-4">
                 <div class="col-md-1"></div>
                 <div class="col-md-2">
-                    <div class="d-flex flex-column border mt-4 p-3 bg-white rounded"  style="font-size:12px; color:#000;" id="homestay">
+                    <div class="d-flex flex-column border p-3 bg-white rounded"  style="font-size:12px; color:#000;" id="homestay">
                         <div><img class="d-block w-100 rounded" src="../img/room5.jpg" /></div>
                         <div class="pt-2"><h5>名宿昵称</h5></div>
                         <div class="pt-2"><h6 style="color:#999; font-size:12px;">[双流机场]双流区学府西路常乐小区北三街38号址</h6></div>
@@ -64,20 +69,49 @@
                         <div id="Hcaozuo"><button class="btn btn-default rounded pl-4 pr-4 pt-1 pb-1"  style="background-color:#FC6; color:#FFF; font-weight:bold;">上架</button><button class="btn btn-default rounded pl-4 pr-4 pt-1 pb-1 ml-2"  style="background-color:#999; color:#FFF; font-weight:bold;">删除</button></div>
                     </div>
                 </div>
-                <div class="col-md-8 p-0">
-                    <div class="d-flex flex-column border mt-4 p-3 bg-white rounded"  style="font-size:12px;" id="room">
+                <div class="col-md-8 p-0 bg-white rounded border">
+                    <div class="d-flex flex-column p-3 "  style="font-size:12px;" id="room">
                         <div class="ml-auto mr-4">
                             <button class="btn btn-default" style="background-color: #69F; color:#FFF;">新增房型</button>
                         </div>
                         <hr width="100%">
                 </div>
+
+                    <div class="bg-white m-5" style="font-size:16px;">
+                        <nav>
+                            <ul class="pagination">
+                                <li class="page-item">
+                                    <a class="page-link" href="#"><</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link pageA" >1</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">2</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">3</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">4</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">5</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">></a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+
+            </div>
                 <div class="col-md-1"></div>
+
                 <div class="col-md-12">
                     <div class="jumbotron text-center bg-light" style="margin-bottom:0">
                         <p>底部内容</p>
                     </div></div>
-            </div>
-
         </div>
     </div>
 </div>

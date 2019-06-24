@@ -17,6 +17,7 @@ public interface HomestayDao { int setHomestay(Homestay homestay);
    int setRoomImg(Room room);
    int setRoomPrice(Room room);
    List<Homestay> findIdHomestay(String userid);
+   Homestay findHidHomestayS(int hid);
    Homestay findHidHomestay(int hid);
    int setHstate(int H_id,String state);
    List<Room> findIdRoom(int Hid);
@@ -24,4 +25,7 @@ public interface HomestayDao { int setHomestay(Homestay homestay);
    int setRoomState(int rid,String state);
    int deleteHomestay(int hid);
    int deleteRoom(int rid);
+   List<Homestay> findCityHomestay(String city);
+   List<Homestay> findDistrHomestay(String district);
+   Integer isFull(String Stime,String Etime,int room);             //是否满房
 }
