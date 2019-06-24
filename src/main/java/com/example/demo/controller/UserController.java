@@ -3,7 +3,6 @@ package com.example.demo.controller;
 import com.example.demo.entity.User;
 import com.example.demo.entity.VerifyCode;
 import com.example.demo.service.UserServiceImpl;
-import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -54,8 +53,10 @@ public class UserController {
         String user_id = request.getParameter("user_id");
         String user_name = request.getParameter("user_name");
         String user_pwd = request.getParameter("user_pwd1");
-        String inputCordZ = request.getParameter("inputCordZ");
-        String text = (String) session.getAttribute("text") ;//获取验证码的值
+        String inputCordZ1 = request.getParameter("inputCordZ");
+        String text1 = (String) session.getAttribute("text") ;//获取验证码的值
+        String text=text1.toLowerCase();//将获取的字符串转换成小写。
+        String inputCordZ =inputCordZ1.toLowerCase();//将用户输入的字符串转换为小写
         int flag = userService.verification(user_id);//查询用户是否已经注册
         if (!inputCordZ.equals(text)){
             printWriter.print(1);//验证码错误返回1
@@ -71,8 +72,9 @@ public class UserController {
             userService.insertUser(user);
             printWriter.print(9);//用户已经注册，返回9
             //创建用户文件夹
-            File file = new File(URLDecoder.decode(this.getClass().getClassLoader().getResource("").getPath())+"static/img/user/" + user_id);
-            System.out.println(URLDecoder.decode(this.getClass().getClassLoader().getResource("").getPath())+"static/img/user/" + user_id);
+
+            File file = new File("URLDecoder.decode(this.getClass().getClassLoader().getResource(\"\").getPath())+\"/static/img/user" + user_id);
+
             // 指定路径如果没有则创建并添加
             //获取父目录
             File fileParent = file.getParentFile();
@@ -82,6 +84,8 @@ public class UserController {
                 fileParent.mkdirs();
             }
             file.mkdir();
+            //File.Copy(要复制的文件, 目标文件的名称。不能是目录, true);
+            //File.Copy(@"c:\a.jpg", @"d:\b.jpg", true);
         }
 
     }
@@ -94,19 +98,25 @@ public class UserController {
         //获取前端由ajax传过来的值
         String user_id = request.getParameter("inputPhone");
         String user_pwd = request.getParameter("inputPassword");
-        String inputCordZ = request.getParameter("inputCord1");
+        String inputCordZ1 = request.getParameter("inputCord1");
         //获取验证码的值
-        String text = (String) session.getAttribute("text") ;//获取验证码的值
+        String text1 = (String) session.getAttribute("text") ;//获取验证码的值
         int flag = userService.verification(user_id);//查看该id在user表中是否有记录。
+        String text=text1.toLowerCase();//将获取的字符串转换成小写。
+        String inputCordZ =inputCordZ1.toLowerCase();//将用户输入的字符串转换为小写
         //判断验证码是否输入正确
-        if (flag != 0) {
+        if (!inputCordZ.equals(text)){
+            printWriter.print(0);//验证码错误返回0
+        }else if (flag == 0) {
+            printWriter.print(1);//用户未注册返回0
+        }else {
             user = userService.findUserById(user_id); //通过id，找到用户所有信息
-            if (!inputCordZ.equals(text) && user.getUser_pwd().equals(user_pwd)) {//判断验证码和密码是否输入正确
-                JSONObject json = JSONObject.fromObject(user);
-                printWriter.print(json.toString());
-                request.setAttribute("userLogin", user);//密码正确，将用户信息发送带缓存。
+            if ( !user.getUser_pwd().equals(user_pwd)) {
+                printWriter.print(2);//密码错误返回2
+            }
+            else{
                 session.setAttribute("userinfo",user);
-
+                printWriter.print(3);//登录成功返回3
             }
         }
     }

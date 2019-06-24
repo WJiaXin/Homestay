@@ -1,5 +1,6 @@
 package com.example.demo.entity;
 
+
 public class Comment {
    private int C_id;
    private String  C_userid;
@@ -82,6 +83,5 @@ public class Comment {
     public void setC_picture(String c_picture) {
         C_picture = c_picture;
     }
-
 
 }

@@ -35,7 +35,6 @@ $('#cordZ').click(function () {
     $('#cordZ').attr('src',"/user/createImg?time="+ new Date().getTime());
 })
 
-
 function upName() {
     var formData = new FormData();
     formData.append("inputName", $('#inputName').val());
