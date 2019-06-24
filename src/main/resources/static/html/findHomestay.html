@@ -11,6 +11,7 @@
     <link href="http://at.alicdn.com/t/font_1216890_qzybqurnaol.css"  rel="stylesheet">
      
     <script src="../js/jquery-3.3.1.min.js"></script>
+      <script src="http://code.changer.hk/jquery/plugins/jquery.cookie.js"></script>
      <script src="../bootstrap-4.3.1-dist/js/bootstrap.js"></script>
 <script src="http://cdn.bootcss.com/bootstrap-daterangepicker/2.1.25/moment.min.js"></script>
 <script src="http://cdn.bootcss.com/bootstrap-daterangepicker/2.1.25/daterangepicker.js"></script>
@@ -38,7 +39,7 @@ margin-top: 0;
 
 .nav-pillh .nav-link.active,
 .nav-pillh .show > .nav-link {
-  color:#F90;
+  color:#F90 !important;
   border-bottom:#F90 2px solid;
 }
 .nav-item a{
@@ -46,7 +47,7 @@ margin-top: 0;
   text-decoration:none;
 }
 .nav-item a:hover{
-  color:#999;
+  color:#F90;
   text-decoration:none;
 }
 .img-thumbnails {
@@ -72,6 +73,13 @@ margin-top: 0;
     z-index:2000;
     right:8.333333%;
     left:66.666667%;
+}
+.pageA{
+    background-color:#F90 !important;
+    color: #FFF !important;;
+}
+.name{
+        color: #F60 !important;
 }
 </style>
 <body>
@@ -119,17 +127,17 @@ margin-top: 0;
                     </ul>
                 </div>
             </nav>
-      <div class="row bg-light">
+      <div class="row bg-body">
          <div class="col-md-1"></div>
          <div class="col-md-10 p-0">
-         <div class="d-flex flex-column p-0 mt-3 rounded border">
-           <div class="d-flex flex-row p-3" id="home" style="background-color:#EEE;">
+         <div class="d-flex flex-column p-0 mt-3 rounded border bg-white">
+           <div class="d-flex flex-row p-3" id="home" style="background-color: #ebebeb;transition: all .3s ease;">
             <div class="rounded bg-white d-flex mr-3" style="height:40px; border:#DDD solid 1px;">
      <div class=" ml-2 mr-2 bg-white"  style="line-height:38px;">
                  <span class="glyphicon glyphicon-map-marker" style="color:#F90;"></span>
                  </div>
                    <div  class="flex-fill" style="height:100%;line-height:38px; padding-right:10px;min-width:160px;">
-                   <input type="text" class="form-control" readonly placeholder="城市或目的地" data-toggle="city-picker" style="height:100%; background-color:#FFF; border:none;font-size:14px; ">
+                   <input type="text" class="form-control" readonly placeholder="城市或目的地"  style="height:100%; background-color:#FFF; border:none;font-size:14px; " id="city" onclick="citypicker()">
                    </div>
             </div>
 
@@ -142,17 +150,17 @@ margin-top: 0;
             </div>
             
               <div class="rounded bg-white d-flex p-0 ml-3" style="border:#DDD solid 1px;"> 
-                <div  style="float: left;color:#CCC; height:100%;" > <input type="text" class="form-control" placeholder="（关键词）位置"  style="height:100%; border:none;-webkit-box-shadow:none; box-shadow:none; font-size:14px;" id="search"></div>
+                <div  style="float: left;color:#CCC; height:100%;" > <input type="text" class="form-control"  style="height:100%; border:none;-webkit-box-shadow:none; box-shadow:none; font-size:14px;" id="search"></div>
                 </div>
 
 
             <div class="ml-3">
-                    <button class="btn btn-default" style="background-color: #F90; color:#FFF;">重新搜索</button>
+                    <button class="btn btn-default" style="background-color: #F90; color:#FFF;" onclick="search()">重新搜索</button>
                    </div>
 
                    </div>
                    
-                   <div class="d-flex flex-row p-3 bg-white border-bottom">
+                   <div class="d-flex flex-row p-3 bg-white border-bottom m-2">
                    <div class="p-0 align-self-center mr-3" style="color:#999;">价格</div>
                     <div class="p-2">
                     <ul class="nav nav-pillh" role="tablist">
@@ -184,6 +192,50 @@ margin-top: 0;
                     </div>
                    </div>
 
+             <div class="d-flex flex-row p-3 bg-white m-2">
+                 <div class="p-0 align-self-center mr-3" style="color:#999;">类型</div>
+                 <div class="p-2">
+                     <ul class="nav nav-pillh" role="tablist">
+                         <li class="nav-item rounded-0">
+                             <a class="nav-link active rounded-0" data-toggle="pill">全部</a>
+                         </li>
+                         <li class="nav-item rounded-0">
+                             <a class="nav-link rounded-0" data-toggle="pill">住宅名宿</a>
+                         </li>
+                         <li class="nav-item">
+                             <a class="nav-link rounded-0" data-toggle="pill">四合院</a>
+                         </li>
+                         <li class="nav-item">
+                             <a class="nav-link rounded-0" data-toggle="pill">别墅</a>
+                         </li>
+                         <li class="nav-item">
+                             <a class="nav-link rounded-0" data-toggle="pill">洋房</a>
+                         </li>
+                         <li class="nav-item">
+                             <a class="nav-link rounded-0" data-toggle="pill">集中式公寓</a>
+                         </li>
+                         <li class="nav-item">
+                             <a class="nav-link rounded-0" data-toggle="pill">度假民宿</a>
+                         </li>
+                         <li class="nav-item">
+                             <a class="nav-link rounded-0" data-toggle="pill">客栈</a>
+                         </li>
+                         <li class="nav-item">
+                             <a class="nav-link rounded-0" data-toggle="pill">农家乐</a>
+                         </li>
+                         <li class="nav-item">
+                             <a class="nav-link rounded-0" data-toggle="pill">集装箱</a>
+                         </li>
+                         <li class="nav-item">
+                             <a class="nav-link rounded-0" data-toggle="pill">木屋</a>
+                         </li>
+                         <li class="nav-item">
+                             <a class="nav-link rounded-0" data-toggle="pill">其它</a>
+                         </li>
+                     </ul>
+                 </div>
+             </div>
+
                    
          </div>
          </div>
@@ -193,236 +245,407 @@ margin-top: 0;
             
       <div class="col-md-1"></div>
     
-      <div class="col-md-7  pt-3 pl-0 pr-0" >
-      <div class="bg-white  d-flex flex-column rounded border m-0">
+      <div class="col-md-7 mt-3 p-0 bg-white border rounded" >
+      <div class="d-flex flex-column  m-0" id="homestay">
 
 						<div id="select" class="d-flex flex-row m-3"  style="cursor:pointer; border-bottom:#CCC 1px solid;">
-    <div class="pt-1 pb-3 pr-3 bg-white" style="color:#F90;">距离优先</div>
-     <div class="pt-1 pl-3 pr-3 pb-2 bg-white">低价优先</div><div class="pt-1 pl-3 pr-3 pb-2 bg-white"  onClick="javascript:location.href='#homestay'">好评优先</div>
-    <div class="pt-1 pl-3 pr-3 pb-2 bg-white">人气优先</div>
+    <div class="pt-1 pb-3 pr-3 bg-white" style="color:#F90;" onclick="getNum()">人气优先</div>
+     <div class="pt-1 pl-3 pr-3 pb-2 bg-white" onclick="getPrice()">低价优先</div><div class="pt-1 pl-3 pr-3 pb-2 bg-white"  onclick="getGood()">好评优先</div>
+    <div class="pt-1 pl-3 pr-3 pb-2 bg-white" onclick="getNear()">距离优先</div>
                 </div>
 
-          <div class="media border-bottom pb-2 pt-3 ml-3 mr-3">
-              <img src="../img/test.jpg" height="50px"  width="50px" class="img-thumbnails rounded-circle mr-n4" style="z-index:1000;" />
-              <img src="../img/room5.jpg" alt="John Doe" class="mr-3 rounded" style="width:210px; height:140px;">
-              <div class="media-body d-flex flex-column" >
-                  <div class="d-flex">
-                      <div><h5 style="color:rgb(19, 209, 190)">熊先生摄影民宿2-石路中</h5></div>
-                  </div>
-                  <div class="d-flex flex-row mt-4" style="font-size:13px;">
-                      <div class="d-flex flex-column border-right flex-fill">
-                          <div class="p-1">[南市场] 青山区科学路68号（娜琳王府井附近，紧邻劳动公园）</div>
-                          <div class="p-1" style="font-size:13px; color:rgb(19, 209, 190)
-;"><i class="iconfont icon-danjian"></i> 单间<i class="iconfont icon-zhengtaofangzi ml-3"></i> 整套</div>
-                          <div class="pt-1" style="font-size:13px;">【宽松】入住前1天12:00前退订，可获100%退款。之后退订不退款</div>
-                      </div>
-                      <div class="p-1 d-flex flex-column border-right">
-                          <div class="pl-4 pr-4 align-self-center"><h4 style="color:#F90;">4.9分</h4></div>
-                          <div class="pl-4 pr-4 align-self-center" style="font-size:13px; color:#69F;"><h6 style="color:#999;">5000+消费</h6></div>
-                          <div class="pl-3 pr-3 align-self-center" style="font-size:13px;"><a href="#" style="color:rgb(19, 209, 190);">查看评论</a></div>
-                      </div>
 
-                      <div class="p-1 d-flex flex-column ml-auto">
-                          <div class="pl-4 pr-4 align-self-center flex-fill" style="color:#F90; ">￥<span style="font-size:24px;">200</span>起</div>
-
-                          <div class="pl-4 pr-4 align-self-center flex-fill" style="font-size:13px;"> <button class="btn btn-default rounded-pill" style="background-color: #F90; color:#FFF;">查看详情</button></div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-
-          <div class="media border-bottom pb-2 pt-3 ml-3 mr-3">
-              <img src="../img/test.jpg" height="50px"  width="50px" class="img-thumbnails rounded-circle mr-n4" style="z-index:1000;" />
-              <img src="../img/room5.jpg" alt="John Doe" class="mr-3 rounded" style="width:210px; height:140px;">
-              <div class="media-body d-flex flex-column" >
-                  <div class="d-flex">
-                      <div><h5 style="color:rgb(19, 209, 190)">熊先生摄影民宿2-石路中</h5></div>
-                  </div>
-                  <div class="d-flex flex-row mt-4" style="font-size:13px;">
-                      <div class="d-flex flex-column border-right flex-fill">
-                          <div class="p-1">[南市场] 青山区科学路68号（娜琳王府井附近，紧邻劳动公园）</div>
-                          <div class="p-1" style="font-size:13px; color:rgb(19, 209, 190)
-;"><i class="iconfont icon-danjian"></i> 单间<i class="iconfont icon-zhengtaofangzi ml-3"></i> 整套</div>
-                         <div class="pt-1" style="font-size:13px;">【宽松】入住前1天12:00前退订，可获100%退款。之后退订不退款</div>
-                      </div>
-                      <div class="p-1 d-flex flex-column border-right">
-                          <div class="pl-4 pr-4 align-self-center"><h4 style="color:#F90;">4.9分</h4></div>
-                          <div class="pl-4 pr-4 align-self-center" style="font-size:13px; color:#69F;"><h6 style="color:#999;">5000+消费</h6></div>
-                          <div class="pl-3 pr-3 align-self-center" style="font-size:13px;"><a href="#" style="color:rgb(19, 209, 190);">查看评论</a></div>
-                      </div>
-
-                      <div class="p-1 d-flex flex-column ml-auto">
-                          <div class="pl-4 pr-4 align-self-center flex-fill" style="color:#F90; ">￥<span style="font-size:24px;">200</span>起</div>
-
-                          <div class="pl-4 pr-4 align-self-center flex-fill" style="font-size:13px;"> <button class="btn btn-default rounded-pill" style="background-color: #F90; color:#FFF;">查看详情</button></div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-
-          <div class="media border-bottom pb-2 pt-3 ml-3 mr-3">
-              <img src="../img/test.jpg" height="50px"  width="50px" class="img-thumbnails rounded-circle mr-n4" style="z-index:1000;" />
-              <img src="../img/room5.jpg" alt="John Doe" class="mr-3 rounded" style="width:210px; height:140px;">
-              <div class="media-body d-flex flex-column" >
-                  <div class="d-flex">
-                      <div><h5 style="color:rgb(19, 209, 190)">熊先生摄影民宿2-石路中</h5></div>
-                  </div>
-                  <div class="d-flex flex-row mt-4" style="font-size:13px;">
-                      <div class="d-flex flex-column border-right flex-fill">
-                          <div class="p-1">[南市场] 青山区科学路68号（娜琳王府井附近，紧邻劳动公园）</div>
-                          <div class="p-1" style="font-size:13px; color:rgb(19, 209, 190)
-;"><i class="iconfont icon-danjian"></i> 单间<i class="iconfont icon-zhengtaofangzi ml-3"></i> 整套</div>
-                          <div class="pt-1" style="font-size:13px;">【宽松】入住前1天12:00前退订，可获100%退款。之后退订不退款</div>
-                      </div>
-                      <div class="p-1 d-flex flex-column border-right">
-                          <div class="pl-4 pr-4 align-self-center"><h4 style="color:#F90;">4.9分</h4></div>
-                          <div class="pl-4 pr-4 align-self-center" style="font-size:13px; color:#69F;"><h6 style="color:#999;">5000+消费</h6></div>
-                          <div class="pl-3 pr-3 align-self-center" style="font-size:13px;"><a href="#" style="color:rgb(19, 209, 190);">查看评论</a></div>
-                      </div>
-
-                      <div class="p-1 d-flex flex-column ml-auto">
-                          <div class="pl-4 pr-4 align-self-center flex-fill" style="color:#F90; ">￥<span style="font-size:24px;">200</span>起</div>
-
-                          <div class="pl-4 pr-4 align-self-center flex-fill" style="font-size:13px;"> <button class="btn btn-default rounded-pill" style="background-color: #F90; color:#FFF;">查看详情</button></div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-
-          <div class="media border-bottom pb-2 pt-3 ml-3 mr-3">
-              <img src="../img/test.jpg" height="50px"  width="50px" class="img-thumbnails rounded-circle mr-n4" style="z-index:1000;" />
-              <img src="../img/room5.jpg" alt="John Doe" class="mr-3 rounded" style="width:210px; height:140px;">
-              <div class="media-body d-flex flex-column" >
-                  <div class="d-flex">
-                      <div><h5 style="color:rgb(19, 209, 190)">熊先生摄影民宿2-石路中</h5></div>
-                  </div>
-                  <div class="d-flex flex-row mt-4" style="font-size:13px;">
-                      <div class="d-flex flex-column border-right flex-fill">
-                          <div class="p-1">[南市场] 青山区科学路68号（娜琳王府井附近，紧邻劳动公园）</div>
-                          <div class="p-1" style="font-size:13px; color:rgb(19, 209, 190)
-;"><i class="iconfont icon-danjian"></i> 单间<i class="iconfont icon-zhengtaofangzi ml-3"></i> 整套</div>
-                          <div class="p-1" style="font-size:13px;">【宽松】入住前1天12:00前退订，可获100%退款。之后退订不退款</div>
-                      </div>
-                      <div class="p-1 d-flex flex-column border-right">
-                          <div class="pl-4 pr-4 align-self-center"><h4 style="color:#F90;">4.9分</h4></div>
-                          <div class="pl-4 pr-4 align-self-center" style="font-size:13px; color:#69F;"><h6 style="color:#999;">5000+消费</h6></div>
-                          <div class="pl-3 pr-3 align-self-center" style="font-size:13px;"><a href="#" style="color:rgb(19, 209, 190);">查看评论</a></div>
-                      </div>
-
-                      <div class="p-1 d-flex flex-column ml-auto">
-                          <div class="pl-4 pr-4 align-self-center flex-fill" style="color:#F90; ">￥<span style="font-size:24px;">200</span>起</div>
-
-                          <div class="pl-4 pr-4 align-self-center flex-fill" style="font-size:13px;"> <button class="btn btn-default rounded-pill" style="background-color: #F90; color:#FFF;">查看详情</button></div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-
-          <div class="media border-bottom pb-2 pt-3 ml-3 mr-3">
-              <img src="../img/test.jpg" height="50px"  width="50px" class="img-thumbnails rounded-circle mr-n4" style="z-index:1000;" />
-              <img src="../img/room5.jpg" alt="John Doe" class="mr-3 rounded" style="width:210px; height:140px;">
-              <div class="media-body d-flex flex-column" >
-                  <div class="d-flex">
-                      <div><h5 style="color:rgb(19, 209, 190)">熊先生摄影民宿2-石路中</h5></div>
-                  </div>
-                  <div class="d-flex flex-row mt-4" style="font-size:13px;">
-                      <div class="d-flex flex-column border-right flex-fill">
-                          <div class="p-1">[南市场] 青山区科学路68号（娜琳王府井附近，紧邻劳动公园）</div>
-                          <div class="p-1" style="font-size:13px; color:rgb(19, 209, 190)
-;"><i class="iconfont icon-danjian"></i> 单间<i class="iconfont icon-zhengtaofangzi ml-3"></i> 整套</div>
-                          <div class="pt-1" style="font-size:13px;">【宽松】入住前1天12:00前退订，可获100%退款。之后退订不退款</div>
-                      </div>
-                      <div class="p-1 d-flex flex-column border-right">
-                          <div class="pl-4 pr-4 align-self-center"><h4 style="color:#F90;">4.9分</h4></div>
-                          <div class="pl-4 pr-4 align-self-center" style="font-size:13px; color:#69F;"><h6 style="color:#999;">5000+消费</h6></div>
-                          <div class="pl-3 pr-3 align-self-center" style="font-size:13px;"><a href="#" style="color:rgb(19, 209, 190);">查看评论</a></div>
-                      </div>
-
-                      <div class="p-1 d-flex flex-column ml-auto">
-                          <div class="pl-4 pr-4 align-self-center flex-fill" style="color:#F90; ">￥<span style="font-size:24px;">200</span>起</div>
-
-                          <div class="pl-4 pr-4 align-self-center flex-fill" style="font-size:13px;"> <button class="btn btn-default rounded-pill" style="background-color: #F90; color:#FFF;">查看详情</button></div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-
-	<div class="bg-white m-4 align-self-end" style="font-size:16px;">
-				<nav>
-				<ul class="pagination">
-					<li class="page-item">
-						<a class="page-link" href="#"><</a>
-					</li>
-					<li class="page-item">
-						<a class="page-link" href="#">1</a>
-					</li>
-					<li class="page-item">
-						<a class="page-link" href="#">2</a>
-					</li>
-					<li class="page-item">
-						<a class="page-link" href="#">3</a>
-					</li>
-					<li class="page-item">
-						<a class="page-link" href="#">4</a>
-					</li>
-					<li class="page-item">
-						<a class="page-link" href="#">5</a>
-					</li>
-					<li class="page-item">
-						<a class="page-link" href="#">></a>
-					</li>
-				</ul>
-			</nav>
-			</div>
-            <hr class="mt-5 mb-5">
-              <div class="jumbotron text-center bg-light" style="margin-bottom:0">
-  <p>底部内容</p>
-</div>
       </div>
+          <div class="bg-white m-4 align-self-end" style="font-size:16px;">
+              <nav>
+                  <ul class="pagination text-orange" id="page">
+                  </ul>
+              </nav>
+          </div>
       </div>
 
-      <div class="col-md-3 pt-3 pl-3 pr-0"  >
+      <div class="col-md-3 pt-3 pl-3 pr-0" style="height:900px;" >
       <div class="h-50 rounded" id="container">
       </div>
       </div>
       <div class="col-md-1"></div>
-
-
       </div>
-
+            <div class="jumbotron text-center bg-light" style="margin-bottom:0">
+                <p>底部内容</p>
+            </div>
  </div>
  </div>
  </div>
  <script src="../js/findHomestay.js"></script>
- <script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.14&key=9839aaba1926a947266476327971a8ea&plugin=AMap.AdvancedInfoWindow,AMap.Autocomplete"></script>
- <script type="text/javascript" src="https://cache.amap.com/lbs/static/addToolbar.js"></script>
+<script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.14&key=9839aaba1926a947266476327971a8ea&plugin=AMap.AdvancedInfoWindow,AMap.Autocomplete,AMap.Geocoder"></script>
+<script type="text/javascript" src="https://cache.amap.com/lbs/static/addToolbar.js"></script>
 <script src="//webapi.amap.com/ui/1.0/main.js"></script>
 <script>
+    var addressName="";
+    var address;
+    var page=1;
+    var pageAll;
+    var city;
+    var markerList=[];
 
+    $('#city').html($.cookie("city"));
+    var map = new AMap.Map('container', {
+        resizeEnable: true
+    });
     var auto = new AMap.Autocomplete({
         input: "search"
     });
-
- var map = new AMap.Map('container', {
-        resizeEnable: true, //是否监控地图容器尺寸变化
-        zoom:16, //初始化地图层级
-       center:[103.985289,30.581767]
+    var geocoder = new AMap.Geocoder({
+        radius: 1000 //范围，默认：500
     });
- var marker = new AMap.Marker({
-        position:[103.985289,30.581767]//位置
+
+
+    var marker = new AMap.Marker({
     })
-   marker.setMap(map);
-//鼠标点击marker弹出自定义的信息窗体
-AMap.event.addListener(marker, 'click', function () {
-    infoWindow.open(map, marker.getPosition());
-});
-//实例化信息窗体
-var content = [];
-content.push("<span style='font-weight: bold;'>地址：</span>成都信息工程大学航空港校区体育公园   <a href='https://www.amap.com/?30.581767,103.985289' style='margin-left: 16px;'>>>>导航</a>");
-var infoWindow = new AMap.InfoWindow({
-    content:  content.join("<br/>"),
-    offset: new AMap.Pixel(16, -45)
-});
+    marker.setMap(map);
+    //实例化信息窗体
+    var infoWindow= new AMap.InfoWindow();
+
+    AMap.plugin('AMap.Geolocation', function () {              //精确定位
+        var geolocation = new AMap.Geolocation({
+            enableHighAccuracy: true,//是否使用高精度定位，默认:true
+            timeout: 10000,          //超过10秒后停止定位，默认：5s
+            buttonPosition: 'RB',    //定位按钮的停靠位置
+            buttonOffset: new AMap.Pixel(10, 20),//定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
+            zoomToAccuracy: true,   //定位成功后是否自动调整地图视野到定位点
+            showMarker: false,
+        });
+        map.addControl(geolocation);
+        geolocation.getCurrentPosition(function (status, result) {
+            if (status == 'complete') {
+                onComplete(result)
+            } else {
+                onError(result)
+            }
+        });
+    });
+    function onComplete(data) {
+        geocoder.getAddress(data.position, function(status, result) {             //根据坐标获取地址名称
+            address=data.position;
+            if (status === 'complete'&&result.regeocode) {
+                addressName = result.regeocode.formattedAddress;
+                $('#search').val(addressName);
+                getHomestay(address.toString());
+            }else{
+                log.error('根据经纬度查询地址失败')
+            }
+        });
+    }
+    function search() {
+        addressName=$("#search").val();  //地址名
+        geocoder.getLocation(city+addressName, function(status, result) {
+            if (status === 'complete'&&result.geocodes.length) {
+                address = result.geocodes[0].location;        //获取坐标
+                getHomestay(address);
+            }else{
+                log.error('定位失败!')
+            }
+        });
+    }
+
+function getHomestay(addt) {
+    var json={};
+    page=1;
+    json.page=page;
+    json.address=addt.toString();
+    map.remove(markerList);
+    markerList.length=0;
+    $.ajax({
+        type: 'post',
+        url: "/homestay/getHomestay",
+        data: JSON.stringify(json),
+        cache: false,
+        processData: false,
+        contentType: 'application/json;charset=utf-8',
+        success: function (data) {
+          pageAll=data[0];
+          $('#city').val(data[2]);
+          $('#daterangeC').html(data[3]);
+          city=data[2].replace(/\//g,"");
+            $('#homestay>.media').remove();
+            $('#page>li').remove();
+            for (i in data[1]) {
+                var str = "<div class=\"media border-bottom pb-2 pt-3 ml-3 mr-3\"> <img src=\"../img/user/" + data[1][i].user.user_id + "/" + data[1][i].user.user_picture + "\" height=\"50px\"  width=\"50px\" class=\"img-thumbnails rounded-circle mr-n4\" style=\"z-index:1000;\" /><img src=\"../img/space/" + $.parseJSON(data[1][i].picture).封面 + "\" alt=\"John Doe\" class=\"mr-3 rounded\" style=\"width:210px; height:140px;\"><div class=\"media-body d-flex flex-column\" ><div class=\"d-flex\"><div><h5 style=\"color:rgb(19, 209, 190)\">" + data[1][i].h_name + "</h5></div></div><div class=\"d-flex flex-row mt-4\" style=\"font-size:13px;\"><div class=\"d-flex flex-column border-right flex-fill w-50\"><div class=\"p-1\">" + $.parseJSON(data[1][i].h_address).addressName + "<span class=\"text-gray6 ml-1\">-->距离地址"+data[1][i].distance+"</span></div><div class=\"p-1\" style=\"font-size:13px; color:rgb(19, 209, 190);\">";
+                for (j in data[1][i].roomType) {
+                    if (data[1][i].roomType[j] == 0) {
+                        str += "<i class=\"iconfont icon-danjian\"></i> 单间";
+                    }
+                    else {
+                        str += "<i class=\"iconfont icon-zhengtaofangzi ml-3\"></i> 整套";
+                    }
+                }
+                str += "</div><div class=\"pt-1\" style=\"font-size:13px;\">" + $.parseJSON(data[1][i].h_rule).tuiding + "</div></div><div class=\"p-1 d-flex flex-column border-right\"><div class=\"align-self-center\"><h4 style=\"color:#F90;\">" + data[1][i].h_allscore + " 分</h4></div>\n" +
+                    "<div class=\"align-self-center\" style=\"font-size:13px; color:#69F;\"><h6 style=\"color:#999;\">" + data[1][i].renqi + " 消费</h6></div><div class=\"ml-4 mr-4  align-self-center\" style=\"font-size:13px;\"><a class='ml-2 mr-2 pl-2 pr-2' href=\"#\" style=\"color:rgb(19, 209, 190);\">查看评论</a></div></div> <div class=\"p-1 d-flex flex-column ml-auto\"> <div class=\"pl-4 pr-4 pb-1 align-self-center flex-fill\" style=\"color:#F60; \">￥<span style=\"font-size:32px;\">" + data[1][i].price + "</span>起</div> <div class=\"pl-4 pr-4 align-self-center flex-fill\" style=\"font-size:13px;\"> <button class=\"btn btn-default rounded-pill\" style=\"background-color: #F90; color:#FFF;\" onclick=\"look("+data[1][i].h_id+")\">查看详情</button></div> </div></div> </div> </div>";
+                $('#homestay').append(str);
+               addMarker($.parseJSON(data[1][i].h_address).address,data[1][i].h_name);
+            }
+            setPage(pageAll);
+            $('#homestay>.media').hover(function () {
+                var index=$('#homestay>.media').index(this);
+                map.setFitView(markerList[index]);
+                $('#homestay>.media h5:eq('+index+')').addClass('name');
+                $('#homestay>.media h5:gt('+index+')').removeClass('name');
+                $('#homestay>.media h5:lt('+index+')').removeClass('name');
+                var content = [];
+                content.push("<span style='font-weight: bold;'></span>"+markerList[index].getTitle()+"   <a href='https://uri.amap.com/marker?position="+markerList[index].getPosition()+"' style='margin-left: 16px;'>>>>导航</a>");
+                if(infoWindow.getIsOpen()){
+                    infoWindow.close();
+                }
+                infoWindow = new AMap.InfoWindow({
+                    content:  content.join("<br/>"),
+                    offset: new AMap.Pixel(16, -45)             //创建信息窗体
+                });
+                    infoWindow.open(map, markerList[index].getPosition());
+            });
+        },
+        error: function (XMLHttpRequest, textStatus, error) {
+            alert(error);
+        }
+    })
+}
+    function PHomestay(addt) {
+        var json={};
+        json.page=page;
+        json.address=addt.toString();
+        map.remove(markerList);
+        markerList.length=0;
+        $.ajax({
+            type: 'post',
+            url: "/homestay/pageHomestay",
+            data: JSON.stringify(json),
+            cache: false,
+            processData: false,
+            contentType: 'application/json;charset=utf-8',
+            success: function (data) {
+                $('#homestay>.media').remove();
+                for (i in data) {
+                    var str = "<div class=\"media border-bottom pb-2 pt-3 ml-3 mr-3\"> <img src=\"../img/user/" + data[i].user.user_id + "/" + data[i].user.user_picture + "\" height=\"50px\"  width=\"50px\" class=\"img-thumbnails rounded-circle mr-n4\" style=\"z-index:1000;\" /><img src=\"../img/space/" + $.parseJSON(data[i].picture).封面 + "\" alt=\"John Doe\" class=\"mr-3 rounded\" style=\"width:210px; height:140px;\"><div class=\"media-body d-flex flex-column\" ><div class=\"d-flex\"><div><h5 style=\"color:rgb(19, 209, 190)\">" + data[i].h_name + "</h5></div></div><div class=\"d-flex flex-row mt-4\" style=\"font-size:13px;\"><div class=\"d-flex flex-column border-right flex-fill w-50\"><div class=\"p-1\">" + $.parseJSON(data[i].h_address).addressName + "<span class=\"text-gray6 ml-1\">-->距离地址"+data[i].distance+"</span></div><div class=\"p-1\" style=\"font-size:13px; color:rgb(19, 209, 190);\">";
+                    for (j in data[i].roomType) {
+                        if (data[i].roomType[j] == 0) {
+                            str += "<i class=\"iconfont icon-danjian\"></i> 单间";
+                        }
+                        else {
+                            str += "<i class=\"iconfont icon-zhengtaofangzi ml-3\"></i> 整套";
+                        }
+                    }
+                    str += "</div><div class=\"pt-1\" style=\"font-size:13px;\">" + $.parseJSON(data[i].h_rule).tuiding + "</div></div><div class=\"p-1 d-flex flex-column border-right\"><div class=\"align-self-center\"><h4 style=\"color:#F90;\">" + data[i].h_allscore + " 分</h4></div>\n" +
+                        "<div class=\"align-self-center\" style=\"font-size:13px; color:#69F;\"><h6 style=\"color:#999;\">" + data[i].renqi + " 消费</h6></div><div class=\"ml-4 mr-4  align-self-center\" style=\"font-size:13px;\"><a class='ml-2 mr-2 pl-2 pr-2' href=\"#\" style=\"color:rgb(19, 209, 190);\">查看评论</a></div></div> <div class=\"p-1 d-flex flex-column ml-auto\"> <div class=\"pl-4 pr-4 pb-1 align-self-center flex-fill\" style=\"color:#F60; \">￥<span style=\"font-size:32px;\">" + data[i].price + "</span>起</div> <div class=\"pl-4 pr-4 align-self-center flex-fill\" style=\"font-size:13px;\"> <button class=\"btn btn-default rounded-pill\" style=\"background-color: #F90; color:#FFF;\" onclick=\"look("+data[i].h_id+")\">查看详情</button></div> </div></div> </div> </div>";
+                    $('#homestay').append(str);
+                    addMarker($.parseJSON(data[i].h_address).address,data[i].h_name);
+                }
+                $('#homestay>.media').hover(function () {
+                    var index=$('#homestay>.media').index(this);
+                    map.setFitView(markerList[index]);
+                    $('#homestay>.media h5:eq('+index+')').addClass('name');
+                    $('#homestay>.media h5:gt('+index+')').removeClass('name');
+                    $('#homestay>.media h5:lt('+index+')').removeClass('name');
+                    var content = [];
+                    content.push("<span style='font-weight: bold;'></span>"+markerList[index].getTitle()+"   <a href='https://uri.amap.com/marker?position="+markerList[index].getPosition()+"' style='margin-left: 16px;'>>>>导航</a>");
+                    if(infoWindow.getIsOpen()){
+                        infoWindow.close();
+                    }
+                    infoWindow = new AMap.InfoWindow({
+                        content:  content.join("<br/>"),
+                        offset: new AMap.Pixel(16, -45)             //创建信息窗体
+                    });
+                    infoWindow.open(map, markerList[index].getPosition());
+                });
+            },
+            error: function (XMLHttpRequest, textStatus, error) {
+                alert(error);
+            }
+        })
+    }
+    function getPrice() {
+        var json={};
+        json.address=address.toString();
+        $.ajax({
+            type: 'post',
+            url: "/homestay/getPriceHomestay",
+            data: JSON.stringify(json),
+            cache: false,
+            processData: false,
+            contentType: 'application/json;charset=utf-8',
+            success: function (data) {
+                changePage(1);
+                PHomestay(address);
+            },
+            error: function (XMLHttpRequest, textStatus, error) {
+                alert(error);
+            }
+        })
+    }
+    function getGood(){
+        var json={};
+        json.address=address.toString();
+        $.ajax({
+            type: 'post',
+            url: "/homestay/getGoodHomestay",
+            data: JSON.stringify(json),
+            cache: false,
+            processData: false,
+            contentType: 'application/json;charset=utf-8',
+            success: function (data) {
+                changePage(1);
+                PHomestay(address);
+            },
+            error: function (XMLHttpRequest, textStatus, error) {
+                alert(error);
+            }
+        })
+    }
+    function addMarker(addr,content) {   //添加标记
+        var AD=addr.split(",")
+        marker = new AMap.Marker({
+            map: map,
+            position: new AMap.LngLat(AD[0],AD[1]),
+            offset: new AMap.Pixel(-13, -30),
+            title:content
+        });
+        markerList.push(marker)
+    }
+    function getNum() {   //人气优先
+     getHomestay(address);
+    }
+    function getNear() {     //距离优先
+        var json={};
+        json.address=address.toString();
+        $.ajax({
+            type: 'post',
+            url: "/homestay/getNearHomestay",
+            data: JSON.stringify(json),
+            cache: false,
+            processData: false,
+            contentType: 'application/json;charset=utf-8',
+            success: function (data) {
+                changePage(1);
+                PHomestay(address);
+            },
+            error: function (XMLHttpRequest, textStatus, error) {
+                alert(error);
+            }
+        })
+    }
+function pageHomestay(p) {
+   changePage(p);
+  PHomestay(address);
+}
+function setPage(pageAll) {           //建立分页
+        if(pageAll>6){
+            $('#page').append(" <li class=\"page-item\" id='prePage'  onclick=\"pageHomestay('pre')\">\n" +
+                "                          <a class=\"page-link\">pre</a>\n" +
+                "                      </li>");
+            for(var i=1;i<=5;i++){
+                $('#page').append(" <li class=\"page-item\" id='page"+i+"'  onclick=\"pageHomestay('"+i+"')\">\n" +
+                    "                          <a class=\"page-link\">"+i+"</a>\n" +
+                    "                      </li>")
+            }
+            $('#page').append(" <li class=\"page-item\" id=\"pageN\">\n" +
+                "                          <a class=\"page-link\"  disabled='true'>...</a>\n" +
+                "                      </li>")
+            $('#page').append(" <li class=\"page-item\" id='page"+pageAll+"' onclick=\"pageHomestay('"+pageAll+"')\">\n" +
+                "                          <a class=\"page-link\"  >"+pageAll+"</a>\n" +
+                "                      </li>")
+            $('#page').append(" <li class=\"page-item\" id='nextPage' onclick=\"pageHomestay('next')\">\n" +
+                "                          <a class=\"page-link\">next</a>\n" +
+                "                      </li>")
+        }else {
+            $('#page').append(" <li class=\"page-item\" id='prePage'  onclick=\"pageHomestay('pre')\">\n" +
+                "                          <a class=\"page-link\">pre</a>\n" +
+                "                      </li>");
+            for (var i = 1; i <= pageAll; i++) {
+                $('#page').append(" <li class=\"page-item\" id='page" + i + "'  onclick=\"pageHomestay('" + i + "')\">\n" +
+                    "                          <a class=\"page-link\" >" + i + "</a>\n" +
+                    "                      </li>")
+            }
+            if (pageAll > 1) {
+                $('#page').append(" <li class=\"page-item\" id='nextPage'  onclick=\"pageHomestay('next')\">\n" +
+                    "                          <a class=\"page-link\">next</a>\n" +
+                    "                      </li>")
+            }
+        }
+       changePage(1);
+}
+function changePage(p) {     //换页
+    if(p=="next"){
+        $("#page"+page+">a").removeClass('pageA');
+        page=page*1+1;
+        $("#page"+page+">a").addClass('pageA');
+        if(page==pageAll){
+            $('#nextPage').hide();
+        }else{
+            $('#nextPage').show();
+        }
+        if(page==1){
+            $('#prePage').hide();
+        }else{
+            $('#prePage').show();
+        }
+        if(!$("#page"+page+"").length>0){
+            $("#pageN>a").addClass("pageA");
+            $("#pageN>a").html(page);
+        }else{
+            $("#pageN>a").removeClass("pageA");
+            $("#pageN>a").html("...");
+        }
+    }else if(p=="pre"){
+        $("#page"+page+">a").removeClass("pageA");
+        page=page-1;
+        $("#page"+page+">a").addClass("pageA");
+        if(page==1){
+            $('#prePage').hide();
+        }else{
+            $('#prePage').show();
+        }
+        if(page==pageAll){
+            $('#nextPage').hide();
+        }else{
+            $('#nextPage').show();
+        }
+        if(!$("#page"+page+"").length>0){
+            $("#pageN>a").addClass("pageA");
+            $("#pageN>a").html(page);
+        }else{
+            $("#pageN>a").removeClass("pageA");
+            $("#pageN>a").html("...");
+        }
+    }else {
+        $("#page"+page+">a").removeClass("pageA");
+        page=p;
+        $("#page"+page+">a").addClass('pageA');
+        if(page==pageAll){
+            $('#nextPage').hide();
+        }else{
+            $('#nextPage').show();
+        }
+        if(page==1){
+            $('#prePage').hide();
+        }else{
+            $('#prePage').show();
+        }
+        if(!$("#page"+page+"").length>0){
+            $("#pageN>a").addClass("pageA");
+            $("#pageN>a").html(page);
+        }else{
+            $("#pageN>a").removeClass("pageA");
+            $("#pageN>a").html("...");
+        }
+    }
+}
+
+function citypicker() {
+    $('#city').attr('data-toggle','city-picker');
+    $('[data-toggle="city-picker"]').citypicker();
+}
+function look(hid) {
+
+   window.location.href="/homestay/Homestay?hid="+hid+"&address="+addressName;
+}
 </script>
 </body>
 </html>

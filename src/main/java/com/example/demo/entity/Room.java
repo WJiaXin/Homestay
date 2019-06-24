@@ -14,8 +14,15 @@ public class Room {
     private String R_name;
     private String R_time;
     private String state;
+    private String full;
 
 
+    public String getFull() {
+        return full;
+    }
+    public void setFull(String full) {
+        this.full = full;
+    }
     public String getR_name() {
         return R_name;
     }

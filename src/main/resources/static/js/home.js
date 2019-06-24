@@ -156,4 +156,59 @@ function login() {
             }
         })
    // }
+
 }//登陆处理
+
+
+$(function () {
+
+    $.ajax({
+        type: 'post',
+        url:"/homestay/home",
+        cache: false,
+        processData: false,
+        contentType: false,
+        success: function (data) {
+            for(i in data){
+                var str="";
+                str+=" <div class=\"col-md-3\">\n" +
+                    "                 <div class=\"thumbnail\">\n" +
+                    "           <img class=\"img-responsive\" src=\"../img/space/"+$.parseJSON(data[i].picture).封面+"\" />\n" +
+                    "            <div class=\"caption\"><h5>"+data[i].h_name+"</h5>";
+                for(j in data[i].roomType){
+                    if(data[i].roomType[j]==0){str+=" <span class=\"label label-default\">单间</span> ";}
+                    else{str+=" <span class=\"label label-default\">整套</span>";}
+                }
+                str+=" <h6>"+$.parseJSON(data[i].h_address).addressName+"</h6>\n" +
+                    "                             <h4 style=\"color:#F00;\">￥"+data[i].price+"起</h4></div></div></div>";
+                alert(str);
+                $('#content').append(str);
+
+            }
+        },
+        error: function (XMLHttpRequest, textStatus, error) {
+            alert(error);
+        }
+    })
+})
+
+function search() {
+    var search={};
+    search.city=$('#city').val();
+    search.daterangeC=$('#daterangeC').val();
+    $.ajax({
+        type: 'post',
+        url:"/homestay/setHomestay",
+        data:JSON.stringify(search),
+        cache: false,
+        processData: false,
+        contentType : 'application/json;charset=utf-8',
+        success: function (data) {
+           window.location.href="/homestay/toHomestay";
+        },
+        error: function (XMLHttpRequest, textStatus, error) {
+            alert(error);
+        }
+    })
+}
+

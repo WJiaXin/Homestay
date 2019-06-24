@@ -14,7 +14,12 @@
 <script src="../bootstrap-4.3.1-dist/js/bootstrap.js"></script>
 <script src="http://cdn.bootcss.com/bootstrap-daterangepicker/2.1.25/moment.min.js"></script>
 <script src="http://cdn.bootcss.com/bootstrap-daterangepicker/2.1.25/daterangepicker.js"></script>
-
+<style>
+.pageA{
+        background-color:#F90 !important;
+        color: #FFF !important;
+    }
+</style>
 <body>
 <div class="bg-light">
     <div class="row">
@@ -53,57 +58,92 @@
                     </ul>
                 </div>
             </nav>
-            <div class="row">
+            <div class="row mt-4">
                 <div class="col-md-1"></div>
                 <div class="col-md-2">
-                    <div class="d-flex flex-column border mt-4 p-3 bg-white rounded"  style="font-size:12px; color:#000;" id="homestay">
+                    <div class="d-flex flex-column border p-3 bg-white rounded"  style="font-size:12px; color:#000;" id="homestay">
                         <div><img class="d-block w-100 rounded" src="../img/room5.jpg" /></div>
                         <div class="pt-2"><h5>名宿昵称</h5></div>
                         <div class="pt-2"><h6 style="color:#999; font-size:12px;">[双流机场]双流区学府西路常乐小区北三街38号址</h6></div>
                         <hr width="100%">
-                        <div><button class="btn btn-default rounded pl-4 pr-4 pt-1 pb-1"  style="background-color:#FC6; color:#FFF; font-weight:bold;">上架</button><button class="btn btn-default rounded pl-4 pr-4 pt-1 pb-1 ml-2"  style="background-color:#999; color:#FFF; font-weight:bold;">删除</button></div>
+                        <div id="Hcaozuo"><button class="btn btn-default rounded pl-4 pr-4 pt-1 pb-1"  style="background-color:#FC6; color:#FFF; font-weight:bold;">上架</button><button class="btn btn-default rounded pl-4 pr-4 pt-1 pb-1 ml-2"  style="background-color:#999; color:#FFF; font-weight:bold;">删除</button></div>
                     </div>
                 </div>
-                <div class="col-md-8 p-0">
-                    <div class="d-flex flex-column border mt-4 p-3 bg-white rounded"  style="font-size:12px;" id="room">
+                <div class="col-md-8 p-0 bg-white rounded border">
+                    <div class="d-flex flex-column p-3 "  style="font-size:12px;" id="room">
                         <div class="ml-auto mr-4">
                             <button class="btn btn-default" style="background-color: #69F; color:#FFF;">新增房型</button>
                         </div>
                         <hr width="100%">
                 </div>
+
+                    <div class="bg-white m-5" style="font-size:16px;">
+                        <nav>
+                            <ul class="pagination">
+                                <li class="page-item">
+                                    <a class="page-link" href="#"><</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link pageA" >1</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">2</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">3</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">4</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">5</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">></a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+
+            </div>
                 <div class="col-md-1"></div>
+
                 <div class="col-md-12">
                     <div class="jumbotron text-center bg-light" style="margin-bottom:0">
                         <p>底部内容</p>
                     </div></div>
-            </div>
-
         </div>
     </div>
 </div>
+</div>
 </body>
 <script>
+    var homestay;
     $(function (){
-      var homestay=$.parseJSON($.cookie("homestay"));
-      $('#homestay div img').attr('src','../img/space/'+$.parseJSON(homestay.picture).封面);
-        $('#homestay div h5').text(homestay.h_name);
-        $('#homestay div h6').text($.parseJSON(homestay.h_address).addressName);
         $.ajax({
             type: 'post',
-            url:"/homestay/getHRoom?hid="+homestay.h_id,
+            url:"/homestay/getHRoom",
             cache: false,
             processData: false,
             contentType: false,
             success: function (data) {
+                homestay=data.h_id;
+                $('#homestay div img').attr('src','../img/space/'+$.parseJSON(data.picture).封面);
+                $('#homestay div h5').text(data.h_name);
+                $('#homestay div h6').text($.parseJSON(data.h_address).addressName);
+                if(data.state=="已上线"){
+                    $('#Hcaozuo').html("<button class=\"btn btn-default rounded pl-4 pr-4 pt-1 pb-1\"  style=\"background-color:rgb(19, 209, 190); color:#FFF; font-weight:bold;\" onclick=\"Hcaozuo('Hxiajia')\">下架</button><button class=\"btn btn-default rounded pl-4 pr-4 pt-1 pb-1 ml-2\"  style=\"background-color:#999; color:#FFF; font-weight:bold;\" onclick=\"Hcaozuo('Hshanchu')\">删除</button>")
+                }else{
+                    $('#Hcaozuo').html("<button class=\"btn btn-default rounded pl-4 pr-4 pt-1 pb-1\"  style=\"background-color:#FC6; color:#FFF; font-weight:bold;\" onclick=\"Hcaozuo('Hshangjia')\">上架</button><button class=\"btn btn-default rounded pl-4 pr-4 pt-1 pb-1 ml-2\"  style=\"background-color:#999; color:#FFF; font-weight:bold;\" onclick=\"Hcaozuo('Hshanchu')\">删除</button>");
+                }
                 var type=["整套出租","独立单间"];
-               for(i in data){
-                   var norms=$.parseJSON(data[i].r_norms);
-                   var facilities=eval('(' + data[i].r_facilities+ ')');
-
-                   switch (data[i].state) {
+               for(i in data.room){
+                   var norms=$.parseJSON(data.room[i].r_norms);
+                   var facilities=eval('(' +data.room[i].r_facilities+ ')');
+                   switch (data.room[i].state) {
                        case "已上线":
-                           var str="  <div class=\"media border bg-white p-3 m-4 rounded\">\n" +
-                               "                                <img src=\"../img/space/"+$.parseJSON(data[i].r_picture).封面+"\" alt=\"John Doe\" class=\"mr-3 mt-3 rounded\" style=\"width:130px; height:90px;\">\n" +
+                           var str="  <div id=\""+data.room[i].r_id+"\" class=\"media border bg-white p-3 m-4 rounded\">\n" +
+                               "                                <img src=\"../img/space/"+$.parseJSON(data.room[i].r_picture).封面+"\" alt=\"John Doe\" class=\"mr-3 mt-3 rounded\" style=\"width:130px; height:90px;\">\n" +
                                "                                <div class=\"media-body bg-white pt-3 d-flex flex-column-reverse\" >\n" +
                                "                                    <div class=\"d-flex mt-2\" style=\"font-size:12px;\">";
 
@@ -122,24 +162,24 @@
                            }else{
                                str+="<div class=\"pl-2 pr-3\"><i class=\"iconfont icon-jinzhi pr-1\" style=\"color:#999;\"></i>允许聚会</div>";
                            }
-                           str+="<div class=\" ml-auto\"><button class=\"btn btn-default rounded pl-4 pr-4 pt-1 pb-1\"  style=\"background-color:rgb(19, 209, 190); color:#FFF; font-weight:bold;\">下架</button><button class=\"btn btn-default rounded pl-4 pr-4 pt-1 pb-1 ml-2\"  style=\"background-color:#ce8483; color:#FFF; font-weight:bold;\">删除</button></div>\n" +
+                           str+="<div class=\" ml-auto\"><button class=\"btn btn-default rounded pl-4 pr-4 pt-1 pb-1\"  style=\"background-color:rgb(19, 209, 190); color:#FFF; font-weight:bold;\" onclick=\"Rcaozuo('Rxiajia','"+data.room[i].r_id+"')\">下架</button><button class=\"btn btn-default rounded pl-4 pr-4 pt-1 pb-1 ml-2\"  style=\"background-color:#ce8483; color:#FFF; font-weight:bold;\" onclick=\"Rcaozuo('Rshanchu','"+data.room[i].r_id+"')\">删除</button></div>\n" +
                                "                                    </div>\n" +
                                "                                    <div class=\"d-flex flex-row mt-3\" style=\"font-size:12px;\">\n" +
-                               "                                        <div class=\"pl-0 pr-3  bg-white border-right\"><span class=\"pr-1\" style=\"color:#999;\">类型:</span> "+type[data[i].r_type]+"</div>\n" +
+                               "                                        <div class=\"pl-0 pr-3  bg-white border-right\"><span class=\"pr-1\" style=\"color:#999;\">类型:</span> "+type[data.room[i].r_type]+"</div>\n" +
                                "                                        <div class=\"pl-3 pr-3  border-right\"><span class=\"pr-1\" style=\"color:#999;\">卫浴:</span> "+norms.weiyu+"</div>\n" +
                                "                                        <div class=\"pl-3 pr-3  border-right\"><span class=\"pr-1\" style=\"color:#999;\">户型:</span> "+norms.shi+"室"+norms.ting+"厅"+norms.wei+"卫"+norms.chu+"厨</div>\n" +
                                "                                        <div class=\"pl-3 pr-3 \"><span class=\"pr-1\" style=\"color:#CCC;\">面积:</span> "+norms.mianji+"㎡</div>\n" +
                                "                                    </div>\n" +
                                "                                    <div class=\"d-flex\">\n" +
-                               "                                        <div><h5>"+data[i].r_name+"</h5></div>\n" +
-                               "                                        <div class=\" ml-auto pr-3\" style=\"color:#F60; font-size:24px;\"><span style=\" font-size:8px;\">￥</span>"+data[i].r_price+"</div>\n" +
+                               "                                        <div><h5>"+data.room[i].r_name+"</h5></div>\n" +
+                               "                                        <div class=\" ml-auto pr-3\" style=\"color:#F60; font-size:24px;\"><span style=\" font-size:8px;\">￥</span>"+data.room[i].r_price+"</div>\n" +
                                "                                    </div>\n" +
                                "                                </div>";
                                  $('#room').append(str);
                            break;
                        case "已下线":
-                           var str="  <div class=\"media border bg-white p-3 m-4 rounded\">\n" +
-                               "                                <img src=\"../img/space/"+$.parseJSON(data[i].r_picture).封面+"\" alt=\"John Doe\" class=\"mr-3 mt-3 rounded\" style=\"width:130px; height:90px;\">\n" +
+                           var str="  <div id=\""+data.room[i].r_id+"\" class=\"media border bg-white p-3 m-4 rounded\">\n" +
+                               "                                <img src=\"../img/space/"+$.parseJSON(data.room[i].r_picture).封面+"\" alt=\"John Doe\" class=\"mr-3 mt-3 rounded\" style=\"width:130px; height:90px;\">\n" +
                                "                                <div class=\"media-body bg-white pt-3 d-flex flex-column-reverse\" >\n" +
                                "                                    <div class=\"d-flex mt-2\" style=\"font-size:12px;\">";
                            if(facilities[' 允许做饭']=='1'){
@@ -157,24 +197,24 @@
                            }else{
                                str+="<div class=\"pl-2 pr-3\"><i class=\"iconfont icon-jinzhi pr-1\" style=\"color:#999;\"></i>允许聚会</div>";
                            }
-                           str+="<div class=\" ml-auto\"><button class=\"btn btn-default rounded pl-4 pr-4 pt-1 pb-1\"  style=\"background-color:#FC6; color:#FFF; font-weight:bold;\">上架</button><button class=\"btn btn-default rounded pl-4 pr-4 pt-1 pb-1 ml-2\"  style=\"background-color:#ce8483; color:#FFF; font-weight:bold;\">删除</button></div>\n" +
+                           str+="<div class=\" ml-auto\"><button class=\"btn btn-default rounded pl-4 pr-4 pt-1 pb-1\"  style=\"background-color:#FC6; color:#FFF; font-weight:bold;\" onclick=\"Rcaozuo('Rshangjia','"+data.room[i].r_id+"')\">上架</button><button class=\"btn btn-default rounded pl-4 pr-4 pt-1 pb-1 ml-2\"  style=\"background-color:#ce8483; color:#FFF; font-weight:bold;\" onclick=\"Rcaozuo('Rshanchu','"+data.room[i].r_id+"')\">删除</button></div>\n" +
                                "                                    </div>\n" +
                                "                                    <div class=\"d-flex flex-row mt-3\" style=\"font-size:12px;\">\n" +
-                               "                                        <div class=\"pl-0 pr-3  bg-white border-right\"><span class=\"pr-1\" style=\"color:#999;\">类型:</span> "+type[data[i].r_type]+"</div>\n" +
+                               "                                        <div class=\"pl-0 pr-3  bg-white border-right\"><span class=\"pr-1\" style=\"color:#999;\">类型:</span> "+type[data.room[i].r_type]+"</div>\n" +
                                "                                        <div class=\"pl-3 pr-3  border-right\"><span class=\"pr-1\" style=\"color:#999;\">卫浴:</span> "+norms.weiyu+"</div>\n" +
                            "                                        <div class=\"pl-3 pr-3  border-right\"><span class=\"pr-1\" style=\"color:#999;\">户型:</span> "+norms.shi+"室"+norms.ting+"厅"+norms.wei+"卫"+norms.chu+"厨</div>\n" +
                            "                                        <div class=\"pl-3 pr-3 \"><span class=\"pr-1\" style=\"color:#CCC;\">面积:</span> "+norms.mianji+"㎡</div>\n" +
                            "                                    </div>\n" +
                            "                                    <div class=\"d-flex\">\n" +
-                           "                                        <div><h5>"+data[i].r_name+"</h5></div>\n" +
-                           "                                        <div class=\" ml-auto pr-3\" style=\"color:#F60; font-size:24px;\"><span style=\" font-size:8px;\">￥</span>"+data[i].r_price+"</div>\n" +
+                           "                                        <div><h5>"+data.room[i].r_name+"</h5></div>\n" +
+                           "                                        <div class=\" ml-auto pr-3\" style=\"color:#F60; font-size:24px;\"><span style=\" font-size:8px;\">￥</span>"+data.room[i].r_price+"</div>\n" +
                            "                                    </div>\n" +
                            "                                </div>";
                            $('#room').append(str);
                            break;
                        case "审核中":
-                           var str="  <div class=\"media border bg-white p-3 m-4 rounded\">\n" +
-                               "                                <img src=\"../img/space/"+$.parseJSON(data[i].r_picture).封面+"\" alt=\"John Doe\" class=\"mr-3 mt-3 rounded\" style=\"width:130px; height:90px;\">\n" +
+                           var str="  <div id=\""+data.room[i].r_id+"\" class=\"media border bg-white p-3 m-4 rounded\">\n" +
+                               "                                <img src=\"../img/space/"+$.parseJSON(data.room[i].r_picture).封面+"\" alt=\"John Doe\" class=\"mr-3 mt-3 rounded\" style=\"width:130px; height:90px;\">\n" +
                                "                                <div class=\"media-body bg-white pt-3 d-flex flex-column-reverse\" >\n" +
                                "                                    <div class=\"d-flex mt-2\" style=\"font-size:12px;\">";
                            if(facilities[' 允许做饭']=='1'){
@@ -195,21 +235,21 @@
                            str+="<div class=\" ml-auto\"><button class=\"btn btn-default rounded pl-4 pr-4 pt-1 pb-1 ml-2\"  style=\"background-color:#999; color:#FFF; font-weight:bold;\">审核中</button></div>\n" +
                                "                                    </div>\n" +
                                "                                    <div class=\"d-flex flex-row mt-3\" style=\"font-size:12px;\">\n" +
-                               "                                        <div class=\"pl-0 pr-3  bg-white border-right\"><span class=\"pr-1\" style=\"color:#999;\">类型:</span> "+type[data[i].r_type]+"</div>\n" +
+                               "                                        <div class=\"pl-0 pr-3  bg-white border-right\"><span class=\"pr-1\" style=\"color:#999;\">类型:</span> "+type[data.room[i].r_type]+"</div>\n" +
                                "                                        <div class=\"pl-3 pr-3  border-right\"><span class=\"pr-1\" style=\"color:#999;\">卫浴:</span> "+norms.weiyu+"</div>\n" +
                            "                                        <div class=\"pl-3 pr-3  border-right\"><span class=\"pr-1\" style=\"color:#999;\">户型:</span> "+norms.shi+"室"+norms.ting+"厅"+norms.wei+"卫"+norms.chu+"厨</div>\n" +
                            "                                        <div class=\"pl-3 pr-3 \"><span class=\"pr-1\" style=\"color:#CCC;\">面积:</span> "+norms.mianji+"㎡</div>\n" +
                            "                                    </div>\n" +
                            "                                    <div class=\"d-flex\">\n" +
-                           "                                        <div><h5>"+data[i].r_name+"</h5></div>\n" +
-                           "                                        <div class=\" ml-auto pr-3\" style=\"color:#F60; font-size:24px;\"><span style=\" font-size:8px;\">￥</span>"+data[i].r_price+"</div>\n" +
+                           "                                        <div><h5>"+data.room[i].r_name+"</h5></div>\n" +
+                           "                                        <div class=\" ml-auto pr-3\" style=\"color:#F60; font-size:24px;\"><span style=\" font-size:8px;\">￥</span>"+data.room[i].r_price+"</div>\n" +
                            "                                    </div>\n" +
                            "                                </div>";
                            $('#room').append(str);
                            break;
                        case "编辑中":
-                           var str="  <div class=\"media border bg-white p-3 m-4 rounded\">\n" +
-                               "                                <img src=\"../img/space/"+$.parseJSON(data[i].r_picture).封面+"\" alt=\"John Doe\" class=\"mr-3 mt-3 rounded\" style=\"width:130px; height:90px;\">\n" +
+                           var str="  <div id=\""+data.room[i].r_id+"\" class=\"media border bg-white p-3 m-4 rounded\">\n" +
+                               "                                <img src=\"../img/space/"+$.parseJSON(data.room[i].r_picture).封面+"\" alt=\"John Doe\" class=\"mr-3 mt-3 rounded\" style=\"width:130px; height:90px;\">\n" +
                                "                                <div class=\"media-body bg-white pt-3 d-flex flex-column-reverse\" >\n" +
                                "                                    <div class=\"d-flex mt-2\" style=\"font-size:12px;\">";
 
@@ -228,17 +268,17 @@
                            }else{
                                str+="<div class=\"pl-2 pr-3\"><i class=\"iconfont icon-jinzhi pr-1\" style=\"color:#999;\"></i>允许聚会</div>";
                            }
-                           str+="<div class=\" ml-auto\"><button class=\"btn btn-default rounded border-orange pl-4 pr-4 pt-1 pb-1\"  style=\"background-color:#FFF; color:#FC6; font-weight:bold;\">编辑</button><button class=\"btn btn-default rounded pl-4 pr-4 pt-1 pb-1 ml-2\"  style=\"background-color:#ce8483; color:#FFF; font-weight:bold;\">删除</button></div>\n" +
+                           str+="<div class=\" ml-auto\"><button class=\"btn btn-default rounded border-orange pl-4 pr-4 pt-1 pb-1\"  style=\"background-color:#FFF; color:#FC6; font-weight:bold;\">编辑</button><button class=\"btn btn-default rounded pl-4 pr-4 pt-1 pb-1 ml-2\"  style=\"background-color:#ce8483; color:#FFF; font-weight:bold;\" onclick=\"Rcaozuo('Rshanchu','"+data.room[i].r_id+"')\">删除</button></div>\n" +
                                "                                    </div>\n" +
                                "                                    <div class=\"d-flex flex-row mt-3\" style=\"font-size:12px;\">\n" +
-                               "                                        <div class=\"pl-0 pr-3  bg-white border-right\"><span class=\"pr-1\" style=\"color:#999;\">类型:</span> "+type[data[i].r_type]+"</div>\n" +
+                               "                                        <div class=\"pl-0 pr-3  bg-white border-right\"><span class=\"pr-1\" style=\"color:#999;\">类型:</span> "+type[data.room[i].r_type]+"</div>\n" +
                                "                                        <div class=\"pl-3 pr-3  border-right\"><span class=\"pr-1\" style=\"color:#999;\">卫浴:</span> "+norms.weiyu+"</div>\n" +
                            "                                        <div class=\"pl-3 pr-3  border-right\"><span class=\"pr-1\" style=\"color:#999;\">户型:</span> "+norms.shi+"室"+norms.ting+"厅"+norms.wei+"卫"+norms.chu+"厨</div>\n" +
                            "                                        <div class=\"pl-3 pr-3 \"><span class=\"pr-1\" style=\"color:#CCC;\">面积:</span> "+norms.mianji+"㎡</div>\n" +
                            "                                    </div>\n" +
                            "                                    <div class=\"d-flex\">\n" +
-                           "                                        <div><h5>"+data[i].r_name+"</h5></div>\n" +
-                           "                                        <div class=\" ml-auto pr-3\" style=\"color:#F60; font-size:24px;\"><span style=\" font-size:8px;\">￥</span>"+data[i].r_price+"</div>\n" +
+                           "                                        <div><h5>"+data.room[i].r_name+"</h5></div>\n" +
+                           "                                        <div class=\" ml-auto pr-3\" style=\"color:#F60; font-size:24px;\"><span style=\" font-size:8px;\">￥</span>"+data.room[i].r_price+"</div>\n" +
                            "                                    </div>\n" +
                            "                                </div>";
                            $('#room').append(str);
@@ -251,66 +291,49 @@
                 alert(error);
             }
         });
-        function Hcaozuo(method) {
-            var caozuo="";
-            switch (method) {
-                case "上架":
-                    break;
-                case "下架":
-                    break;
-                case "删除":
-                    break;
-            }
-            if(caozuo!=""){
-                    $.ajax({
-                        type: 'post',
-                        url: "/homestay/"+caozuo+"?hid=" + homestay.h_id,
-                        cache: false,
-                        processData: false,
-                        contentType: false,
-                        success: function (data) {
-                        },
-                        error: function (XMLHttpRequest, textStatus, error) {
-                            alert(error);
-                        }
-                    });
-            }
-
-            function Rcaozuo(method,rid) {
-                var caozuo = "";
-                switch (method) {
-                    case "上架":
-                        caozuo = "Rshangjia";
-                        break;
-                    case "下架":
-                        caozuo = "Rxiajia";
-                        break;
-                    case "删除":
-                        caozuo = "Rshanchu";
-                        break;
-                }
-                if (caozuo != "") {
-                    $.ajax({
-                        type: 'post',
-                        url: "/homestay/"+caozuo+"?rid=" + rid,
-                        cache: false,
-                        processData: false,
-                        contentType: false,
-                        success: function (data) {
-
-                        },
-                        error: function (XMLHttpRequest, textStatus, error) {
-                            alert(error);
-                        }
-                    });
-                }
-            }
-        }
-
-
-
 
     })
+    function Hcaozuo(method){
+alert(homestay);
+            $.ajax({
+                type: 'get',
+                url: "/homestay/"+method+"?hid=" + homestay,
+                cache: false,
+                processData: false,
+                contentType: false,
+                success: function (data) {
+                window.location.href="/homestay/toPersonal";
+                },
+                error: function (XMLHttpRequest, textStatus, error) {
+                    alert(error);
+                }
+            });
+        }
 
+        function Rcaozuo(method,rid) {
+            $.ajax({
+                type: 'get',
+                url: "/homestay/"+method+"?rid=" + rid,
+                cache: false,
+                processData: false,
+                contentType: false,
+                success: function (data) {
+                    switch (method) {
+                        case "Rshangjia":
+                            $('#'+rid+' .mt-2 .ml-auto').html("<button class=\"btn btn-default rounded pl-4 pr-4 pt-1 pb-1\"  style=\"background-color:rgb(19, 209, 190); color:#FFF; font-weight:bold;\" onclick=\"Rcaozuo('Rxiajia','"+rid+"')\">下架</button><button class=\"btn btn-default rounded pl-4 pr-4 pt-1 pb-1 ml-2\"  style=\"background-color:#ce8483; color:#FFF; font-weight:bold;\">删除</button>");
+                            break;
+                        case "Rxiajia":
+                            $('#'+rid+' .mt-2 .ml-auto').html("<button class=\"btn btn-default rounded pl-4 pr-4 pt-1 pb-1\"  style=\"background-color:#FC6; color:#FFF; font-weight:bold;\" onclick=\"Rcaozuo('Rshangjia','"+rid+"')\">上架</button><button class=\"btn btn-default rounded pl-4 pr-4 pt-1 pb-1 ml-2\"  style=\"background-color:#ce8483; color:#FFF; font-weight:bold;\">删除</button>");
+                            break;
+                        case "Rshanchu":
+                            $('#'+rid+' .mt-2 .ml-auto').remove();
+                            break;
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, error) {
+                    alert(error);
+                }
+            });
+    }
 </script>
 </html>

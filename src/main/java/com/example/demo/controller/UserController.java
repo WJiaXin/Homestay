@@ -17,6 +17,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URLDecoder;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.util.Date;
@@ -71,7 +72,9 @@ public class UserController {
             userService.insertUser(user);
             printWriter.print(9);//用户已经注册，返回9
             //创建用户文件夹
+
             File file = new File("URLDecoder.decode(this.getClass().getClassLoader().getResource(\"\").getPath())+\"/static/img/user" + user_id);
+
             // 指定路径如果没有则创建并添加
             //获取父目录
             File fileParent = file.getParentFile();
@@ -149,7 +152,7 @@ public class UserController {
         String user_id =user.getUser_id();
         PrintWriter printWriter = httpServletResponse.getWriter();
         System.out.println("长度:"+file.isEmpty());
-        File savePath = new File("C:/Users/liutong/IdeaProjects/Homestay/target/classes/static/img/user/" + user_id);
+        File savePath = new File((this.getClass().getClassLoader().getResource("").getPath())+"/static/img/user/" + user_id);
         System.out.println(savePath.getPath());
         String fileName=file.getOriginalFilename();
         try {

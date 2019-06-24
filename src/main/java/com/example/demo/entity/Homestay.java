@@ -1,5 +1,6 @@
 package com.example.demo.entity;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class Homestay {
@@ -24,7 +25,49 @@ public class Homestay {
     private String time;
     private List<Room> room;
     private List<Integer> roomType;
+    private User user;
+    private String distance;
+    private int distanceN;
+    private List<Comment> commentList;
 
+
+
+    public List<Comment> getCommentList() {
+        return commentList;
+    }
+    public void setCommentList(List<Comment> commentList) {
+        this.commentList = commentList;
+    }
+    public void setDistanceN(int distanceN) {
+        this.distanceN = distanceN;
+    }
+    public int getDistanceN() {
+        return distanceN;
+    }
+
+    public String getDistance() {
+        return distance;
+    }
+
+    public void setDistance(String distance) {
+        System.out.println("dist:"+distance);
+        if(Integer.parseInt(distance)>1000){
+            DecimalFormat df =new DecimalFormat("#0.0");
+            distance=df.format(Integer.parseInt(distance)/1000.0)+"公里";
+        }else{
+            distance=distance+"米";
+        }
+        System.out.println("dist:"+distance);
+        this.distance = distance;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public List<Integer> getRoomType() {
         return roomType;
@@ -73,7 +116,8 @@ public class Homestay {
     }
 
     public void setH_allscore(float h_allscore) {
-        H_allscore = h_allscore;
+        DecimalFormat df =new DecimalFormat("#0.0");
+        this.H_allscore = Float.parseFloat(df.format(h_allscore));
     }
     public String getPicture() {
         return picture;

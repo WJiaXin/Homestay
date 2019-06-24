@@ -1,42 +1,47 @@
 package com.example.demo.entity;
 
-import java.util.Date;
 
 public class Comment {
-    private int C_id;
-    private String C_userid;
-    private int C_order;
-    private String C_content;
-    private Date C_time;
-    private float C_score;
-    private String C_picture;
+   private int C_id;
+   private String  C_userid;
+   private int C_order;
+   private String C_content;
+   private  String C_time;
+   private int C_score;
+   private String C_picture;
+   private String C_name;
+   private String C_room;
 
-    public Date getC_time() {
-        return C_time;
+    public String getC_room() {
+        return C_room;
     }
 
-    public void setC_time(Date c_time) {
-        C_time = c_time;
+    public void setC_room(String c_room) {
+        C_room = c_room;
+    }
+
+    public String getC_name() {
+        return C_name;
+    }
+
+    public void setC_name(String c_name) {
+        C_name = c_name;
     }
 
     public int getC_id() {
         return C_id;
     }
 
-    public String getC_picture() {
-        return C_picture;
+    public void setC_id(int c_id) {
+        C_id = c_id;
     }
 
-    public void setC_picture(String c_picture) {
-        C_picture = c_picture;
+    public String getC_userid() {
+        return C_userid;
     }
 
-    public String getC_content() {
-        return C_content;
-    }
-
-    public void setC_content(String c_content) {
-        C_content = c_content;
+    public void setC_userid(String c_userid) {
+        C_userid = c_userid;
     }
 
     public int getC_order() {
@@ -47,37 +52,36 @@ public class Comment {
         C_order = c_order;
     }
 
-    public void setC_id(int c_id) {
-        C_id = c_id;
+    public String getC_content() {
+        return C_content;
     }
 
-    public float getC_score() {
+    public void setC_content(String c_content) {
+        C_content = c_content;
+    }
+
+    public String getC_time() {
+        return C_time;
+    }
+
+    public void setC_time(String c_time) {
+        C_time = c_time;
+    }
+
+    public int getC_score() {
         return C_score;
     }
 
-    public void setC_score(float c_score) {
+    public void setC_score(int c_score) {
         C_score = c_score;
     }
 
-    public String getC_userid() {
-        return C_userid;
+    public String getC_picture() {
+        return C_picture;
     }
 
-    public void setC_userid(String c_userid) {
-        C_userid = c_userid;
+    public void setC_picture(String c_picture) {
+        C_picture = c_picture;
     }
-    public Comment(){//无参构造
-    }
-    @Override
-    public String toString() {
-        return "Coment{" +
-                "C_id=" + C_id +
-                ", C_userid='" + C_userid + '\'' +
-                ", C_order='" + C_order + '\'' +
-                ", C_content=" + C_content +
-                ", C_time='" + C_time + '\'' +
-                ", C_score='" + C_score + '\'' +
-                ", C_picture='" + C_picture + '\'' +
-                '}';
-    }
+
 }

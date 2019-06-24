@@ -51,7 +51,7 @@ public class OrderController {
         String stime = (String)session.getAttribute("stime");
         String etimr = (String)session.getAttribute("etime");
         Order order = new Order();
-        order.setO_user(1);
+        order.setO_user("1");
         order.setO_name(name);
         order.setO_phone(phone);
         order.setO_price(price);
@@ -285,7 +285,7 @@ public class OrderController {
         if(page>1){
             star=(page-1)*5 ;
         }
-        int ordernum = orderDao.getAllOrderForHNum(1);
+        int ordernum = orderDao.getAllOrderForHNum("17738505200");
         int num=0;
         if(ordernum%5==0){
             num=ordernum/5;
@@ -293,7 +293,7 @@ public class OrderController {
             num=ordernum/5+1;
         }
         System.out.println("房主全部订单页数："+num);
-        List<Map<String, Object>> sqlresult= orderDao.getAllOrderForH(1,star);
+        List<Map<String, Object>> sqlresult= orderDao.getAllOrderForH("17738505200",star);
         List<JSONObject> allorder = getAllInfo(sqlresult);
         Map<String ,JSONObject> map = new HashMap<String, JSONObject>() ;
         for(int i = 0;i<allorder.size();i++){
@@ -320,7 +320,7 @@ public class OrderController {
         if(page>1){
             star=(page-1)*5;
         }
-        int ordernum = orderDao.getOneTypeOrderNum(1,state);
+        int ordernum = orderDao.getOneTypeOrderNum("17738505200",state);
         int num=0;
         if(ordernum%5==0){
             num=ordernum/5;
@@ -328,7 +328,7 @@ public class OrderController {
             num=ordernum/5+1;
         }
         System.out.println("一种的订单页数："+num);
-        List<Map<String, Object>> sqlresul = orderDao.getOneTypeOrder(1,state,star);
+        List<Map<String, Object>> sqlresul = orderDao.getOneTypeOrder("17738505200",state,star);
         List<JSONObject> allorder = getAllInfo(sqlresul);
         Map<String ,JSONObject> map = new HashMap<String, JSONObject>() ;
         for(int i = 0;i<allorder.size();i++){
@@ -381,8 +381,18 @@ public class OrderController {
         object.put("state", order.getState());
         object.put("roomname", room.getR_name());
         object.put("rule", room.getR_rule());
-        object.put("add1", hotel.getH_address());
-      //  object.put("phone", hotel.get);
+
+        String[] string1 = hotel.getH_address().split(":");                                     //得到地址
+        if (string1[2].toCharArray().length>3){
+            char[] char2 = new char[string1[2].toCharArray().length-3];
+            for(int i=1;i<string1[2].toCharArray().length-2;i++){
+                char2[i-1] = string1[2].toCharArray()[i];
+            }
+            object.put("add1", String.valueOf(char2));
+
+        }else {
+            object.put("add1", "无");
+        }
         return object;
     }
 

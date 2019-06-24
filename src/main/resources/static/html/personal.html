@@ -160,7 +160,7 @@ a:hover{
 </div>
 <div class="col-md-9 pl-3 d-flex">
   <div class="tab-content bg-white rounded flex-fill">
-    <div id="ziliao" class="container tab-pane active h-100">
+    <div id="ziliao" class="container tab-pane active h-100 pt-3">
      <div class="d-flex flex-column">
      
      <div class="d-flex flex-column p-3 m-3 border rounded">
@@ -1073,7 +1073,7 @@ a:hover{
               for(i in data){
                  switch (data[i].state){
                      case "已上线":
-                         var str="<div class=\"media bg-white mt-3 mb-3 p-3 border rounded\"><img src=\"../img/space/"+$.parseJSON(data[i].picture).封面+"\" alt=\"John Doe\" class=\"mr-3 rounded\" style=\"width:210px; height:140px;\"><div class=\"media-body d-flex flex-column\" ><div class=\"d-flex\"><div><h5 style=\"color:rgb(19, 209, 190)\">"+data[i].h_name+"</h5></div><div class=\"pl-4 pr-5 ml-auto\" style=\"color:#F90; \">￥<span style=\"font-size:28px;\">"+data[i].price+"</span>起</div></div><div class=\"d-flex flex-row mt-4\" style=\"font-size:13px;\"><div class=\"d-flex flex-column border-right flex-fill\"><div class=\"p-1\">"+$.parseJSON(data[i].h_address).addressName+"</div><div class=\"p-1\" style=\"font-size:13px; color:rgb(19, 209, 190);\">";
+                         var str="<div class=\"media bg-white mt-3 mb-3 p-3 border rounded\"><img src=\"../img/space/"+$.parseJSON(data[i].picture).封面+"\" alt=\"John Doe\" class=\"mr-3 rounded\" style=\"width:210px; height:140px;\"><div class=\"media-body d-flex flex-column\" ><div class=\"d-flex\"><div><h5 style=\"color:rgb(19, 209, 190)\">"+data[i].h_name+"</h5></div><div class=\"pl-4 pr-5 ml-auto\" style=\"color:#F90; \">￥<span style=\"font-size:28px;\">"+data[i].price+"</span>起</div></div><div class=\"d-flex flex-row mt-4\" style=\"font-size:13px;\"><div class=\"d-flex flex-column border-right flex-fill w-50\"><div class=\"p-1\">"+$.parseJSON(data[i].h_address).addressName+"</div><div class=\"p-1\" style=\"font-size:13px; color:rgb(19, 209, 190);\">";
                          for(j in data[i].roomType){
                              if(data[i].roomType[j]==0){str+="<i class=\"iconfont icon-danjian\"></i> 单间";}
                              else{str+="<i class=\"iconfont icon-zhengtaofangzi ml-3\"></i> 整套";}
@@ -1085,7 +1085,7 @@ a:hover{
                          $('#shangxianC').append(str);
                          break;
                      case "已下线":
-                         var str="<div class=\"media bg-white mt-3 mb-3 p-3 border rounded\"><img src=\"../img/space/"+$.parseJSON(data[i].picture).封面+"\" alt=\"John Doe\" class=\"mr-3 rounded\" style=\"width:210px; height:140px;\"><div class=\"media-body d-flex flex-column\" ><div class=\"d-flex\"><div><h5 style=\"color:rgb(19, 209, 190)\">"+data[i].h_name+"</h5></div><div class=\"pl-4 pr-5 ml-auto\" style=\"color:#F90; \">￥<span style=\"font-size:28px;\">"+data[i].price+"</span>起</div></div><div class=\"d-flex flex-row mt-4\" style=\"font-size:13px;\"><div class=\"d-flex flex-column border-right flex-fill\"><div class=\"p-1\">"+$.parseJSON(data[i].h_address).addressName+"</div><div class=\"p-1\" style=\"font-size:13px; color:rgb(19, 209, 190);\">";
+                         var str="<div class=\"media bg-white mt-3 mb-3 p-3 border rounded\"><img src=\"../img/space/"+$.parseJSON(data[i].picture).封面+"\" alt=\"John Doe\" class=\"mr-3 rounded\" style=\"width:210px; height:140px;\"><div class=\"media-body d-flex flex-column\" ><div class=\"d-flex\"><div><h5 style=\"color:rgb(19, 209, 190)\">"+data[i].h_name+"</h5></div><div class=\"pl-4 pr-5 ml-auto\" style=\"color:#F90; \">￥<span style=\"font-size:28px;\">"+data[i].price+"</span>起</div></div><div class=\"d-flex flex-row mt-4\" style=\"font-size:13px;\"><div class=\"d-flex flex-column border-right flex-fill w-50\"><div class=\"p-1\">"+$.parseJSON(data[i].h_address).addressName+"</div><div class=\"p-1\" style=\"font-size:13px; color:rgb(19, 209, 190);\">";
                          for(j in data[i].roomType){
 
                              if(data[i].roomType[j]==0){str+="<i class=\"iconfont icon-danjian\"></i> 单间";}
@@ -1095,10 +1095,10 @@ a:hover{
                              "<div class=\"pl-4 pr-4 align-self-center\" style=\"font-size:13px; color:#69F;\"><h6 style=\"color:#999;\">"+data[i].renqi+"消费</h6></div></div><div class=\"p-1 d-flex flex-row ml-auto align-self-center \"> <div class=\"pl-2 pr-2 align-self-center flex-fill\" style=\"font-size:13px;\">  <button class=\"btn btn-default rounded border-orange border\" style=\"background-color:#FFF; color: #F90;\" onclick=\"toRoom('"+i+"')\">民宿管理</button></div>\n" +
                              "</div> </div> </div> </div>";
 
-                         $('#xiaxianCC').append(str);
+                         $('#xiaxianC').append(str);
                          break;
                      case "审核中":
-                         var str="<div class=\"media bg-white mt-3 mb-3 p-3 border rounded\"><img src=\"../img/room5.jpg\" alt=\"John Doe\" class=\"mr-3 rounded\" style=\"width:210px; height:140px;\"><div class=\"media-body d-flex flex-column\" ><div class=\"d-flex\"><div><h5 style=\"color:rgb(19, 209, 190)\">"+data[i].h_name+"</h5></div><div class=\"pl-4 pr-5 ml-auto\" style=\"color:#F90; \">￥<span style=\"font-size:28px;\">"+data[i].price+"</span>起</div></div><div class=\"d-flex flex-row mt-4\" style=\"font-size:13px;\"><div class=\"d-flex flex-column border-right flex-fill\"><div class=\"p-1\">"+$.parseJSON(data[i].h_address).addressName+"</div><div class=\"p-1\" style=\"font-size:13px; color:rgb(19, 209, 190);\">";
+                         var str="<div class=\"media bg-white mt-3 mb-3 p-3 border rounded\"><img src=\"../img/room5.jpg\" alt=\"John Doe\" class=\"mr-3 rounded\" style=\"width:210px; height:140px;\"><div class=\"media-body d-flex flex-column\" ><div class=\"d-flex\"><div><h5 style=\"color:rgb(19, 209, 190)\">"+data[i].h_name+"</h5></div><div class=\"pl-4 pr-5 ml-auto\" style=\"color:#F90; \">￥<span style=\"font-size:28px;\">"+data[i].price+"</span>起</div></div><div class=\"d-flex flex-row mt-4\" style=\"font-size:13px;\"><div class=\"d-flex flex-column border-right flex-fill w-50\"><div class=\"p-1\">"+$.parseJSON(data[i].h_address).addressName+"</div><div class=\"p-1\" style=\"font-size:13px; color:rgb(19, 209, 190);\">";
                          for(j in data[i].roomType){
 
                              if(data[i].roomType[j]==0){str+="<i class=\"iconfont icon-danjian\"></i> 单间";}
@@ -1112,7 +1112,7 @@ a:hover{
                          break;
                      case "编辑中":
 
-                       var str="<div class=\"media bg-white mt-3 mb-3 p-3 border rounded\"><img src=\"../img/space/"+$.parseJSON(data[i].picture).封面+"\" alt=\"John Doe\" class=\"mr-3 rounded\" style=\"width:210px; height:140px;\"><div class=\"media-body d-flex flex-column\" ><div class=\"d-flex\"><div><h5 style=\"color:rgb(19, 209, 190)\">"+data[i].h_name+"</h5></div><div class=\"pl-4 pr-5 ml-auto\" style=\"color:#F90; \">￥<span style=\"font-size:28px;\">"+data[i].price+"</span>起</div></div><div class=\"d-flex flex-row mt-4\" style=\"font-size:13px;\"><div class=\"d-flex flex-column border-right flex-fill\"><div class=\"p-1\">"+$.parseJSON(data[i].h_address).addressName+"</div><div class=\"p-1\" style=\"font-size:13px; color:rgb(19, 209, 190);\">";
+                       var str="<div class=\"media bg-white mt-3 mb-3 p-3 border rounded\"><img src=\"../img/space/"+$.parseJSON(data[i].picture).封面+"\" alt=\"John Doe\" class=\"mr-3 rounded\" style=\"width:210px; height:140px;\"><div class=\"media-body d-flex flex-column\" ><div class=\"d-flex\"><div><h5 style=\"color:rgb(19, 209, 190)\">"+data[i].h_name+"</h5></div><div class=\"pl-4 pr-5 ml-auto\" style=\"color:#F90; \">￥<span style=\"font-size:28px;\">"+data[i].price+"</span>起</div></div><div class=\"d-flex flex-row mt-4\" style=\"font-size:13px;\"><div class=\"d-flex flex-column border-right flex-fill w-50\"><div class=\"p-1\">"+$.parseJSON(data[i].h_address).addressName+"</div><div class=\"p-1\" style=\"font-size:13px; color:rgb(19, 209, 190);\">";
                          for(j in data[i].roomType){
 
                              if(data[i].roomType[j]==0){str+="<i class=\"iconfont icon-danjian\"></i> 单间";}
@@ -1134,7 +1134,7 @@ a:hover{
     })
     function  toRoom(i) {
         $.cookie("homestay",JSON.stringify(homestay[i]));
-        window.location.href="Uhomestay.html"
+        window.location.href="/homestay/setHRoom?hid="+JSON.stringify(homestay[i].h_id)
     }
 </script>
 

@@ -1,7 +1,4 @@
 package com.example.demo.controller;
-import com.example.demo.entity.User;
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -10,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URLDecoder;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.util.*;
@@ -25,7 +23,7 @@ public class ImgPush {
         System.out.println("开始");
         PrintWriter printWriter = httpServletResponse.getWriter();
        System.out.println("长度:"+file.isEmpty());
-        File savePath = new File("C:/Users/魏嘉欣/eclipse-workspace/Homestay/target/classes/static/img/space");
+        File savePath = new File(URLDecoder.decode(this.getClass().getClassLoader().getResource("").getPath())+"/static/img/space");
         System.out.println(savePath.getPath());
         String fileName=file.getOriginalFilename();         //获取文件名
         try {
@@ -59,7 +57,7 @@ public class ImgPush {
     @RequestMapping(value = "/dimg")                       //删除图片
     public void dimg(HttpServletResponse httpServletResponse,@RequestParam("img") String img) throws IOException {
         System.out.println(img);
-        Files.delete(new File("C:/Users/魏嘉欣/eclipse-workspace/Homestay/target/classes/static/img/space/"+img).toPath());
+        Files.delete(new File(URLDecoder.decode(this.getClass().getClassLoader().getResource("").getPath())+"/static/img/space/"+img).toPath());
 
     }
 

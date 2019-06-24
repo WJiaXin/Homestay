@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="../bootstrap-4.3.1-dist/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="http://cdn.bootcss.com/bootstrap-daterangepicker/2.1.25/daterangepicker.css" rel="stylesheet">
+    <link href="../css/city-picker.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link href="http://at.alicdn.com/t/font_1216890_m1j4bdwrlz9.css"  rel="stylesheet">
+
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../bootstrap-4.3.1-dist/js/bootstrap.js"></script>
+    <script src="http://cdn.bootcss.com/bootstrap-daterangepicker/2.1.25/moment.min.js"></script>
+    <script src="http://cdn.bootcss.com/bootstrap-daterangepicker/2.1.25/daterangepicker.js"></script>
+    <script src="../js/city-picker.data.js"></script>
+    <script src="../js/city-picker.js"></script>
+    <script src="../js/checkRoom.js"></script>
+</head>
+<style>
+    #fangyuan .d-flex div{
+        width:110px;
+    }
+
+    .czClick{
+        color:#FFF;
+        background-color:#FF9F00 !important;
+        outline:none;
+    }
+
+    a{
+        text-decoration: none;
+    }
+
+</style>
+<body class="bg-body">
+<div>
+    <div class="row">
+        <div class="col-md-12" id="content">
+            <nav class="navbar navbar-expand-lg navbar-light bg-white"  style="background-color:#FFF;">
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="navbar-toggler-icon"></span>
+                </button> <a class="navbar-brand" href="home.html" style="margin-left:7.333333%; font-family:'Comic Sans MS', cursive; font-size:24px; "><i class="iconfont icon-jiudianminsu" style="font-size:3em; color:#F90;"></i> Homestay房型审核</a>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                </div>
+            </nav>
+
+
+
+            <div class="row mt-5 ">
+                <div class="col-md-2"></div>
+                <div class="col-md-8 p-0">
+
+                    <div class="d-flex flex-column rounded bg-white p-3 text-dark" id="cz">
+                        <div class="border-bottom pt-2 pb-2"><h4 class="text-orange">房型信息</h4></div>
+                        <div class="p-2 font-weight-bold" style="font-size: 20px;">房间名称：</div>
+                        <div class="border rounded border-orange p-2 mt-2 w-25 text-gray6" id="roomname">
+                            温哥华6起
+                        </div>
+                        <div class="p-2 font-weight-bold" style="font-size: 20px;">出租类型：</div>
+                        <div   id="roomtype">
+                        <div class="d-flex flex-row align-items-center p-2"  tabindex="0">
+                            <div class="p-4 bg-body rounded czClick" tabindex="0"><i class="iconfont icon-zhengtaofangzi font-weight-bold" style=" font-size:2em;"></i></div>
+                            <div class="ml-3 text-gray6" style="font-size:14px;"><h5 style="color:#000;">整套房子</h5>
+                                客人可以预订整个空间，不与您或其它客人共住，如一整套三居室</div>
+                        </div>
+                        <div class="d-flex flex-row align-items-center p-2"  tabindex="0">
+                            <div class="p-4 bg-body rounded czClick" tabindex="0"><i class="iconfont icon-danjian font-weight-bold" style=" font-size:2em;"></i></div>
+                            <div class="ml-3 text-gray6" style="font-size:14px;"><h5 style="color:#000;">独立房间</h5>
+                                客人预订的是一个或多个房间，公共空间与他人共用，如三居室中的主卧</div>
+                        </div>
+                        </div>
+                        <div class="p-2 mt-4 font-weight-bold" style="font-size: 20px;">房屋类型：</div>
+                        <div class="d-flex flex-row align-items-center p-2"  id="chuzu">
+                            <div class="d-flex flex-row border border-orange rounded align-items-center" tabindex="0">
+                                <div class="p-2"> <i class="iconfont icon-jian"  style="font-size:14px;visibility:hidden;"></i></div>
+                                <div class="pt-2 pb-2 pl-3 pr-3" id="shi">1</div>
+                                <div class="p-2"><i class="iconfont icon-jia"  style="font-size:14px;visibility:hidden;"></i></div>
+                            </div>
+                            <div class="p-2">室</div>
+                            <div class="d-flex flex-row border border-orange rounded align-items-center ml-3" tabindex="0">
+                                <div class="p-2"> <i class="iconfont icon-jian"  style="font-size:14px;visibility:hidden;"></i></div>
+                                <div class="pt-2 pb-2 pl-3 pr-3" id="ting">1</div>
+                                <div class="p-2"><i class="iconfont icon-jia"  style="font-size:14px;visibility:hidden;"></i></div>
+                            </div>
+                            <div class="p-2">厅</div>
+                            <div class="d-flex flex-row border border-orange rounded align-items-center ml-3" tabindex="0">
+                                <div class="p-2"> <i class="iconfont icon-jian"  style="font-size:14px;visibility:hidden;"></i></div>
+                                <div class="pt-2 pb-2 pl-3 pr-3" id="wei">1</div>
+                                <div class="p-2"><i class="iconfont icon-jia"  style="font-size:14px;visibility:hidden;"></i></div>
+                            </div>
+                            <div class="p-2">卫</div>
+                            <div class="d-flex flex-row border border-orange rounded align-items-center ml-3" tabindex="0">
+                                <div class="p-2"> <i class="iconfont icon-jian"  style="font-size:14px;visibility:hidden;"></i></div>
+                                <div class="pt-2 pb-2 pl-3 pr-3" id="chu">1</div>
+                                <div class="p-2"><i class="iconfont icon-jia"  style="font-size:14px;visibility:hidden;"></i></div>
+                            </div>
+                            <div class="p-2">厨</div>
+                            <div class="d-flex flex-row border border-orange rounded align-items-center ml-3" tabindex="0">
+                                <div class="p-2"> <i class="iconfont icon-jian"  style="font-size:14px;visibility:hidden;"></i></div>
+                                <div class="pt-2 pb-2 pl-3 pr-3" id="yangtai">1</div>
+                                <div class="p-2"><i class="iconfont icon-jia"  style="font-size:14px;visibility:hidden;"></i></div>
+                            </div>
+                            <div class="p-2">阳台</div>
+                        </div>
+
+                        <div class="p-2 mt-4 font-weight-bold" style="font-size: 20px;">房型面积：</div>
+                        <div class="d-flex flex-row"> <div id="roommianji" >200</div><div class="align-self-center ml-2">㎡</div></div>
+                        <div class="p-2 mt-4 font-weight-bold" style="font-size: 20px;">床型：</div>
+                        <div class="d-flex flex-row align-items-center p-2">
+                            <div class="d-flex flex-row border border-orange rounded align-items-center" tabindex="0">
+                                <div class="p-2"> <i class="iconfont icon-jian"  style="font-size:14px;visibility:hidden;"></i></div>
+                                <div class="pt-2 pb-2 pl-3 pr-3" id="bigbed2">1</div>
+                                <div class="p-2"><i class="iconfont icon-jia"  style="font-size:14px;visibility:hidden;"></i></div>
+                            </div>
+                            <div class="p-2">双人大床<h6 class="text-gray9" style="font-size: 12px;">宽1.8米及以上</h6></div>
+                            <div class="d-flex flex-row border border-orange rounded align-items-center ml-3" tabindex="0">
+                                <div class="p-2"> <i class="iconfont icon-jian"  style="font-size:14px;visibility:hidden;"></i></div>
+                                <div class="pt-2 pb-2 pl-3 pr-3" id="bigbed">1</div>
+                                <div class="p-2"><i class="iconfont icon-jia"  style="font-size:14px;visibility:hidden;"></i></div>
+                            </div>
+                            <div class="p-2">双人床<h6 class="text-gray9" style="font-size: 12px;">宽1.3-1.8米</h6></div>
+                            <div class="d-flex flex-row border border-orange rounded align-items-center ml-3" tabindex="0">
+                                <div class="p-2"> <i class="iconfont icon-jian"  style="font-size:14px;visibility:hidden;"></i></div>
+                                <div class="pt-2 pb-2 pl-3 pr-3" id="bed">1</div>
+                                <div class="p-2"><i class="iconfont icon-jia"  style="font-size:14px;visibility:hidden;"></i></div>
+                            </div>
+                            <div class="p-2">单人床<h6 class="text-gray9" style="font-size: 12px;">宽1.3以下</h6></div>
+                            <div class="d-flex flex-row border border-orange rounded align-items-center ml-3" tabindex="0">
+                                <div class="p-2"> <i class="iconfont icon-jian"  style="font-size:14px;visibility:hidden;"></i></div>
+                                <div class="pt-2 pb-2 pl-3 pr-3" id="shangxia">1</div>
+                                <div class="p-2"><i class="iconfont icon-jia"  style="font-size:14px;visibility:hidden;"></i></div>
+                            </div>
+                            <div class="p-2">上下铺</div>
+                        </div>
+                        <div class="d-flex flex-row align-items-center p-2">
+                            <div class="d-flex flex-row border border-orange rounded align-items-center" tabindex="0">
+                                <div class="p-2"> <i class="iconfont icon-jian"  style="font-size:14px;visibility:hidden;"></i></div>
+                                <div class="pt-2 pb-2 pl-3 pr-3" id="shafa">1</div>
+                                <div class="p-2"><i class="iconfont icon-jia"  style="font-size:14px;visibility:hidden;"></i></div>
+                            </div>
+                            <div class="p-2">沙发床</div>
+                            <div class="d-flex flex-row border border-orange rounded align-items-center ml-3" tabindex="0">
+                                <div class="p-2"> <i class="iconfont icon-jian"  style="font-size:14px;visibility:hidden;"></i></div>
+                                <div class="pt-2 pb-2 pl-3 pr-3" id="tatami">1</div>
+                                <div class="p-2"><i class="iconfont icon-jia"  style="font-size:14px;visibility:hidden;"></i></div>
+                            </div>
+                            <div class="p-2">榻榻米</div>
+                            <div class="d-flex flex-row border border-orange rounded align-items-center ml-3" tabindex="0">
+                                <div class="p-2"> <i class="iconfont icon-jian"  style="font-size:14px;visibility:hidden;"></i></div>
+                                <div class="pt-2 pb-2 pl-3 pr-3" id="qita">1</div>
+                                <div class="p-2"><i class="iconfont icon-jia"  style="font-size:14px;visibility:hidden;"></i></div>
+                            </div>
+                            <div class="p-2">其他</div>
+                        </div>
+
+                        <div class="p-2 mt-4 font-weight-bold" style="font-size: 20px;">卫生间类型：</div>
+                        <div id="roomweiyu">
+                        <div class="d-flex flex-row align-items-center p-2">
+                            <div class="p-4 bg-body rounded czClick"><i class="iconfont icon-_huabanfuben" style=" font-size:2em;"></i></div>
+                            <div class="ml-3"><h5 style="color:#000;">独立卫生间</h5></div>
+                        </div>
+
+                        <div class="d-flex flex-row align-items-center p-2">
+                            <div class="p-4 bg-body rounded czClick"><i class="iconfont icon-gonggongweishengjian1" style="font-size:2em;"></i></div>
+                            <div class="ml-3"><h5 style="color:#000;">公共卫生间</h5></div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-2"> </div>
+            </div>
+
+            <div class="row mt-5 ">
+                <div class="col-md-2"></div>
+                <div class="col-md-8 p-0">
+                    <div class="d-flex flex-column rounded bg-white p-3">
+                        <div class="border-bottom pt-2 pb-2"><h4 class="text-orange">房型照片</h4></div>
+                        <div class="ml-2 mt-4">封面：<span style="font-size:14px;color: #999;">封面图有且只能上传 1 张照片，建议使用客厅或卧室横图。</span></div>
+                        <div class="d-flex flex-row mb-1 bg-white align-items-center" >
+                            <div class="m-2" style="width:8em; height:8em;"  id="img4">
+                                <img src="../img/room2.jpg" class="img-thumbnail" style="max-height:100%; width:100%;" >
+                            </div>
+                        </div>
+                        <div class="ml-2 mt-4">客厅：<span style="font-size:14px;color: #999;">请上传1间客厅的照片，最多10张。</span></div>
+                        <div class="d-flex flex-row mb-1 bg-white align-items-center" >
+                            <div class="m-2" style="width:8em; height:8em;" id="img5" >
+                                <img src="../img/room2.jpg" class="img-thumbnail" style="max-height:100%; width:100%;" >
+                            </div>
+                        </div>
+                        <div class="ml-2 mt-4">卧室：<span style="font-size:14px;color: #999;">请上传1间卧室的照片，最多10张。</span></div>
+                        <div class="d-flex flex-row mb-1 bg-white align-items-center">
+                            <div class="m-2" style="width:8em; height:8em;"   id="img6">
+                                <img src="../img/room2.jpg" class="img-thumbnail" style="max-height:100%; width:100%;" >
+                            </div>
+                        </div>
+                        <div class="ml-2 mt-4">卫浴：<span style="font-size:14px;color: #999;">请上传1间卫生间的照片，图片中必须展示完整的卫浴设施，最多10张。</span></div>
+                        <div class="d-flex flex-row mb-1 bg-white align-items-center" >
+                            <div class="m-2" style="width:8em; height:8em;" id="img7" >
+                                <img src="../img/room2.jpg" class="img-thumbnail" style="max-height:100%; width:100%;" >
+                            </div>
+                        </div>
+                        <div class="ml-2 mt-4">厨房：<span style="font-size:14px;color: #999;">请上传1间厨房的照片，图片中必须展示厨具设施，最多10张。</span></div>
+                        <div class="d-flex flex-row mb-1 bg-white align-items-center" >
+                            <div class="m-2" style="width:8em; height:8em;" id="img8">
+                                <img src="../img/room2.jpg" class="img-thumbnail" style="max-height:100%; width:100%;" >
+                            </div>
+                        </div>
+                        <div class="ml-2 mt-4">其他：<span style="font-size:14px;color: #999;">最多10张。</span></div>
+                        <div class="d-flex flex-row mb-1 bg-white align-items-center" >
+                            <div class="m-2" style="width:8em; height:8em;" id="img9">
+                                <img src="../img/room2.jpg" class="img-thumbnail" style="max-height:100%; width:100%;" >
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-md-2">
+                </div>
+            </div>
+
+
+            <div class="row mt-5 ">
+                <div class="col-md-2"></div>
+                <div class="col-md-8 p-0">
+                    <div class="d-flex flex-column rounded bg-white p-3">
+                        <div class="border-bottom pt-2 pb-2"><h4 class="text-orange">价格规则</h4></div>
+                        <div class="p-2 mt-4 font-weight-bold" style="font-size: 20px;" >日价：</div>
+                        <div class="p-2 d-flex flex-row align-items-center"><div class="border p-2 rounded" id="roomprice"> 200</div><div class="p-2">元/晚</div></div>
+                        <div class="p-2 mt-4 font-weight-bold" style="font-size: 20px;">清洁费：<span style="font-size:14px;color: #999;">用于房客入住前后的房屋清洁、布草更换等。</span></div>
+                        <div class="p-2 d-flex flex-row align-items-center"><div class="border p-2 rounded" id="someprice">20 </div><div class="p-2">元</div></div>
+                        <div class="p-2 mt-4 font-weight-bold" style="font-size: 20px;">宜居人数：</div>
+                        <div class="d-flex flex-row border rounded align-items-center ml-2" style="width: 110px;" tabindex="0">
+
+                            <div class="pt-2 pb-2 pl-2 pr-2"  id="peoplenum">1</div>
+
+                        </div>
+                        <div class="p-2 mt-4">
+                            <button class="btn btn-default rounded mr-3" onclick="agreeRoomApply()" style="background-color: #00CC00; color:#FFF;">审核通过</button>
+                            <button class="btn btn-default rounded"  onclick="notAgreeRoomApply()" style="background-color:#b92c28; color:#FFF;">审核失败</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                </div>
+            </div>
+
+        </div>
+
+        <div class="jumbotron text-center bg-light mt-5" style="margin-bottom:0; width:100%;">
+            <p>底部内容</p>
+        </div>
+
+    </div>
+</div>
+</body>
+
+<script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.14&key=9839aaba1926a947266476327971a8ea&plugin=AMap.AdvancedInfoWindow,AMap.Autocomplete,AMap.Geocoder"></script>
+<script type="text/javascript" src="https://cache.amap.com/lbs/static/addToolbar.js"></script>
+<script src="//webapi.amap.com/ui/1.0/main.js"></script>
+</html>
