@@ -5,7 +5,7 @@ package com.example.demo.entity;
 
 public class Order {
     private int O_id;
-    private int O_user;
+    private String O_user;
     private String O_name;
     private String  O_phone;
     private int O_price;
@@ -24,11 +24,11 @@ public class Order {
         O_id = o_id;
     }
 
-    public int getO_user() {
+    public String getO_user() {
         return O_user;
     }
 
-    public void setO_user(int o_user) {
+    public void setO_user(String o_user) {
         O_user = o_user;
     }
 

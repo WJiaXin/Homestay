@@ -180,7 +180,7 @@ $(function () {
                 }
                 str+=" <h6>"+$.parseJSON(data[i].h_address).addressName+"</h6>\n" +
                     "                             <h4 style=\"color:#F00;\">￥"+data[i].price+"起</h4></div></div></div>";
-
+                alert(str);
                 $('#content').append(str);
 
             }
